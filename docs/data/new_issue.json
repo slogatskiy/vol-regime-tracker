@@ -1,0 +1,262 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": true,
+  "source": "SIFMA US corporate issuance (monthly)",
+  "source_url": "https://www.sifma.org/resources/research/us-corporate-bonds-statistics/",
+  "unit": "Gross new-issue volume, $ billions/month",
+  "note": "High new-issue activity drives secondary turnover. Jan-2026 spike reflects the +95% YoY high-grade turnover episode. Illustrative until SIFMA monthly tables are ingested.",
+  "series": [
+    {
+      "month": "2023-01",
+      "ig_bn": 135,
+      "hy_bn": 28,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-02",
+      "ig_bn": 151,
+      "hy_bn": 32,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-03",
+      "ig_bn": 166,
+      "hy_bn": 30,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-04",
+      "ig_bn": 121,
+      "hy_bn": 22,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-05",
+      "ig_bn": 132,
+      "hy_bn": 26,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-06",
+      "ig_bn": 112,
+      "hy_bn": 20,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-07",
+      "ig_bn": 97,
+      "hy_bn": 15,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-08",
+      "ig_bn": 103,
+      "hy_bn": 19,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-09",
+      "ig_bn": 144,
+      "hy_bn": 31,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-10",
+      "ig_bn": 124,
+      "hy_bn": 26,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-11",
+      "ig_bn": 99,
+      "hy_bn": 19,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2023-12",
+      "ig_bn": 63,
+      "hy_bn": 10,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2024-01",
+      "ig_bn": 141,
+      "hy_bn": 29,
+      "ig_yoy_pct": 4
+    },
+    {
+      "month": "2024-02",
+      "ig_bn": 158,
+      "hy_bn": 34,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2024-03",
+      "ig_bn": 174,
+      "hy_bn": 32,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2024-04",
+      "ig_bn": 127,
+      "hy_bn": 23,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2024-05",
+      "ig_bn": 138,
+      "hy_bn": 28,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2024-06",
+      "ig_bn": 117,
+      "hy_bn": 21,
+      "ig_yoy_pct": 4
+    },
+    {
+      "month": "2024-07",
+      "ig_bn": 102,
+      "hy_bn": 16,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2024-08",
+      "ig_bn": 108,
+      "hy_bn": 19,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2024-09",
+      "ig_bn": 151,
+      "hy_bn": 32,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2024-10",
+      "ig_bn": 130,
+      "hy_bn": 27,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2024-11",
+      "ig_bn": 103,
+      "hy_bn": 20,
+      "ig_yoy_pct": 4
+    },
+    {
+      "month": "2024-12",
+      "ig_bn": 66,
+      "hy_bn": 11,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2025-01",
+      "ig_bn": 148,
+      "hy_bn": 31,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2025-02",
+      "ig_bn": 165,
+      "hy_bn": 35,
+      "ig_yoy_pct": 4
+    },
+    {
+      "month": "2025-03",
+      "ig_bn": 182,
+      "hy_bn": 33,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2025-04",
+      "ig_bn": 133,
+      "hy_bn": 24,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2025-05",
+      "ig_bn": 145,
+      "hy_bn": 29,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2025-06",
+      "ig_bn": 123,
+      "hy_bn": 22,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2025-07",
+      "ig_bn": 106,
+      "hy_bn": 17,
+      "ig_yoy_pct": 4
+    },
+    {
+      "month": "2025-08",
+      "ig_bn": 112,
+      "hy_bn": 20,
+      "ig_yoy_pct": 4
+    },
+    {
+      "month": "2025-09",
+      "ig_bn": 158,
+      "hy_bn": 34,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2025-10",
+      "ig_bn": 136,
+      "hy_bn": 28,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2025-11",
+      "ig_bn": 108,
+      "hy_bn": 20,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2025-12",
+      "ig_bn": 68,
+      "hy_bn": 11,
+      "ig_yoy_pct": 3
+    },
+    {
+      "month": "2026-01",
+      "ig_bn": 293,
+      "hy_bn": 48,
+      "ig_yoy_pct": 98
+    },
+    {
+      "month": "2026-02",
+      "ig_bn": 172,
+      "hy_bn": 37,
+      "ig_yoy_pct": 4
+    },
+    {
+      "month": "2026-03",
+      "ig_bn": 190,
+      "hy_bn": 35,
+      "ig_yoy_pct": 4
+    },
+    {
+      "month": "2026-04",
+      "ig_bn": 139,
+      "hy_bn": 25,
+      "ig_yoy_pct": 5
+    },
+    {
+      "month": "2026-05",
+      "ig_bn": 151,
+      "hy_bn": 30,
+      "ig_yoy_pct": 4
+    },
+    {
+      "month": "2026-06",
+      "ig_bn": 128,
+      "hy_bn": 23,
+      "ig_yoy_pct": 4
+    }
+  ]
+}

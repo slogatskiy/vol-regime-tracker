@@ -1,0 +1,88 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": true,
+  "source": "MarketAxess 10-Q / 10-K & earnings decks (Variable transaction FPM)",
+  "source_url": "https://investor.marketaxess.com/",
+  "unit": "Variable transaction fees per $ million traded",
+  "note": "Compression signals mix shift toward lower-fee protocols (portfolio trading, dealer RFQ, Open Trading). Illustrative trend until quarterly filings are ingested.",
+  "series": [
+    {
+      "q": "2023Q1",
+      "high_grade": 172,
+      "high_yield": 325,
+      "blended": 241
+    },
+    {
+      "q": "2023Q2",
+      "high_grade": 170,
+      "high_yield": 322,
+      "blended": 238
+    },
+    {
+      "q": "2023Q3",
+      "high_grade": 168,
+      "high_yield": 318,
+      "blended": 236
+    },
+    {
+      "q": "2023Q4",
+      "high_grade": 166,
+      "high_yield": 315,
+      "blended": 233
+    },
+    {
+      "q": "2024Q1",
+      "high_grade": 165,
+      "high_yield": 312,
+      "blended": 231
+    },
+    {
+      "q": "2024Q2",
+      "high_grade": 163,
+      "high_yield": 308,
+      "blended": 228
+    },
+    {
+      "q": "2024Q3",
+      "high_grade": 160,
+      "high_yield": 305,
+      "blended": 225
+    },
+    {
+      "q": "2024Q4",
+      "high_grade": 158,
+      "high_yield": 300,
+      "blended": 222
+    },
+    {
+      "q": "2025Q1",
+      "high_grade": 156,
+      "high_yield": 297,
+      "blended": 219
+    },
+    {
+      "q": "2025Q2",
+      "high_grade": 153,
+      "high_yield": 293,
+      "blended": 216
+    },
+    {
+      "q": "2025Q3",
+      "high_grade": 151,
+      "high_yield": 290,
+      "blended": 214
+    },
+    {
+      "q": "2025Q4",
+      "high_grade": 149,
+      "high_yield": 286,
+      "blended": 211
+    },
+    {
+      "q": "2026Q1",
+      "high_grade": 147,
+      "high_yield": 283,
+      "blended": 208
+    }
+  ]
+}

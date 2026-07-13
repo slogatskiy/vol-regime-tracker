@@ -1,0 +1,27 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": false,
+  "source": "Federal Reserve communications & press",
+  "source_url": "https://www.federalreserve.gov/newsevents/pressreleases.htm",
+  "note": "Two Fed reviews are the medium-term regime drivers. Recommendations expected by year-end 2026. Update status as announcements land.",
+  "items": [
+    {
+      "name": "Monetary-policy framework review",
+      "status": "In progress",
+      "expected": "2026",
+      "detail": "Five-year review of strategy, tools and communications (the '2%/average-inflation-targeting' framework)."
+    },
+    {
+      "name": "Communications task force",
+      "status": "Watch",
+      "expected": "H2 2026",
+      "detail": "Forward-guidance & SEP/dot-plot communication practices \u2014 central to the FOMC-centric \u2192 data-centric vol shift."
+    },
+    {
+      "name": "Balance-sheet task force",
+      "status": "Watch",
+      "expected": "H2 2026",
+      "detail": "Ample-reserves regime, QT end-state and SOMA composition \u2014 shapes dealer capacity and rates vol."
+    }
+  ]
+}

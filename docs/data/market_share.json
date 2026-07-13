@@ -1,0 +1,75 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": true,
+  "source": "MKTX & Tradeweb estimated share of US high-grade TRACE volume",
+  "source_url": "https://www.finra.org/finra-data/fixed-income",
+  "unit": "% of US high-grade electronic + TRACE-eligible volume (est.)",
+  "note": "Jan-2026 MKTX share dipped on heavy new-issue activity (secondary share falls when primary surges) \u2014 watch for recovery. Tradeweb trend is the competitive watch-item. Illustrative until TRACE-based estimates are ingested.",
+  "series": [
+    {
+      "q": "2023Q1",
+      "mktx_pct": 20.8,
+      "tradeweb_pct": 12.1
+    },
+    {
+      "q": "2023Q2",
+      "mktx_pct": 20.3,
+      "tradeweb_pct": 12.6
+    },
+    {
+      "q": "2023Q3",
+      "mktx_pct": 20.1,
+      "tradeweb_pct": 12.9
+    },
+    {
+      "q": "2023Q4",
+      "mktx_pct": 19.7,
+      "tradeweb_pct": 13.4
+    },
+    {
+      "q": "2024Q1",
+      "mktx_pct": 19.9,
+      "tradeweb_pct": 13.2
+    },
+    {
+      "q": "2024Q2",
+      "mktx_pct": 19.4,
+      "tradeweb_pct": 13.8
+    },
+    {
+      "q": "2024Q3",
+      "mktx_pct": 19.1,
+      "tradeweb_pct": 14.1
+    },
+    {
+      "q": "2024Q4",
+      "mktx_pct": 18.8,
+      "tradeweb_pct": 14.6
+    },
+    {
+      "q": "2025Q1",
+      "mktx_pct": 19.2,
+      "tradeweb_pct": 14.3
+    },
+    {
+      "q": "2025Q2",
+      "mktx_pct": 18.9,
+      "tradeweb_pct": 14.9
+    },
+    {
+      "q": "2025Q3",
+      "mktx_pct": 18.6,
+      "tradeweb_pct": 15.3
+    },
+    {
+      "q": "2025Q4",
+      "mktx_pct": 18.9,
+      "tradeweb_pct": 15.1
+    },
+    {
+      "q": "2026Q1",
+      "mktx_pct": 17.9,
+      "tradeweb_pct": 15.8
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fixed-Income Vol-Regime &amp; Market-Structure Tracker</title>
+  <meta name="description" content="Tracking the FOMC-centric to data-centric volatility regime shift in rates, and who captures the turnover: MarketAxess (MKTX) vs Tradeweb (TW)." />
+  <link rel="stylesheet" href="styles.css?v=0.1.0" />
+</head>
+<body>
+  <div class="topnav">
+    <div class="inner">
+      <span class="brand"><b>Vol-Regime</b> · Market-Structure Tracker</span>
+      <nav>
+        <a href="#summary">Summary</a>
+        <a href="#move">MOVE</a>
+        <a href="#dataday">Data-Day</a>
+        <a href="#dealer">Dealers</a>
+        <a href="#newissue">New Issue</a>
+        <a href="#volume">MKTX Vol</a>
+        <a href="#fpm">FPM</a>
+        <a href="#share">Share</a>
+        <a href="#tradeweb">Tradeweb</a>
+        <a href="#fedpath">Fed Path</a>
+        <a href="#fomc">Task Forces</a>
+        <a href="#method">Method</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="hero" id="summary">
+      <div class="kicker">
+        <span class="tk" id="tickers">NASDAQ: MKTX · TW</span>
+        <span>· Generated <span id="generated">—</span></span>
+        <span>· Internal research — not investment advice</span>
+      </div>
+      <h1 id="headline">Fixed-Income Vol-Regime &amp; Market-Structure Tracker</h1>
+      <p class="exec" id="exec">Loading…</p>
+      <div class="bottomline" id="bottomline"></div>
+      <div class="kpi-strip" id="kpi-strip"></div>
+    </header>
+
+    <!-- 01 MOVE -->
+    <section id="move">
+      <div class="sec-head"><span class="sec-num">01</span><h2>MOVE Index — bond-market implied vol</h2><span class="badge real">live</span></div>
+      <p class="sec-sub">The ICE BofA MOVE index is the Treasury market's VIX. Watch for a <b>sustained break above 90</b> (the elevated-regime line); a move above <b>100</b> would signal a significant vol-regime change. Live from Yahoo Finance (^MOVE).</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">MOVE — 2y daily, with 90 / 100 thresholds</span><span class="badge real" id="move-src">ICE BofA</span></div>
+          <div class="chart-box tall"><canvas id="moveChart"></canvas></div>
+          <div class="chart-note" id="move-note"></div>
+        </div>
+        <div class="card"><div class="readout" id="move-readout"></div>
+          <div class="why" style="margin-top:16px"><div class="wt">What this shows &amp; why it matters</div><p>MOVE is the cleanest single gauge of the rates-vol regime. A durable move through 90 tells you the market has repriced <b>how much</b> uncertainty lives in rates — the precondition for the entire turnover thesis.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Data-day vol -->
+    <section id="dataday">
+      <div class="sec-head"><span class="sec-num">02</span><h2>CPI &amp; Payroll day volatility</h2><span class="badge real">live</span></div>
+      <p class="sec-sub">Treasury moves in a 3-day window around CPI and jobs releases. Rising reactions signal the shift from <b>FOMC-centric</b> to <b>data-centric</b> vol — the market reacting to data, not just the Fed. 2y/10y from FRED.</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">|Δ| 2y &amp; 10y around releases (bps, window)</span><span class="badge real">FRED</span></div>
+          <div class="chart-box"><canvas id="dataDayChart"></canvas></div>
+          <div class="chart-note" id="dataday-note"></div>
+        </div>
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Release-by-release reaction table</span></div>
+          <div class="tbl-wrap"><table id="dataday-table"><thead><tr><th>Date</th><th>Event</th><th>Δ2y (bp)</th><th>Δ10y (bp)</th></tr></thead><tbody></tbody></table></div>
+        </div>
+      </div>
+      <div class="why"><div class="wt">What this shows &amp; why it matters</div><p>If the average absolute reaction is <b>growing</b>, the vol is migrating into scheduled data — exactly the regime the desk expects. That vol has to clear <em>somewhere</em>, which is the bridge to the market-structure metrics below.</p></div>
+    </section>
+
+    <!-- 09 Dealer balance sheet -->
+    <section id="dealer">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Primary-dealer balance-sheet capacity</h2><span class="badge real">live</span></div>
+      <p class="sec-sub">Net outright primary-dealer positions in U.S. Treasuries (ex-TIPS), weekly, from the NY Fed. Reduced dealer capacity to warehouse risk <b>amplifies</b> the migration to electronic all-to-all platforms.</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Dealer net UST position ($bn)</span><span class="badge real">FRBNY</span></div>
+          <div class="chart-box"><canvas id="dealerChart"></canvas></div>
+          <div class="chart-note" id="dealer-note"></div>
+        </div>
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Latest position by maturity ($bn)</span></div>
+          <div class="chart-box"><canvas id="dealerBucketChart"></canvas></div>
+        </div>
+      </div>
+      <div class="why"><div class="wt">What this shows &amp; why it matters</div><p>Dealer inventory is a proxy for the Street's willingness to intermediate. When capacity is constrained relative to issuance, price-making moves off balance sheet and onto platforms — structurally good for MKTX/TW volumes.</p></div>
+    </section>
+
+    <!-- 08 New issue -->
+    <section id="newissue">
+      <div class="sec-head"><span class="sec-num">04</span><h2>New-issue volume</h2><span class="badge illustrative">illustrative</span></div>
+      <p class="sec-sub">Gross US corporate issuance (IG &amp; HY), monthly. High new-issue activity drives secondary turnover — the Jan-2026 surge coincided with <b>+95% YoY high-grade turnover</b>. Watch for sustained elevated levels. Source: SIFMA (to ingest).</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Monthly gross issuance — IG &amp; HY ($bn)</span><span class="badge illustrative">SIFMA</span></div>
+          <div class="chart-box"><canvas id="newIssueChart"></canvas></div>
+          <div class="chart-note" id="newissue-note"></div>
+        </div>
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">IG issuance YoY (%)</span></div>
+          <div class="chart-box"><canvas id="newIssueYoyChart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 MKTX volume -->
+    <section id="volume">
+      <div class="sec-head"><span class="sec-num">05</span><h2>MKTX monthly volume &amp; ADV growth</h2><span class="badge illustrative">illustrative</span></div>
+      <p class="sec-sub">MarketAxess total credit ADV and its YoY growth vs the <b>5-year CAGR of 9.8%</b>. Growth accelerating above the CAGR line is the bull signal. Source: MKTX monthly volume releases (to ingest).</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Total credit ADV ($bn/day)</span><span class="badge illustrative">MKTX IR</span></div>
+          <div class="chart-box"><canvas id="mktxAdvChart"></canvas></div>
+          <div class="chart-note" id="volume-note"></div>
+        </div>
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">ADV YoY vs 5y CAGR (9.8%)</span></div>
+          <div class="chart-box"><canvas id="mktxYoyChart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 FPM -->
+    <section id="fpm">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Variable fees per million (FPM)</h2><span class="badge illustrative">illustrative</span></div>
+      <p class="sec-sub">MKTX variable transaction FPM by segment. <b>Compression</b> indicates mix shift toward lower-fee protocols (portfolio trading, dealer-RFQ, Open Trading). Source: 10-Q/10-K &amp; earnings decks (to ingest).</p>
+      <div class="grid-1">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Variable FPM — high-grade, high-yield, blended ($/mm)</span><span class="badge illustrative">MKTX filings</span></div>
+          <div class="chart-box"><canvas id="fpmChart"></canvas></div>
+          <div class="chart-note" id="fpm-note"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Market share -->
+    <section id="share">
+      <div class="sec-head"><span class="sec-num">07</span><h2>US high-grade market share — MKTX vs Tradeweb</h2><span class="badge illustrative">illustrative</span></div>
+      <p class="sec-sub">Estimated share of US high-grade volume, quarterly. Jan-2026 MKTX share dipped on heavy new issuance — <b>watch for recovery</b>. Tradeweb's trajectory is the competitive watch-item. Source: TRACE-based estimates (to ingest).</p>
+      <div class="grid-1">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Estimated US high-grade share (%)</span><span class="badge illustrative">TRACE est.</span></div>
+          <div class="chart-box"><canvas id="shareChart"></canvas></div>
+          <div class="chart-note" id="share-note"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 Tradeweb -->
+    <section id="tradeweb">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Tradeweb vs MKTX growth</h2><span class="badge illustrative">illustrative</span></div>
+      <p class="sec-sub">YoY growth in volume and revenue, side by side. If <b>TW consistently outpaces MKTX</b>, the vol benefit is accruing to the competitor. Source: TW &amp; MKTX quarterly reports (to ingest).</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Revenue growth YoY (%)</span><span class="badge illustrative">IR</span></div>
+          <div class="chart-box"><canvas id="twRevChart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Volume growth YoY (%)</span><span class="badge illustrative">IR</span></div>
+          <div class="chart-box"><canvas id="twVolChart"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-note" id="tradeweb-note" style="margin-top:12px"></div>
+    </section>
+
+    <!-- 10 Fed funds path -->
+    <section id="fedpath">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Fed funds path vs the dot plot</h2><span class="badge illustrative">illustrative</span></div>
+      <p class="sec-sub">Market-implied fed funds path (from futures) vs the FOMC SEP dot-plot median. <b>Divergence</b> means markets are pricing independently of guidance — a hallmark of the post-guidance era. Source: FF futures / CME (to ingest).</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Implied fed funds path (%)</span><span class="badge illustrative">FF futures</span></div>
+          <div class="chart-box"><canvas id="fedPathChart"></canvas></div>
+          <div class="chart-note" id="fedpath-note"></div>
+        </div>
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Market − dots divergence (bps)</span></div>
+          <div class="chart-box"><canvas id="fedDivChart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 FOMC task forces -->
+    <section id="fomc">
+      <div class="sec-head"><span class="sec-num">10</span><h2>FOMC task-force tracker</h2><span class="badge real">tracked</span></div>
+      <p class="sec-sub">The Fed's framework, communications and balance-sheet reviews — recommendations expected by year-end 2026 — will shape the medium-term regime. Qualitative status, updated as announcements land.</p>
+      <div class="status-grid" id="fomc-grid"></div>
+      <div class="why"><div class="wt">What this shows &amp; why it matters</div><p>These reviews decide <b>how the Fed communicates</b> and <b>how big its footprint is</b> — the two inputs that determine whether vol stays data-centric. Direct feed into the dot-plot-divergence and dealer-capacity metrics above.</p></div>
+    </section>
+
+    <section id="method">
+      <div class="sec-head"><span class="sec-num">—</span><h2>Method &amp; sources</h2></div>
+      <p class="sec-sub" id="method-body"></p>
+      <div class="why"><div class="wt">Data honesty</div><p><b>Live</b> series (MOVE, data-day vol, dealer balance sheet) refresh from public APIs on every collector run — each refresh is a git commit, so history is diffable. <b>Illustrative</b> series are flagged amber: the shape is seeded for design and is overwritten when the sourced reports (MKTX/TW IR, SIFMA, CME) are ingested. Nothing illustrative is presented as a measured value.</p></div>
+      <footer>
+        Fixed-Income Vol-Regime &amp; Market-Structure Tracker · data in <code>docs/data/*.json</code>, versioned in git ·
+        refresh with the collectors in <code>scripts/</code> · Internal research — not investment advice.
+      </footer>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js?v=0.1.0"></script>
+</body>
+</html>

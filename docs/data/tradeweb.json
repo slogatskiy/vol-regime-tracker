@@ -1,0 +1,73 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": true,
+  "source": "Tradeweb (TW) & MarketAxess (MKTX) quarterly reports",
+  "source_url": "https://www.tradeweb.com/newsroom/monthly-activity-reports/",
+  "unit": "YoY growth, %",
+  "note": "If TW consistently outpaces MKTX, the vol benefit is accruing to the competitor. Illustrative until both IR feeds are ingested.",
+  "series": [
+    {
+      "q": "2024Q1",
+      "tw_rev_yoy": 33,
+      "mktx_rev_yoy": 8,
+      "tw_vol_yoy": 50,
+      "mktx_vol_yoy": 12
+    },
+    {
+      "q": "2024Q2",
+      "tw_rev_yoy": 36,
+      "mktx_rev_yoy": 11,
+      "tw_vol_yoy": 55,
+      "mktx_vol_yoy": 15
+    },
+    {
+      "q": "2024Q3",
+      "tw_rev_yoy": 32,
+      "mktx_rev_yoy": 4,
+      "tw_vol_yoy": 40,
+      "mktx_vol_yoy": 9
+    },
+    {
+      "q": "2024Q4",
+      "tw_rev_yoy": 25,
+      "mktx_rev_yoy": 6,
+      "tw_vol_yoy": 32,
+      "mktx_vol_yoy": 10
+    },
+    {
+      "q": "2025Q1",
+      "tw_rev_yoy": 24,
+      "mktx_rev_yoy": 7,
+      "tw_vol_yoy": 30,
+      "mktx_vol_yoy": 11
+    },
+    {
+      "q": "2025Q2",
+      "tw_rev_yoy": 23,
+      "mktx_rev_yoy": 5,
+      "tw_vol_yoy": 28,
+      "mktx_vol_yoy": 8
+    },
+    {
+      "q": "2025Q3",
+      "tw_rev_yoy": 22,
+      "mktx_rev_yoy": 4,
+      "tw_vol_yoy": 26,
+      "mktx_vol_yoy": 7
+    },
+    {
+      "q": "2025Q4",
+      "tw_rev_yoy": 21,
+      "mktx_rev_yoy": 6,
+      "tw_vol_yoy": 24,
+      "mktx_vol_yoy": 9
+    },
+    {
+      "q": "2026Q1",
+      "tw_rev_yoy": 20,
+      "mktx_rev_yoy": 3,
+      "tw_vol_yoy": 23,
+      "mktx_vol_yoy": 6
+    }
+  ]
+}

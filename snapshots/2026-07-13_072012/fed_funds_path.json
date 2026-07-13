@@ -1,0 +1,58 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": true,
+  "source": "Fed funds futures (implied path) vs FOMC SEP dot plot",
+  "source_url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
+  "unit": "Implied fed funds rate, %",
+  "note": "Divergence between the market path and the dots indicates markets are pricing independently \u2014 a hallmark of the post-guidance era. Illustrative until FF futures settlements are ingested.",
+  "series": [
+    {
+      "meeting": "2026-01",
+      "market_implied": 4.13,
+      "dot_median": 4.13,
+      "divergence_bps": 0
+    },
+    {
+      "meeting": "2026-03",
+      "market_implied": 4.0,
+      "dot_median": 4.13,
+      "divergence_bps": -13
+    },
+    {
+      "meeting": "2026-04",
+      "market_implied": 3.88,
+      "dot_median": 3.88,
+      "divergence_bps": 0
+    },
+    {
+      "meeting": "2026-06",
+      "market_implied": 3.7,
+      "dot_median": 3.88,
+      "divergence_bps": -18
+    },
+    {
+      "meeting": "2026-07",
+      "market_implied": 3.63,
+      "dot_median": 3.63,
+      "divergence_bps": 0
+    },
+    {
+      "meeting": "2026-09",
+      "market_implied": 3.5,
+      "dot_median": 3.63,
+      "divergence_bps": -13
+    },
+    {
+      "meeting": "2026-10",
+      "market_implied": 3.45,
+      "dot_median": 3.63,
+      "divergence_bps": -18
+    },
+    {
+      "meeting": "2026-12",
+      "market_implied": 3.38,
+      "dot_median": 3.38,
+      "divergence_bps": 0
+    }
+  ]
+}
