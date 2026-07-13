@@ -205,14 +205,11 @@ def fomc_taskforce():
 
 
 def main():
-    mktx_volume()
-    mktx_fpm()
-    market_share()
-    tradeweb()
-    new_issue()
-    fed_funds_path()
+    # NOTE: mktx_volume, mktx_fpm, market_share, tradeweb, new_issue, fed_funds_path are
+    # now produced by the REAL ingest scripts (ingest_*.py) and must NOT be overwritten here.
+    # Only the qualitative FOMC task-force tracker is seeded from this file.
     fomc_taskforce()
-    print("seeded illustrative data files.")
+    print("seeded fomc_taskforce.json (all other metrics now come from real ingest_*.py).")
 
 
 if __name__ == "__main__":

@@ -2,6 +2,22 @@
 
 Named save points. Roll the whole repo back to any of these with `git checkout <tag>`.
 
+## v0.3.0 — 2026-07-13 — no illustrative left; all metrics real
+Converted the last three placeholder metrics to real, sourced data. **Nothing on the page
+is fabricated anymore.**
+
+- **US high-grade share (#7) → real:** MKTX estimated US HG/HY TRACE share, monthly
+  Jul-2025…Jun-2026 (Table 1B) + FY24 19.0% / FY25 18.4% anchors. Shows the early-2026
+  dip (16.7% Feb trough) on the new-issue surge, then recovery — the PM's watch-item.
+- **Fed funds path (#9) → real:** June-2026 SEP dot medians vs fed funds futures (as of
+  2026-07-13). Divergence flipped hawkish: market prices ~+27bp above the dots in 2027.
+- **New issue (#4) → real:** SIFMA-consistent annual IG ($1.21T→$1.50T→$1.65T, 2023-25) +
+  quarterly + record months. Monthly left to a SIFMA-xlsx ingest by design — press monthly
+  numbers mix bases and aren't safe to stitch.
+- New scripts: `ingest_market_share.py`, `ingest_fed_path.py`, `ingest_new_issue.py`
+  (with an optional SIFMA `.xlsx` monthly parser). `seed_illustrative.py` now only emits the
+  qualitative FOMC tracker. Render + Node runtime check pass on all real data.
+
 ## v0.2.0 — 2026-07-13 — real MKTX/Tradeweb data
 Replaced the three market-structure metrics with **real, sourced data** transcribed
 from the companies' monthly reports (ingest scripts included, so updates = add a month).

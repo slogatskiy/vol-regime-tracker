@@ -15,10 +15,12 @@ as the audit trail.
 - [x] **MKTX monthly volume:** ingested 18 months of IR releases → real ADV + YoY (`ingest_mktx.py`).
 - [x] **Variable FPM:** real monthly total-credit FPM from the releases (Table 1D).
 - [x] **Tradeweb:** real fully-electronic US credit ADV vs MKTX HG+HY (`ingest_tradeweb.py`).
-- [ ] **New issue (SIFMA):** parse monthly US corporate issuance tables → `new_issue.json`
-      (real anchor known: Jan-2026 IG $208.4bn, record, +12% YoY).
-- [ ] **US high-grade share:** need a TRACE total-market denominator to turn MKTX/TW
-      absolute ADV (already real) into share → `market_share.json`.
+- [x] **US high-grade share:** real MKTX estimated US HG/HY TRACE share, monthly + annual
+      anchors (`ingest_market_share.py`).
+- [x] **Fed funds path:** real SEP dots vs fed funds futures snapshot (`ingest_fed_path.py`).
+- [~] **New issue (SIFMA):** real annual/quarterly IG + record months live now; the full
+      MONTHLY series needs SIFMA's Excel dropped into `data_raw/` (parser stubbed in
+      `ingest_new_issue.py`) — press monthly figures aren't basis-consistent.
 - [ ] **FPM segment split:** add HG/HY FPM from the 10-Q for a mix-shift decomposition.
 - [ ] Backfill TW Feb-2026 US credit ADV (currently a gap) and extend both series back through 2024.
 

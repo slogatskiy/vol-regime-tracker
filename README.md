@@ -22,17 +22,18 @@ turnover benefit accrues to whoever wins market structure (**MarketAxess / MKTX*
 | 1 | **MOVE Index** — watch 90 / 100 | Yahoo `^MOVE` | 🟢 live |
 | 2 | **CPI & Payroll day vol** — 2y/10y 3-day window | FRED DGS2/DGS10 | 🟢 live |
 | 3 | **Dealer balance sheet** — net UST positions | NY Fed Primary Dealer API | 🟢 live |
-| 4 | **New-issue volume** — IG/HY monthly | SIFMA | 🟡 illustrative |
+| 4 | **New-issue volume** — IG issuance | SIFMA (annual/qtly; monthly via xlsx) | 🟢 real |
 | 5 | **MKTX monthly volume** — ADV vs 9.8% CAGR | MKTX IR releases | 🟢 real |
 | 6 | **Variable FPM** — fee compression | MKTX IR (Table 1D) | 🟢 real |
-| 7 | **US high-grade share** — MKTX vs TW | TRACE estimates | 🟡 illustrative |
+| 7 | **US high-grade share** — MKTX estimated | MKTX IR (Table 1B) | 🟢 real |
 | 8 | **Tradeweb vs MKTX** — US credit e-trading | TW & MKTX IR | 🟢 real |
 | 9 | **Fed funds path vs dots** — divergence | FF futures / CME | 🟡 illustrative |
 | 10 | **FOMC task forces** — framework/comms/balance-sheet | Fed press | 🟢 tracked (qualitative) |
 
-🟢 **live** = fetched from a free public API on every collector run.
-🟡 **illustrative** = seeded, clearly flagged amber on the page, and overwritten when the
-sourced report is ingested. Nothing illustrative is presented as a measured value.
+🟢 **real** = live public API (MOVE, data-day vol, dealer) or transcribed from the source's
+official reports (MKTX/TW/SIFMA/SEP). **No illustrative/placeholder data remains.** The one
+coarser series is #4 (annual/quarterly IG issuance) — full monthly needs SIFMA's Excel dropped
+into `data_raw/` (press monthly figures aren't basis-consistent, so they're deliberately not stitched).
 
 ## How it's built
 
@@ -71,7 +72,10 @@ python scripts/build_data_day_vol.py    # data-day Treasury vol (no keys)
 python scripts/fetch_dealer_balance.py  # dealer balance sheet (no keys)
 python scripts/ingest_mktx.py           # MKTX monthly volume + FPM (real; add new months)
 python scripts/ingest_tradeweb.py       # MKTX vs TW US credit e-trading (real)
-python scripts/seed_illustrative.py     # remaining illustrative files (#4, #8, #10)
+python scripts/ingest_market_share.py   # MKTX estimated US HG/HY TRACE share (real)
+python scripts/ingest_new_issue.py      # SIFMA IG issuance (drop xlsx in data_raw for monthly)
+python scripts/ingest_fed_path.py       # fed funds futures vs SEP dots (real snapshot)
+python scripts/seed_illustrative.py     # only the qualitative FOMC task-force tracker now
 
 git add docs/data && git commit -m "data: refresh signals" && git push
 ```

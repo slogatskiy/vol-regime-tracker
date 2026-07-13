@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fixed-Income Vol-Regime &amp; Market-Structure Tracker</title>
   <meta name="description" content="Tracking the FOMC-centric to data-centric volatility regime shift in rates, and who captures the turnover: MarketAxess (MKTX) vs Tradeweb (TW)." />
-  <link rel="stylesheet" href="styles.css?v=0.2.0" />
+  <link rel="stylesheet" href="styles.css?v=0.3.0" />
 </head>
 <body>
   <div class="topnav">
@@ -95,16 +95,16 @@
 
     <!-- 08 New issue -->
     <section id="newissue">
-      <div class="sec-head"><span class="sec-num">04</span><h2>New-issue volume</h2><span class="badge illustrative">illustrative</span></div>
-      <p class="sec-sub">Gross US corporate issuance (IG &amp; HY), monthly. High new-issue activity drives secondary turnover — the Jan-2026 surge coincided with <b>+95% YoY high-grade turnover</b>. Watch for sustained elevated levels. Source: SIFMA (to ingest).</p>
+      <div class="sec-head"><span class="sec-num">04</span><h2>New-issue volume</h2><span class="badge real">real</span></div>
+      <p class="sec-sub">US corporate IG gross issuance. High new-issue activity drives secondary turnover — the Jan-2026 surge coincided with <b>+95% YoY high-grade turnover</b>. Watch for sustained elevated levels. Real SIFMA-consistent annual/quarterly figures; monthly detail via the SIFMA workbook ingest.</p>
       <div class="grid-2">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Monthly gross issuance — IG &amp; HY ($bn)</span><span class="badge illustrative">SIFMA</span></div>
+          <div class="chart-meta"><span class="chart-title">Annual IG gross issuance ($bn)</span><span class="badge real">SIFMA</span></div>
           <div class="chart-box"><canvas id="newIssueChart"></canvas></div>
           <div class="chart-note" id="newissue-note"></div>
         </div>
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">IG issuance YoY (%)</span></div>
+          <div class="chart-meta"><span class="chart-title">Quarterly IG gross issuance ($bn)</span><span class="badge real">SIFMA</span></div>
           <div class="chart-box"><canvas id="newIssueYoyChart"></canvas></div>
         </div>
       </div>
@@ -142,11 +142,11 @@
 
     <!-- 04 Market share -->
     <section id="share">
-      <div class="sec-head"><span class="sec-num">07</span><h2>US high-grade market share — MKTX vs Tradeweb</h2><span class="badge illustrative">illustrative</span></div>
-      <p class="sec-sub">Estimated share of US high-grade volume, quarterly. Jan-2026 MKTX share dipped on heavy new issuance — <b>watch for recovery</b>. Tradeweb's trajectory is the competitive watch-item. Source: TRACE-based estimates (to ingest).</p>
+      <div class="sec-head"><span class="sec-num">07</span><h2>MKTX US high-grade market share</h2><span class="badge real">real</span></div>
+      <p class="sec-sub">MarketAxess estimated share of US high-grade (and high-yield) TRACE volume, monthly. Early-2026 share dipped on heavy new issuance — <b>watch for recovery</b>. Real from MKTX Table 1B; head-to-head vs Tradeweb is in the US-credit e-trading section above.</p>
       <div class="grid-1">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Estimated US high-grade share (%)</span><span class="badge illustrative">TRACE est.</span></div>
+          <div class="chart-meta"><span class="chart-title">MKTX estimated market share of TRACE (%)</span><span class="badge real">MKTX IR</span></div>
           <div class="chart-box"><canvas id="shareChart"></canvas></div>
           <div class="chart-note" id="share-note"></div>
         </div>
@@ -172,11 +172,11 @@
 
     <!-- 10 Fed funds path -->
     <section id="fedpath">
-      <div class="sec-head"><span class="sec-num">09</span><h2>Fed funds path vs the dot plot</h2><span class="badge illustrative">illustrative</span></div>
-      <p class="sec-sub">Market-implied fed funds path (from futures) vs the FOMC SEP dot-plot median. <b>Divergence</b> means markets are pricing independently of guidance — a hallmark of the post-guidance era. Source: FF futures / CME (to ingest).</p>
+      <div class="sec-head"><span class="sec-num">09</span><h2>Fed funds path vs the dot plot</h2><span class="badge real">real</span></div>
+      <p class="sec-sub">Market-implied fed funds path (from futures) vs the FOMC June-2026 SEP dot-plot median. <b>Divergence</b> means markets are pricing independently of guidance — a hallmark of the post-guidance era. Real snapshot from the SEP + CME FedWatch/futures.</p>
       <div class="grid-2">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Implied fed funds path (%)</span><span class="badge illustrative">FF futures</span></div>
+          <div class="chart-meta"><span class="chart-title">Implied fed funds path (%)</span><span class="badge real">SEP + futures</span></div>
           <div class="chart-box"><canvas id="fedPathChart"></canvas></div>
           <div class="chart-note" id="fedpath-note"></div>
         </div>
@@ -207,6 +207,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=0.2.0"></script>
+  <script src="app.js?v=0.3.0"></script>
 </body>
 </html>

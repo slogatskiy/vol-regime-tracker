@@ -136,33 +136,34 @@ function renderDealer(d) {
   return d;
 }
 
-/* ---------- 04 New issue ---------- */
+/* ---------- 04 New issue (real annual + quarterly) ---------- */
 function renderNewIssue(d) {
-  const labels = d.series.map(p => monthLbl(p.month));
+  const yrs = Object.keys(d.annual_ig).sort();
   new Chart($("newIssueChart"), {
     type: "bar",
-    data: { labels, datasets: [
-      { label: "IG", data: d.series.map(p => p.ig_bn), backgroundColor: C.accent },
-      { label: "HY", data: d.series.map(p => p.hy_bn), backgroundColor: C.amber },
-    ]},
-    options: base({ scales: { x: { stacked: true, grid: { color: C.grid }, ticks: { color: C.text, maxTicksLimit: 10 } },
-      y: { stacked: true, grid: { color: C.grid }, ticks: { color: C.text }, title: axT("$ bn / month"), beginAtZero: true } } }),
-  });
-  const yoy = d.series.filter(p => p.ig_yoy_pct != null);
-  new Chart($("newIssueYoyChart"), {
-    type: "line",
-    data: { labels: yoy.map(p => monthLbl(p.month)), datasets: [
-      { label: "IG issuance YoY %", data: yoy.map(p => p.ig_yoy_pct), borderColor: C.good,
-        backgroundColor: "rgba(56,199,147,.10)", borderWidth: 2, pointRadius: 2, fill: true, tension: .15 },
+    data: { labels: yrs, datasets: [
+      { label: "IG gross issuance ($bn)", data: yrs.map(y => d.annual_ig[y]),
+        backgroundColor: C.accent },
     ]},
     options: base({ plugins: { legend: { display: false } }, scales: {
-      x: { grid: { color: C.grid }, ticks: { color: C.text, maxTicksLimit: 8 } },
-      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("YoY %") } } }),
+      x: { grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("annual IG issuance, $bn"), beginAtZero: true } } }),
   });
-  const jan = d.series.find(p => p.month === "2026-01");
-  $("newissue-note").textContent = jan
-    ? `Jan-2026 IG issuance ${jan.ig_bn}bn (${sign(jan.ig_yoy_pct)}% YoY) — the surge behind the +95% high-grade turnover episode.`
-    : "";
+  const qs = Object.keys(d.quarterly_ig).sort();
+  new Chart($("newIssueYoyChart"), {
+    type: "bar",
+    data: { labels: qs, datasets: [
+      { label: "IG gross ($bn)", data: qs.map(q => d.quarterly_ig[q]), backgroundColor: C.amber },
+    ]},
+    options: base({ plugins: { legend: { display: false } }, scales: {
+      x: { grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("quarterly IG issuance, $bn"), beginAtZero: true } } }),
+  });
+  const recs = (d.record_months || []).map(r => `${monthLbl(r.month)} $${r.ig_bn}bn`).join(" · ");
+  $("newissue-note").innerHTML =
+    `IG issuance boom: $${d.annual_ig["2023"]}bn (2023) → $${d.annual_ig["2024"]}bn (2024) → $${d.annual_ig["2025"]}bn (2025). ` +
+    `2026 total corp running +${d.ytd_2026.yoy_pct}% YoY (H1 $${(d.ytd_2026.total_corp_bn/1000).toFixed(2)}T). ` +
+    `Record months: ${recs}. <span style="color:var(--amber)">Monthly detail via SIFMA xlsx drop (see script) — press monthly figures aren't basis-consistent.</span>`;
   return d;
 }
 
@@ -218,23 +219,29 @@ function renderFpm(d) {
   return d;
 }
 
-/* ---------- 07 Market share ---------- */
+/* ---------- 07 Market share (real MKTX estimated share) ---------- */
 function renderShare(d) {
-  const labels = d.series.map(p => p.q);
+  const labels = d.series.map(p => monthLbl(p.month));
+  const fy25 = d.annual_hg["2025"];
   new Chart($("shareChart"), {
     type: "line",
     data: { labels, datasets: [
-      { label: "MKTX", data: d.series.map(p => p.mktx_pct), borderColor: C.accent,
-        backgroundColor: "rgba(79,140,255,.08)", borderWidth: 2, pointRadius: 2, fill: false, tension: .15 },
-      { label: "Tradeweb", data: d.series.map(p => p.tradeweb_pct), borderColor: C.amber,
-        backgroundColor: "rgba(245,166,35,.08)", borderWidth: 2, pointRadius: 2, fill: false, tension: .15 },
+      { label: "US high-grade share", data: d.series.map(p => p.hg_share), borderColor: C.accent,
+        backgroundColor: "rgba(79,140,255,.10)", borderWidth: 2, pointRadius: 3, fill: true, tension: .15 },
+      { label: "US high-yield share", data: d.series.map(p => p.hy_share), borderColor: C.amber,
+        borderWidth: 2, pointRadius: 2, fill: false, tension: .15 },
+      { label: `FY2025 HG avg (${fy25}%)`, data: labels.map(() => fy25), borderColor: C.muted,
+        borderWidth: 1.3, borderDash: [6, 5], pointRadius: 0, fill: false },
     ]},
     options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
-      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("est. US high-grade share, %") } } }),
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("MKTX estimated share of TRACE, %") } } }),
   });
   const l = d.series[d.series.length - 1];
+  const trough = d.series.reduce((a, p) => p.hg_share < a.hg_share ? p : a, d.series[0]);
   $("share-note").textContent =
-    `Latest: MKTX ${l.mktx_pct}% vs Tradeweb ${l.tradeweb_pct}%. Gap ${(l.mktx_pct - l.tradeweb_pct).toFixed(1)}pp and narrowing — the January dip is the recovery watch-item.`;
+    `MKTX US high-grade share ${l.hg_share}% latest (FY24 ${d.annual_hg["2024"]}% → FY25 ${fy25}%). ` +
+    `Dipped to a ${trough.hg_share}% trough in ${monthLbl(trough.month)} on the new-issue surge, now recovering. ` +
+    `MKTX flags TRACE duplicate reports understated 2026 share ~150-160bp in some months.`;
   return d;
 }
 
@@ -268,31 +275,34 @@ function renderTradeweb(d) {
   return d;
 }
 
-/* ---------- 09 Fed funds path ---------- */
+/* ---------- 09 Fed funds path (real snapshot) ---------- */
 function renderFedPath(d) {
-  const labels = d.series.map(p => p.meeting);
+  const labels = d.series.map(p => p.horizon);
   new Chart($("fedPathChart"), {
     type: "line",
     data: { labels, datasets: [
-      { label: "Market-implied", data: d.series.map(p => p.market_implied), borderColor: C.accent, borderWidth: 2, pointRadius: 3, tension: .1 },
-      { label: "Dot median", data: d.series.map(p => p.dot_median), borderColor: C.amber, borderWidth: 2, stepped: true, pointRadius: 3 },
+      { label: "Market-implied (futures)", data: d.series.map(p => p.market_implied), borderColor: C.accent,
+        borderWidth: 2, pointRadius: 3, tension: .1, spanGaps: false },
+      { label: "Dot median (SEP)", data: d.series.map(p => p.dot_median), borderColor: C.amber,
+        borderWidth: 2, stepped: true, pointRadius: 3 },
     ]},
     options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
-      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("fed funds, %") } } }),
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("fed funds rate, %") } } }),
   });
+  const div = d.series.filter(p => p.divergence_bps != null);
   new Chart($("fedDivChart"), {
     type: "bar",
-    data: { labels, datasets: [
-      { label: "Market − dots (bps)", data: d.series.map(p => p.divergence_bps),
-        backgroundColor: d.series.map(p => p.divergence_bps <= 0 ? C.accent : C.bad) },
+    data: { labels: div.map(p => p.horizon), datasets: [
+      { label: "Market − dots (bps)", data: div.map(p => p.divergence_bps),
+        backgroundColor: div.map(p => p.divergence_bps >= 0 ? C.bad : C.accent) },
     ]},
     options: base({ plugins: { legend: { display: false } }, scales: {
       x: { grid: { color: C.grid }, ticks: { color: C.text } },
-      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("divergence, bps") } } }),
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("market − dots, bps") } } }),
   });
-  const maxDiv = d.series.reduce((a, p) => Math.abs(p.divergence_bps) > Math.abs(a.divergence_bps) ? p : a, d.series[0]);
   $("fedpath-note").textContent =
-    `Widest divergence ${sign(maxDiv.divergence_bps)}bps at ${maxDiv.meeting}. Market pricing below the dots ⇒ markets independent of guidance.`;
+    `As of ${d.as_of}: market prices higher-for-longer than the dots — up to ${sign(d.max_divergence_bps)}bp in 2027 ` +
+    `(futures near 4% vs a 3.6% dot median). Hawkish divergence = markets pricing independently of guidance.`;
   return d;
 }
 
