@@ -28,14 +28,15 @@ Numbered as in the PM's brief.
 | 5 | **CPI & Payroll day vol** — 2y/10y 3-day window | FRED DGS2/DGS10 | 🟢 live |
 | 6 | **FOMC task forces** — framework/comms/balance-sheet | Fed press | 🟢 tracked (qualitative) |
 | 7 | **Tradeweb vs MKTX** — US credit ADV **+ revenue** | TW & MKTX IR/results | 🟢 real |
-| 8 | **New-issue volume** — IG issuance | SIFMA (annual/qtly; monthly via xlsx) | 🟢 real |
+| 8 | **New-issue volume** — IG/HY monthly + annual | SIFMA workbook (Issuance tab) | 🟢 real |
 | 9 | **Dealer balance + leverage** — positions & utilization | FRBNY, FRED | 🟢 real |
 | 10 | **Fed funds path** — vs dots + divergence tracking | SEP, CME/futures | 🟢 real |
 
 🟢 **real** = live public API (MOVE, data-day vol, dealer) or transcribed from the source's
-official reports (MKTX/TW/SIFMA/SEP). **No illustrative/placeholder data remains.** The one
-coarser series is #8 new issue (annual/quarterly IG) — full monthly needs SIFMA's Excel dropped
-into `data_raw/` (press monthly figures aren't basis-consistent, so they're deliberately not stitched).
+official reports (MKTX/TW/SIFMA/SEP). **Every metric is real — no illustrative/placeholder data,
+no coarser-than-asked series.** #8 new issue is now real monthly IG/HY, parsed from SIFMA's
+Issuance workbook (drop the latest `.xlsx` into `data_raw/sifma_us_corporate.xlsx` and re-run
+`ingest_new_issue.py` to refresh).
 
 ## How it's built
 
@@ -75,7 +76,7 @@ python scripts/fetch_dealer_balance.py  # dealer balance sheet (no keys)
 python scripts/ingest_mktx.py           # MKTX monthly volume + FPM (real; add new months)
 python scripts/ingest_tradeweb.py       # MKTX vs TW US credit e-trading (real)
 python scripts/ingest_market_share.py   # MKTX estimated US HG/HY TRACE share (real)
-python scripts/ingest_new_issue.py      # SIFMA IG issuance (drop xlsx in data_raw for monthly)
+python scripts/ingest_new_issue.py      # SIFMA monthly IG/HY issuance (parses data_raw xlsx)
 python scripts/ingest_fed_path.py       # fed funds futures vs SEP dots (real snapshot)
 python scripts/seed_illustrative.py     # only the qualitative FOMC task-force tracker now
 

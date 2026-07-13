@@ -1,0 +1,119 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": false,
+  "source": "MarketAxess & Tradeweb monthly activity reports + quarterly results",
+  "source_url": "https://www.tradeweb.com/newsroom/monthly-activity-reports/",
+  "unit": "US credit ADV, $ billions/day (electronic)",
+  "avg_growth_gap_pp": 14.3,
+  "rev_ratio_latest": 2.65,
+  "note": "MKTX = US high-grade + high-yield ADV; TW = fully-electronic US credit ADV. Tradeweb YoY growth has out-run MKTX by ~14.3pp on average across 2026 \u2014 the vol benefit is accruing disproportionately to the competitor, and TW led US credit e-trading outright in June-2026. On revenue, TW is now ~2.65x MKTX ($618M vs $233M in 2026Q1) and growing 21.2% vs 11.9% YoY.",
+  "series": [
+    {
+      "month": "2026-01",
+      "mktx_us_credit_bn": 9.7,
+      "tw_us_credit_bn": 9.4,
+      "mktx_yoy": 18.3,
+      "tw_yoy": 24.4
+    },
+    {
+      "month": "2026-02",
+      "mktx_us_credit_bn": 9.26,
+      "tw_us_credit_bn": null,
+      "mktx_yoy": 8.9,
+      "tw_yoy": null
+    },
+    {
+      "month": "2026-03",
+      "mktx_us_credit_bn": 11.0,
+      "tw_us_credit_bn": 10.7,
+      "mktx_yoy": 5.8,
+      "tw_yoy": 12.3
+    },
+    {
+      "month": "2026-04",
+      "mktx_us_credit_bn": 8.34,
+      "tw_us_credit_bn": 9.2,
+      "mktx_yoy": -21.0,
+      "tw_yoy": 3.9
+    },
+    {
+      "month": "2026-05",
+      "mktx_us_credit_bn": 9.28,
+      "tw_us_credit_bn": 10.0,
+      "mktx_yoy": 0.3,
+      "tw_yoy": 20.4
+    },
+    {
+      "month": "2026-06",
+      "mktx_us_credit_bn": 10.08,
+      "tw_us_credit_bn": 10.5,
+      "mktx_yoy": 15.3,
+      "tw_yoy": 29.3
+    }
+  ],
+  "revenue": [
+    {
+      "q": "2024Q1",
+      "tw_rev_mm": 408.74,
+      "mktx_rev_mm": 210.32,
+      "tw_rev_yoy": null,
+      "mktx_rev_yoy": null
+    },
+    {
+      "q": "2024Q2",
+      "tw_rev_mm": 404.95,
+      "mktx_rev_mm": 197.66,
+      "tw_rev_yoy": null,
+      "mktx_rev_yoy": null
+    },
+    {
+      "q": "2024Q3",
+      "tw_rev_mm": 448.92,
+      "mktx_rev_mm": 206.72,
+      "tw_rev_yoy": null,
+      "mktx_rev_yoy": null
+    },
+    {
+      "q": "2024Q4",
+      "tw_rev_mm": 463.34,
+      "mktx_rev_mm": 202.4,
+      "tw_rev_yoy": null,
+      "mktx_rev_yoy": null
+    },
+    {
+      "q": "2025Q1",
+      "tw_rev_mm": 509.68,
+      "mktx_rev_mm": 208.58,
+      "tw_rev_yoy": 24.7,
+      "mktx_rev_yoy": -0.8
+    },
+    {
+      "q": "2025Q2",
+      "tw_rev_mm": 512.97,
+      "mktx_rev_mm": 219.46,
+      "tw_rev_yoy": 26.7,
+      "mktx_rev_yoy": 11.0
+    },
+    {
+      "q": "2025Q3",
+      "tw_rev_mm": 508.6,
+      "mktx_rev_mm": 208.82,
+      "tw_rev_yoy": 13.3,
+      "mktx_rev_yoy": 1.0
+    },
+    {
+      "q": "2025Q4",
+      "tw_rev_mm": 521.18,
+      "mktx_rev_mm": 209.41,
+      "tw_rev_yoy": 12.5,
+      "mktx_rev_yoy": 3.5
+    },
+    {
+      "q": "2026Q1",
+      "tw_rev_mm": 617.76,
+      "mktx_rev_mm": 233.38,
+      "tw_rev_yoy": 21.2,
+      "mktx_rev_yoy": 11.9
+    }
+  ]
+}

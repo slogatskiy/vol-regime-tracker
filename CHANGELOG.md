@@ -2,6 +2,18 @@
 
 Named save points. Roll the whole repo back to any of these with `git checkout <tag>`.
 
+## v0.5.0 — 2026-07-13 — #8 new issue now real MONTHLY (SIFMA workbook)
+Parsed SIFMA's official "US Corporate Bonds Statistics" Excel (Issuance tab, source Refinitiv)
+into real monthly IG/HY gross issuance — the last coarser-than-asked series is now monthly.
+
+- `ingest_new_issue.py` rewritten to parse the real workbook layout (annual / quarterly /
+  monthly blocks under the IG/HY/Total header). 13 monthly points (Jun-2025…Jun-2026),
+  9 quarterly, 11 annual (2015-2025).
+- Section 04: monthly IG+HY stacked bars + annual IG bars. Real prints: Jan-2026 IG $231bn,
+  Sep-2025 $211bn, Dec-2025 year-end lull $35bn; 2025 record IG year $1.73T.
+- Source file lives in `data_raw/` (git-ignored); refresh by dropping the newest SIFMA xlsx
+  and re-running. **Every one of the PM's 10 metrics is now real at the asked-for granularity.**
+
 ## v0.4.0 — 2026-07-13 — closed every gap vs the PM's brief
 Filled the remaining pieces where the build was thinner than the PM's exact wording.
 

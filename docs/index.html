@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fixed-Income Vol-Regime &amp; Market-Structure Tracker</title>
   <meta name="description" content="Tracking the FOMC-centric to data-centric volatility regime shift in rates, and who captures the turnover: MarketAxess (MKTX) vs Tradeweb (TW)." />
-  <link rel="stylesheet" href="styles.css?v=0.4.0" />
+  <link rel="stylesheet" href="styles.css?v=0.5.0" />
 </head>
 <body>
   <div class="topnav">
@@ -106,15 +106,15 @@
     <!-- 08 New issue -->
     <section id="newissue">
       <div class="sec-head"><span class="sec-num">04</span><h2>New-issue volume</h2><span class="badge real">real</span></div>
-      <p class="sec-sub">US corporate IG gross issuance. High new-issue activity drives secondary turnover — the Jan-2026 surge coincided with <b>+95% YoY high-grade turnover</b>. Watch for sustained elevated levels. Real SIFMA-consistent annual/quarterly figures; monthly detail via the SIFMA workbook ingest.</p>
+      <p class="sec-sub">US corporate gross issuance (IG &amp; HY), <b>monthly</b>, from SIFMA. High new-issue activity drives secondary turnover — the Jan-2026 surge coincided with <b>+95% YoY high-grade turnover</b>. Watch for sustained elevated levels. Real SIFMA workbook (Issuance tab, source Refinitiv).</p>
       <div class="grid-2">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Annual IG gross issuance ($bn)</span><span class="badge real">SIFMA</span></div>
+          <div class="chart-meta"><span class="chart-title">Monthly gross issuance — IG &amp; HY ($bn)</span><span class="badge real">SIFMA</span></div>
           <div class="chart-box"><canvas id="newIssueChart"></canvas></div>
           <div class="chart-note" id="newissue-note"></div>
         </div>
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Quarterly IG gross issuance ($bn)</span><span class="badge real">SIFMA</span></div>
+          <div class="chart-meta"><span class="chart-title">Annual IG gross issuance ($bn)</span><span class="badge real">SIFMA</span></div>
           <div class="chart-box"><canvas id="newIssueYoyChart"></canvas></div>
         </div>
       </div>
@@ -241,6 +241,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=0.4.0"></script>
+  <script src="app.js?v=0.5.0"></script>
 </body>
 </html>

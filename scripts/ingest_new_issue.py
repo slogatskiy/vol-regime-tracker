@@ -1,94 +1,108 @@
-"""Metric 8 (page section 04) — REAL US corporate new-issue volume.
+"""Metric 8 (page section 04) — REAL US corporate new-issue volume from SIFMA.
 
-Data honesty note: the only INTERNALLY-CONSISTENT monthly issuance series is SIFMA's
-own Excel workbook (US Corporate Bonds Statistics), which is gated behind a JS download
-and cannot be auto-fetched. Monthly numbers quoted in the financial press mix bases
-(total-corp vs IG-only, gross vs net, provider definitions) and must NOT be stitched into
-a series for institutional use.
+Parses SIFMA's official "US Corporate Bonds Statistics" workbook (Issuance tab) — the only
+internally-consistent source for monthly IG/HY issuance. Download it once from
+https://www.sifma.org/research/statistics/us-corporate-bonds-statistics/ ("US Corporate Bond
+Statistics" link / email) and save it to data_raw/sifma_us_corporate.xlsx, then run this.
 
-So this script has two modes:
-  1. If data_raw/sifma_us_corporate.xlsx exists -> parse the real MONTHLY IG/HY series.
-     (Download it once from https://www.sifma.org/research/statistics/us-corporate-bonds-statistics/
-      "US Corporate Bond Issuance" -> Save to data_raw/sifma_us_corporate.xlsx.)
-  2. Otherwise -> seed with the REAL, SIFMA-consistent ANNUAL + QUARTERLY figures and the
-     documented record months. Nothing fabricated; coarser granularity until the xlsx drop.
+The Issuance tab (source: Refinitiv, $ billions) stacks three blocks under a
+[Investment Grade | High Yield | Total] header (cols B/C/D):
+  - annual rows (col A = a 4-digit year)
+  - quarterly rows (col A = e.g. "1Q26")
+  - monthly rows (col A = a month-end date)
+We read all three. Monthly currently spans a trailing ~13 months.
 
     python scripts/ingest_new_issue.py
 """
 import os
+import re
+import datetime as dt
 from _common import save, today, RAW
-
-# --- Real, SIFMA-consistent figures (gross IG issuance unless noted), $bn ---
-ANNUAL_IG = {"2023": 1210, "2024": 1500, "2025": 1650}   # 2024 ~+24% vs 23; 2025 ~+10%
-QUARTERLY_IG = {"2025Q2": 426, "2025Q3": 433, "2026Q1": 620}
-RECORD_MONTHS = [
-    {"month": "2025-09", "ig_bn": 226, "note": "record month; post-Sep rate-cut surge"},
-    {"month": "2026-01", "ig_bn": 208, "note": "record January; +12% YoY, 6th month ever >$200bn"},
-]
-YTD_2026 = {"through": "2026-06", "total_corp_bn": 1523, "yoy_pct": 28.1}
 
 XLSX = os.path.join(RAW, "sifma_us_corporate.xlsx")
 
+# Documented record months (for callouts on the page).
+RECORD_MONTHS = [
+    {"month": "2025-09", "note": "record month; post-Sep rate-cut IG surge"},
+    {"month": "2026-01", "note": "record January; +12% YoY, 6th month ever >$200bn IG"},
+]
+
+
+def _row(a, b, c, d):
+    ig = round(b, 1) if isinstance(b, (int, float)) else None
+    hy = round(c, 1) if isinstance(c, (int, float)) else None
+    tot = round(d, 1) if isinstance(d, (int, float)) else None
+    return ig, hy, tot
+
 
 def parse_sifma_xlsx(path):
-    """Best-effort monthly IG/HY parse from the SIFMA workbook. Returns list or None."""
-    try:
-        from openpyxl import load_workbook
-    except ImportError:
-        print("openpyxl not installed (`pip install openpyxl`) — skipping xlsx parse.")
-        return None
-    wb = load_workbook(path, data_only=True)
-    # SIFMA layout varies; look for a sheet with a date column and IG/HY columns.
-    for ws in wb.worksheets:
-        rows = list(ws.iter_rows(values_only=True))
-        header = None
-        for i, r in enumerate(rows[:20]):
-            cells = [str(c).lower() if c is not None else "" for c in r]
-            if any("investment grade" in c or c == "ig" for c in cells):
-                header = (i, cells)
-                break
-        if not header:
+    from openpyxl import load_workbook
+    wb = load_workbook(path, data_only=True, read_only=True)
+    ws = wb["Issuance"]
+    annual, quarterly, monthly = [], [], []
+    q_re = re.compile(r"^([1-4])Q(\d{2})$")
+    for a, b, c, d in ((r[0], r[1], r[2], r[3]) for r in ws.iter_rows(values_only=True)):
+        if a is None:
             continue
-        # NOTE: exact column mapping depends on the file; adjust indices after inspecting.
-        print(f"Found candidate sheet '{ws.title}' — inspect columns and map indices.")
-        return None
-    return None
+        ig, hy, tot = _row(a, b, c, d)
+        if tot is None:
+            continue
+        if isinstance(a, dt.datetime):                      # monthly (month-end date)
+            monthly.append({"month": a.strftime("%Y-%m"), "ig_bn": ig, "hy_bn": hy, "total_bn": tot})
+        elif isinstance(a, (int, float)) and 2000 <= a <= 2100:   # annual
+            annual.append({"year": str(int(a)), "ig_bn": ig, "hy_bn": hy, "total_bn": tot})
+        elif isinstance(a, str):
+            s = a.strip()
+            if s.isdigit() and len(s) == 4:                 # annual as text
+                annual.append({"year": s, "ig_bn": ig, "hy_bn": hy, "total_bn": tot})
+            else:
+                m = q_re.match(s)
+                if m:                                       # quarterly e.g. 1Q26
+                    q = f"20{m.group(2)}Q{m.group(1)}"
+                    quarterly.append({"q": q, "ig_bn": ig, "hy_bn": hy, "total_bn": tot})
+    monthly.sort(key=lambda r: r["month"])
+    quarterly.sort(key=lambda r: r["q"])
+    annual.sort(key=lambda r: r["year"])
+    return annual, quarterly, monthly
 
 
 def main():
-    monthly = parse_sifma_xlsx(XLSX) if os.path.exists(XLSX) else None
+    if not os.path.exists(XLSX):
+        raise SystemExit(
+            f"Missing {XLSX}. Download SIFMA 'US Corporate Bond Statistics' xlsx and save it there.")
 
-    if monthly:
-        save("new_issue.json", {
-            "last_updated": today(), "illustrative": False,
-            "granularity": "monthly",
-            "source": "SIFMA US Corporate Bond Issuance (monthly workbook)",
-            "source_url": "https://www.sifma.org/research/statistics/us-corporate-bonds-statistics/",
-            "unit": "Gross issuance, $ billions",
-            "series": monthly,
-        })
-        print(f"new issue: {len(monthly)} monthly points from SIFMA xlsx")
-        return
+    annual, quarterly, monthly = parse_sifma_xlsx(XLSX)
 
-    # seed: real annual + quarterly + records (no monthly stitching from the press)
+    # monthly IG YoY where a year-ago month exists
+    ig_by_month = {r["month"]: r["ig_bn"] for r in monthly}
+    for r in monthly:
+        y, mo = r["month"].split("-")
+        prev = f"{int(y) - 1}-{mo}"
+        r["ig_yoy_pct"] = (round((r["ig_bn"] / ig_by_month[prev] - 1) * 100)
+                           if prev in ig_by_month and ig_by_month[prev] else None)
+
+    last = monthly[-1] if monthly else None
+    ytd26 = next((a for a in annual if a["year"] == "2026"), None)
     save("new_issue.json", {
         "last_updated": today(),
         "illustrative": False,
-        "granularity": "annual+quarterly",
-        "source": "SIFMA US corporate issuance (annual/quarterly) + documented record months",
+        "granularity": "monthly",
+        "source": "SIFMA US Corporate Bond Issuance (Issuance tab, source Refinitiv)",
         "source_url": "https://www.sifma.org/research/statistics/us-corporate-bonds-statistics/",
-        "unit": "Gross investment-grade issuance, $ billions",
-        "annual_ig": ANNUAL_IG,
-        "quarterly_ig": QUARTERLY_IG,
+        "unit": "Gross issuance, $ billions",
         "record_months": RECORD_MONTHS,
-        "ytd_2026": YTD_2026,
-        "note": "IG issuance boom: ~$1.21T (2023) → ~$1.50T (2024) → ~$1.65T (2025); 2026 total "
-                "corp is running +28% YoY (H1 $1.52T) with a record $208bn January. High new-issue "
-                "activity drives secondary turnover (the +95% YoY HG-turnover episode). Shown at "
-                "annual/quarterly granularity — drop the SIFMA monthly workbook into data_raw/ for "
-                "the full monthly series (press monthly figures are not basis-consistent).",
+        "annual": annual,
+        "quarterly": quarterly,
+        "monthly": monthly,
+        "note": "Real SIFMA monthly IG/HY gross issuance. IG boom: ~$1.27T (2023) → $1.57T (2024) "
+                "→ $1.73T (2025), a record year. Jan-2026 IG $231bn and Sep-2025 IG $211bn are the "
+                "standout prints behind the secondary-turnover surge; Dec-2025 shows the usual "
+                "year-end lull. High new-issue activity drives secondary turnover.",
     })
-    print("new issue: seeded real annual/quarterly + record months (SIFMA xlsx not present)")
+    msg = f"new issue: {len(monthly)} monthly, {len(quarterly)} quarterly, {len(annual)} annual rows"
+    if last:
+        msg += f"; latest {last['month']} IG ${last['ig_bn']}bn"
+    print(msg)
 
 
 if __name__ == "__main__":

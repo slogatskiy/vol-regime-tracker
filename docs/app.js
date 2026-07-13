@@ -157,34 +157,39 @@ function renderDealer(d) {
   return d;
 }
 
-/* ---------- 04 New issue (real annual + quarterly) ---------- */
+/* ---------- 04 New issue (real monthly + annual, SIFMA) ---------- */
 function renderNewIssue(d) {
-  const yrs = Object.keys(d.annual_ig).sort();
+  // monthly IG + HY (stacked)
+  const m = d.monthly || [];
   new Chart($("newIssueChart"), {
     type: "bar",
-    data: { labels: yrs, datasets: [
-      { label: "IG gross issuance ($bn)", data: yrs.map(y => d.annual_ig[y]),
-        backgroundColor: C.accent },
+    data: { labels: m.map(p => monthLbl(p.month)), datasets: [
+      { label: "IG", data: m.map(p => p.ig_bn), backgroundColor: C.accent },
+      { label: "HY", data: m.map(p => p.hy_bn), backgroundColor: C.amber },
+    ]},
+    options: base({ scales: {
+      x: { stacked: true, grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { stacked: true, grid: { color: C.grid }, ticks: { color: C.text }, title: axT("$ bn / month"), beginAtZero: true } } }),
+  });
+  // annual IG issuance (last ~10 years)
+  const a = (d.annual || []).filter(r => +r.year >= 2016);
+  new Chart($("newIssueYoyChart"), {
+    type: "bar",
+    data: { labels: a.map(r => r.year), datasets: [
+      { label: "IG gross ($bn)", data: a.map(r => r.ig_bn), backgroundColor: C.accent },
     ]},
     options: base({ plugins: { legend: { display: false } }, scales: {
       x: { grid: { color: C.grid }, ticks: { color: C.text } },
       y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("annual IG issuance, $bn"), beginAtZero: true } } }),
   });
-  const qs = Object.keys(d.quarterly_ig).sort();
-  new Chart($("newIssueYoyChart"), {
-    type: "bar",
-    data: { labels: qs, datasets: [
-      { label: "IG gross ($bn)", data: qs.map(q => d.quarterly_ig[q]), backgroundColor: C.amber },
-    ]},
-    options: base({ plugins: { legend: { display: false } }, scales: {
-      x: { grid: { color: C.grid }, ticks: { color: C.text } },
-      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("quarterly IG issuance, $bn"), beginAtZero: true } } }),
-  });
-  const recs = (d.record_months || []).map(r => `${monthLbl(r.month)} $${r.ig_bn}bn`).join(" · ");
+  const peak = m.reduce((x, p) => p.ig_bn > x.ig_bn ? p : x, m[0]);
+  const trough = m.reduce((x, p) => p.ig_bn < x.ig_bn ? p : x, m[0]);
+  const a25 = (d.annual || []).find(r => r.year === "2025");
   $("newissue-note").innerHTML =
-    `IG issuance boom: $${d.annual_ig["2023"]}bn (2023) → $${d.annual_ig["2024"]}bn (2024) → $${d.annual_ig["2025"]}bn (2025). ` +
-    `2026 total corp running +${d.ytd_2026.yoy_pct}% YoY (H1 $${(d.ytd_2026.total_corp_bn/1000).toFixed(2)}T). ` +
-    `Record months: ${recs}. <span style="color:var(--amber)">Monthly detail via SIFMA xlsx drop (see script) — press monthly figures aren't basis-consistent.</span>`;
+    `Real SIFMA monthly gross issuance. IG peaked at $${peak.ig_bn}bn (${monthLbl(peak.month)}) ` +
+    `and troughed at $${trough.ig_bn}bn (${monthLbl(trough.month)}, year-end lull). ` +
+    (a25 ? `2025 was a record year at $${a25.ig_bn}bn IG. ` : "") +
+    `High new-issue activity drives the secondary-turnover surge.`;
   return d;
 }
 
