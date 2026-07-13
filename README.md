@@ -23,10 +23,10 @@ turnover benefit accrues to whoever wins market structure (**MarketAxess / MKTX*
 | 2 | **CPI & Payroll day vol** — 2y/10y 3-day window | FRED DGS2/DGS10 | 🟢 live |
 | 3 | **Dealer balance sheet** — net UST positions | NY Fed Primary Dealer API | 🟢 live |
 | 4 | **New-issue volume** — IG/HY monthly | SIFMA | 🟡 illustrative |
-| 5 | **MKTX monthly volume** — ADV vs 9.8% CAGR | MKTX IR releases | 🟡 illustrative |
-| 6 | **Variable FPM** — fee compression | MKTX 10-Q/10-K | 🟡 illustrative |
+| 5 | **MKTX monthly volume** — ADV vs 9.8% CAGR | MKTX IR releases | 🟢 real |
+| 6 | **Variable FPM** — fee compression | MKTX IR (Table 1D) | 🟢 real |
 | 7 | **US high-grade share** — MKTX vs TW | TRACE estimates | 🟡 illustrative |
-| 8 | **Tradeweb vs MKTX** — growth rates | TW & MKTX IR | 🟡 illustrative |
+| 8 | **Tradeweb vs MKTX** — US credit e-trading | TW & MKTX IR | 🟢 real |
 | 9 | **Fed funds path vs dots** — divergence | FF futures / CME | 🟡 illustrative |
 | 10 | **FOMC task forces** — framework/comms/balance-sheet | Fed press | 🟢 tracked (qualitative) |
 
@@ -69,7 +69,9 @@ pip install -r requirements.txt
 python scripts/fetch_move.py            # MOVE (no keys)
 python scripts/build_data_day_vol.py    # data-day Treasury vol (no keys)
 python scripts/fetch_dealer_balance.py  # dealer balance sheet (no keys)
-python scripts/seed_illustrative.py     # (re)seed illustrative files
+python scripts/ingest_mktx.py           # MKTX monthly volume + FPM (real; add new months)
+python scripts/ingest_tradeweb.py       # MKTX vs TW US credit e-trading (real)
+python scripts/seed_illustrative.py     # remaining illustrative files (#4, #8, #10)
 
 git add docs/data && git commit -m "data: refresh signals" && git push
 ```

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fixed-Income Vol-Regime &amp; Market-Structure Tracker</title>
   <meta name="description" content="Tracking the FOMC-centric to data-centric volatility regime shift in rates, and who captures the turnover: MarketAxess (MKTX) vs Tradeweb (TW)." />
-  <link rel="stylesheet" href="styles.css?v=0.1.0" />
+  <link rel="stylesheet" href="styles.css?v=0.2.0" />
 </head>
 <body>
   <div class="topnav">
@@ -112,11 +112,11 @@
 
     <!-- 02 MKTX volume -->
     <section id="volume">
-      <div class="sec-head"><span class="sec-num">05</span><h2>MKTX monthly volume &amp; ADV growth</h2><span class="badge illustrative">illustrative</span></div>
-      <p class="sec-sub">MarketAxess total credit ADV and its YoY growth vs the <b>5-year CAGR of 9.8%</b>. Growth accelerating above the CAGR line is the bull signal. Source: MKTX monthly volume releases (to ingest).</p>
+      <div class="sec-head"><span class="sec-num">05</span><h2>MKTX monthly volume &amp; ADV growth</h2><span class="badge real">real</span></div>
+      <p class="sec-sub">MarketAxess total credit ADV and its YoY growth vs the <b>5-year CAGR of 9.8%</b>. Growth accelerating above the CAGR line is the bull signal. Real monthly data from MKTX Trading Volume Statistics.</p>
       <div class="grid-2">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Total credit ADV ($bn/day)</span><span class="badge illustrative">MKTX IR</span></div>
+          <div class="chart-meta"><span class="chart-title">Total credit ADV ($bn/day)</span><span class="badge real">MKTX IR</span></div>
           <div class="chart-box"><canvas id="mktxAdvChart"></canvas></div>
           <div class="chart-note" id="volume-note"></div>
         </div>
@@ -129,11 +129,11 @@
 
     <!-- 03 FPM -->
     <section id="fpm">
-      <div class="sec-head"><span class="sec-num">06</span><h2>Variable fees per million (FPM)</h2><span class="badge illustrative">illustrative</span></div>
-      <p class="sec-sub">MKTX variable transaction FPM by segment. <b>Compression</b> indicates mix shift toward lower-fee protocols (portfolio trading, dealer-RFQ, Open Trading). Source: 10-Q/10-K &amp; earnings decks (to ingest).</p>
+      <div class="sec-head"><span class="sec-num">06</span><h2>Variable fees per million (FPM)</h2><span class="badge real">real</span></div>
+      <p class="sec-sub">MKTX total-credit variable transaction FPM, monthly. <b>Compression</b> indicates mix shift toward lower-fee protocols (portfolio trading, dealer-RFQ, Open Trading). Real data from the monthly Trading Volume Statistics (Table 1D).</p>
       <div class="grid-1">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Variable FPM — high-grade, high-yield, blended ($/mm)</span><span class="badge illustrative">MKTX filings</span></div>
+          <div class="chart-meta"><span class="chart-title">Total-credit FPM — monthly ($/mm)</span><span class="badge real">MKTX IR</span></div>
           <div class="chart-box"><canvas id="fpmChart"></canvas></div>
           <div class="chart-note" id="fpm-note"></div>
         </div>
@@ -155,15 +155,15 @@
 
     <!-- 07 Tradeweb -->
     <section id="tradeweb">
-      <div class="sec-head"><span class="sec-num">08</span><h2>Tradeweb vs MKTX growth</h2><span class="badge illustrative">illustrative</span></div>
-      <p class="sec-sub">YoY growth in volume and revenue, side by side. If <b>TW consistently outpaces MKTX</b>, the vol benefit is accruing to the competitor. Source: TW &amp; MKTX quarterly reports (to ingest).</p>
+      <div class="sec-head"><span class="sec-num">08</span><h2>Tradeweb vs MKTX — US credit e-trading</h2><span class="badge real">real</span></div>
+      <p class="sec-sub">Like-for-like US credit electronic ADV: MKTX (high-grade + high-yield) vs Tradeweb (fully-electronic US credit), monthly. If <b>TW consistently outpaces MKTX</b>, the vol benefit is accruing to the competitor. Real data from both firms' monthly activity reports.</p>
       <div class="grid-2">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Revenue growth YoY (%)</span><span class="badge illustrative">IR</span></div>
+          <div class="chart-meta"><span class="chart-title">US credit ADV — MKTX vs TW ($bn)</span><span class="badge real">IR</span></div>
           <div class="chart-box"><canvas id="twRevChart"></canvas></div>
         </div>
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Volume growth YoY (%)</span><span class="badge illustrative">IR</span></div>
+          <div class="chart-meta"><span class="chart-title">US credit ADV growth YoY (%)</span><span class="badge real">IR</span></div>
           <div class="chart-box"><canvas id="twVolChart"></canvas></div>
         </div>
       </div>
@@ -207,6 +207,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=0.1.0"></script>
+  <script src="app.js?v=0.2.0"></script>
 </body>
 </html>

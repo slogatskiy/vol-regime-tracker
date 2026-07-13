@@ -200,21 +200,21 @@ function renderMktxVolume(d) {
 
 /* ---------- 06 FPM ---------- */
 function renderFpm(d) {
-  const labels = d.series.map(p => p.q);
+  const labels = d.series.map(p => monthLbl(p.month));
   new Chart($("fpmChart"), {
     type: "line",
     data: { labels, datasets: [
-      { label: "High-grade", data: d.series.map(p => p.high_grade), borderColor: C.accent, borderWidth: 2, pointRadius: 2, tension: .15 },
-      { label: "High-yield", data: d.series.map(p => p.high_yield), borderColor: C.amber, borderWidth: 2, pointRadius: 2, tension: .15 },
-      { label: "Blended", data: d.series.map(p => p.blended), borderColor: C.muted, borderWidth: 1.5, borderDash: [5, 4], pointRadius: 0, tension: .15 },
+      { label: "Total-credit FPM", data: d.series.map(p => p.credit_fpm), borderColor: C.accent,
+        backgroundColor: "rgba(79,140,255,.10)", borderWidth: 2, pointRadius: 2, fill: true, tension: .15 },
     ]},
-    options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
+    options: base({ plugins: { legend: { display: false } }, scales: {
+      x: { grid: { color: C.grid }, ticks: { color: C.text, maxTicksLimit: 10 } },
       y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("$ per million traded") } } }),
   });
   const f = d.series[0], l = d.series[d.series.length - 1];
-  const dropHg = Math.round((l.high_grade / f.high_grade - 1) * 100);
+  const drop = Math.round((l.credit_fpm / f.credit_fpm - 1) * 100);
   $("fpm-note").textContent =
-    `High-grade FPM ${f.high_grade}→${l.high_grade} (${dropHg}% over the window) — compression consistent with mix shift toward lower-fee protocols.`;
+    `Total-credit FPM ${f.credit_fpm}→${l.credit_fpm} $/mm (${drop}% from ${monthLbl(f.month)} to ${monthLbl(l.month)}) — real compression on mix shift toward lower-fee protocols; total-rates FPM has risen over the same window.`;
   return d;
 }
 
@@ -238,24 +238,33 @@ function renderShare(d) {
   return d;
 }
 
-/* ---------- 08 Tradeweb ---------- */
+/* ---------- 08 Tradeweb vs MKTX (US credit e-trading) ---------- */
 function renderTradeweb(d) {
-  const labels = d.series.map(p => p.q);
-  const mk = (canvas, twKey, mkKey, unit) => new Chart($(canvas), {
-    type: "bar",
+  const labels = d.series.map(p => monthLbl(p.month));
+  new Chart($("twRevChart"), {
+    type: "line",
     data: { labels, datasets: [
-      { label: "Tradeweb", data: d.series.map(p => p[twKey]), backgroundColor: C.amber },
-      { label: "MKTX", data: d.series.map(p => p[mkKey]), backgroundColor: C.accent },
+      { label: "MKTX (HG+HY)", data: d.series.map(p => p.mktx_us_credit_bn), borderColor: C.accent,
+        borderWidth: 2, pointRadius: 3, tension: .15, spanGaps: true },
+      { label: "Tradeweb", data: d.series.map(p => p.tw_us_credit_bn), borderColor: C.amber,
+        borderWidth: 2, pointRadius: 3, tension: .15, spanGaps: true },
     ]},
     options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
-      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT(unit) } } }),
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("US credit ADV, $bn") } } }),
   });
-  mk("twRevChart", "tw_rev_yoy", "mktx_rev_yoy", "revenue YoY %");
-  mk("twVolChart", "tw_vol_yoy", "mktx_vol_yoy", "volume YoY %");
-  const l = d.series[d.series.length - 1];
+  new Chart($("twVolChart"), {
+    type: "bar",
+    data: { labels, datasets: [
+      { label: "MKTX YoY", data: d.series.map(p => p.mktx_yoy), backgroundColor: C.accent },
+      { label: "Tradeweb YoY", data: d.series.map(p => p.tw_yoy), backgroundColor: C.amber },
+    ]},
+    options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("US credit ADV YoY %") } } }),
+  });
   $("tradeweb-note").textContent =
-    `Latest quarter: TW revenue ${sign(l.tw_rev_yoy)}% vs MKTX ${sign(l.mktx_rev_yoy)}% YoY. ` +
-    `Tradeweb has out-grown MKTX every quarter shown — the vol benefit is accruing disproportionately to the competitor.`;
+    `Across 2026, Tradeweb's US credit e-trading has grown ~${d.avg_growth_gap_pp}pp/yr faster than MKTX ` +
+    `and led US credit e-trading outright in June — the vol benefit is accruing disproportionately to the competitor. ` +
+    `(MKTX = HG+HY ADV; TW = fully-electronic US credit ADV; Feb shown as a gap — not disclosed.)`;
   return d;
 }
 
@@ -315,8 +324,7 @@ async function main() {
   // KPI strip — live figures pulled from the data
   const bn = v => Math.round(v / 1000);
   const s = dataday.summary || {};
-  const l = share.series[share.series.length - 1];
-  const tw = tradeweb.series[tradeweb.series.length - 1];
+  const atCagr = volume.avg_yoy_2026_pct >= volume.cagr_5y_pct;
   $("kpi-strip").innerHTML = [
     kpiCard("MOVE index", move.current,
       move.current >= 90 ? "above 90 watch line" : `below 90 · 90d avg ${move.avg_90d}`,
@@ -326,11 +334,11 @@ async function main() {
       { t: s.accelerating_2y ? "accelerating" : "steady", cls: s.accelerating_2y ? "bad" : "good" }),
     kpiCard("Dealer USTs", `$${bn(dealer.current)}bn`,
       `${dealer.yoy_change >= 0 ? "+" : "−"}$${Math.abs(bn(dealer.yoy_change))}bn YoY`, null),
-    kpiCard("HG share gap", `${(l.mktx_pct - l.tradeweb_pct).toFixed(1)}pp`,
-      `MKTX ${l.mktx_pct}% vs TW ${l.tradeweb_pct}%`,
-      { t: "narrowing", cls: "bad" }),
-    kpiCard("TW vs MKTX rev", `${sign(tw.tw_rev_yoy - tw.mktx_rev_yoy)}pp`,
-      `TW ${sign(tw.tw_rev_yoy)}% vs MKTX ${sign(tw.mktx_rev_yoy)}%`,
+    kpiCard("MKTX ADV YoY '26", `${sign(volume.avg_yoy_2026_pct)}%`,
+      `vs ${volume.cagr_5y_pct}% 5y CAGR`,
+      { t: atCagr ? "at/above CAGR" : "below CAGR", cls: atCagr ? "good" : "bad" }),
+    kpiCard("TW vs MKTX", `+${tradeweb.avg_growth_gap_pp}pp`,
+      "TW out-growing MKTX · US credit",
       { t: "TW leads", cls: "bad" }),
   ].join("");
 

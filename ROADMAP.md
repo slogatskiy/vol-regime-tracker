@@ -12,11 +12,15 @@ as the audit trail.
 - [x] Live KPI strip computed from the data.
 
 ## v0.2 — ingest the market-structure data (MKTX vs TW core)
-- [ ] **New issue (SIFMA):** parse monthly US corporate issuance tables → `new_issue.json`.
-- [ ] **MKTX monthly volume:** ingest the monthly IR press releases → real ADV + YoY.
-- [ ] **US high-grade share:** build TRACE-based estimate for MKTX & TW → `market_share.json`.
-- [ ] **Tradeweb:** ingest TW monthly activity reports + quarterly revenue.
-- [ ] **Variable FPM:** pull the FPM table from MKTX 10-Q/10-K each quarter.
+- [x] **MKTX monthly volume:** ingested 18 months of IR releases → real ADV + YoY (`ingest_mktx.py`).
+- [x] **Variable FPM:** real monthly total-credit FPM from the releases (Table 1D).
+- [x] **Tradeweb:** real fully-electronic US credit ADV vs MKTX HG+HY (`ingest_tradeweb.py`).
+- [ ] **New issue (SIFMA):** parse monthly US corporate issuance tables → `new_issue.json`
+      (real anchor known: Jan-2026 IG $208.4bn, record, +12% YoY).
+- [ ] **US high-grade share:** need a TRACE total-market denominator to turn MKTX/TW
+      absolute ADV (already real) into share → `market_share.json`.
+- [ ] **FPM segment split:** add HG/HY FPM from the 10-Q for a mix-shift decomposition.
+- [ ] Backfill TW Feb-2026 US credit ADV (currently a gap) and extend both series back through 2024.
 
 ## v0.3 — sharpen the rates side
 - [ ] **Fed funds path:** derive implied path from CME FF futures settlements; overlay live SEP dots.
