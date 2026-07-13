@@ -1,0 +1,36 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": false,
+  "granularity": "annual+quarterly",
+  "source": "SIFMA US corporate issuance (annual/quarterly) + documented record months",
+  "source_url": "https://www.sifma.org/research/statistics/us-corporate-bonds-statistics/",
+  "unit": "Gross investment-grade issuance, $ billions",
+  "annual_ig": {
+    "2023": 1210,
+    "2024": 1500,
+    "2025": 1650
+  },
+  "quarterly_ig": {
+    "2025Q2": 426,
+    "2025Q3": 433,
+    "2026Q1": 620
+  },
+  "record_months": [
+    {
+      "month": "2025-09",
+      "ig_bn": 226,
+      "note": "record month; post-Sep rate-cut surge"
+    },
+    {
+      "month": "2026-01",
+      "ig_bn": 208,
+      "note": "record January; +12% YoY, 6th month ever >$200bn"
+    }
+  ],
+  "ytd_2026": {
+    "through": "2026-06",
+    "total_corp_bn": 1523,
+    "yoy_pct": 28.1
+  },
+  "note": "IG issuance boom: ~$1.21T (2023) \u2192 ~$1.50T (2024) \u2192 ~$1.65T (2025); 2026 total corp is running +28% YoY (H1 $1.52T) with a record $208bn January. High new-issue activity drives secondary turnover (the +95% YoY HG-turnover episode). Shown at annual/quarterly granularity \u2014 drop the SIFMA monthly workbook into data_raw/ for the full monthly series (press monthly figures are not basis-consistent)."
+}

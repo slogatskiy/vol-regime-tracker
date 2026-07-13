@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fixed-Income Vol-Regime &amp; Market-Structure Tracker</title>
   <meta name="description" content="Tracking the FOMC-centric to data-centric volatility regime shift in rates, and who captures the turnover: MarketAxess (MKTX) vs Tradeweb (TW)." />
-  <link rel="stylesheet" href="styles.css?v=0.3.0" />
+  <link rel="stylesheet" href="styles.css?v=0.4.0" />
 </head>
 <body>
   <div class="topnav">
@@ -90,6 +90,16 @@
           <div class="chart-box"><canvas id="dealerBucketChart"></canvas></div>
         </div>
       </div>
+      <div class="grid-2" style="margin-top:16px">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Balance-sheet utilization — dealer USTs ÷ total public debt (%)</span><span class="badge real">FRBNY ÷ FRED</span></div>
+          <div class="chart-box"><canvas id="dealerUtilChart"></canvas></div>
+          <div class="chart-note" id="dealer-util-note"></div>
+        </div>
+        <div class="card"><div class="readout" id="dealer-util-readout"></div>
+          <div class="why" style="margin-top:16px"><div class="wt">Leverage / capacity read</div><p>Dealer inventory measured against the <b>size of the market it must intermediate</b>. A ratio that lags the exploding debt pile signals shrinking relative capacity; a rising ratio means dealers are absorbing more (willingly or forced by supply) — read alongside the new-issue and MOVE panels.</p></div>
+        </div>
+      </div>
       <div class="why"><div class="wt">What this shows &amp; why it matters</div><p>Dealer inventory is a proxy for the Street's willingness to intermediate. When capacity is constrained relative to issuance, price-making moves off balance sheet and onto platforms — structurally good for MKTX/TW volumes.</p></div>
     </section>
 
@@ -168,6 +178,18 @@
         </div>
       </div>
       <div class="chart-note" id="tradeweb-note" style="margin-top:12px"></div>
+      <div class="grid-2" style="margin-top:16px">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Quarterly total revenue — TW vs MKTX ($M)</span><span class="badge real">results</span></div>
+          <div class="chart-box"><canvas id="revLevelChart"></canvas></div>
+          <div class="chart-note" id="revenue-note"></div>
+        </div>
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Revenue growth YoY (%)</span><span class="badge real">results</span></div>
+          <div class="chart-box"><canvas id="revYoyChart"></canvas></div>
+        </div>
+      </div>
+      <div class="why"><div class="wt">What this shows &amp; why it matters</div><p>Volume tells you flow; revenue tells you who's <b>monetising</b> it. Tradeweb's revenue is ~2.6× MKTX and compounding at double digits while MKTX growth sits in the low single-to-double digits — the clearest read that the turnover benefit is being captured by the competitor.</p></div>
     </section>
 
     <!-- 10 Fed funds path -->
@@ -183,6 +205,18 @@
         <div class="card">
           <div class="chart-meta"><span class="chart-title">Market − dots divergence (bps)</span></div>
           <div class="chart-box"><canvas id="fedDivChart"></canvas></div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:16px">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Dot-plot migration — end-2026 median by SEP</span><span class="badge real">SEP history</span></div>
+          <div class="chart-box"><canvas id="dotMigrationChart"></canvas></div>
+          <div class="chart-note" id="dotmig-note"></div>
+        </div>
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Incremental divergence — market − dots, end-2026 (bps)</span><span class="badge real">tracked</span></div>
+          <div class="chart-box"><canvas id="divTrackChart"></canvas></div>
+          <div class="chart-note" id="divtrack-note"></div>
         </div>
       </div>
     </section>
@@ -207,6 +241,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=0.3.0"></script>
+  <script src="app.js?v=0.4.0"></script>
 </body>
 </html>

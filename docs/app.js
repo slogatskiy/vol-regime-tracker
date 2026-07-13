@@ -133,6 +133,27 @@ function renderDealer(d) {
   $("dealer-note").textContent =
     `Net $${bn(d.current)}bn as of ${d.current_date}, ${d.yoy_change >= 0 ? "up" : "down"} $${Math.abs(bn(d.yoy_change))}bn YoY. ` +
     `Rising inventory can reflect either willing intermediation or forced warehousing into heavy supply — read alongside issuance.`;
+
+  // leverage / capacity utilization
+  const u = d.utilization;
+  if (u && u.series) {
+    new Chart($("dealerUtilChart"), {
+      type: "line",
+      data: { labels: u.series.map(p => p.date), datasets: [
+        { label: "Dealer USTs ÷ public debt (%)", data: u.series.map(p => p.pct), borderColor: C.amber,
+          backgroundColor: "rgba(245,166,35,.10)", borderWidth: 2, pointRadius: 0, fill: true, tension: .12 },
+      ]},
+      options: base({ plugins: { legend: { display: false } }, scales: {
+        x: { grid: { color: C.grid }, ticks: { color: C.text, maxTicksLimit: 8 } },
+        y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("% of total public debt") } } }),
+    });
+    const dir = u.current_pct >= u.two_year_ago_pct ? "up from" : "down from";
+    $("dealer-util-note").textContent =
+      `Dealers hold ${u.current_pct}% of total public debt, ${dir} ${u.two_year_ago_pct}% two years ago.`;
+    $("dealer-util-readout").innerHTML =
+      `<div class="r"><div class="rl">Utilization</div><div class="rv">${u.current_pct}%</div><div class="rs">USTs ÷ public debt</div></div>
+       <div class="r"><div class="rl">2y ago</div><div class="rv">${u.two_year_ago_pct}%</div><div class="rs">${dir.split(" ")[0]}</div></div>`;
+  }
   return d;
 }
 
@@ -272,6 +293,32 @@ function renderTradeweb(d) {
     `Across 2026, Tradeweb's US credit e-trading has grown ~${d.avg_growth_gap_pp}pp/yr faster than MKTX ` +
     `and led US credit e-trading outright in June — the vol benefit is accruing disproportionately to the competitor. ` +
     `(MKTX = HG+HY ADV; TW = fully-electronic US credit ADV; Feb shown as a gap — not disclosed.)`;
+
+  // revenue trends (quarterly)
+  const rev = d.revenue || [];
+  const rl = rev.map(r => r.q);
+  new Chart($("revLevelChart"), {
+    type: "bar",
+    data: { labels: rl, datasets: [
+      { label: "Tradeweb", data: rev.map(r => r.tw_rev_mm), backgroundColor: C.amber },
+      { label: "MKTX", data: rev.map(r => r.mktx_rev_mm), backgroundColor: C.accent },
+    ]},
+    options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("total revenue, $M/quarter"), beginAtZero: true } } }),
+  });
+  const ry = rev.filter(r => r.tw_rev_yoy != null);
+  new Chart($("revYoyChart"), {
+    type: "line",
+    data: { labels: ry.map(r => r.q), datasets: [
+      { label: "Tradeweb", data: ry.map(r => r.tw_rev_yoy), borderColor: C.amber, borderWidth: 2, pointRadius: 3, tension: .15 },
+      { label: "MKTX", data: ry.map(r => r.mktx_rev_yoy), borderColor: C.accent, borderWidth: 2, pointRadius: 3, tension: .15 },
+    ]},
+    options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("revenue YoY %") } } }),
+  });
+  const lr = rev[rev.length - 1];
+  $("revenue-note").textContent =
+    `Latest quarter (${lr.q}): TW $${lr.tw_rev_mm.toFixed(0)}M (${sign(lr.tw_rev_yoy)}% YoY) vs MKTX $${lr.mktx_rev_mm.toFixed(0)}M (${sign(lr.mktx_rev_yoy)}% YoY) — TW is ~${d.rev_ratio_latest}× MKTX and growing far faster.`;
   return d;
 }
 
@@ -303,6 +350,40 @@ function renderFedPath(d) {
   $("fedpath-note").textContent =
     `As of ${d.as_of}: market prices higher-for-longer than the dots — up to ${sign(d.max_divergence_bps)}bp in 2027 ` +
     `(futures near 4% vs a 3.6% dot median). Hawkish divergence = markets pricing independently of guidance.`;
+
+  // dot-plot migration (end-2026 median across SEPs)
+  const dh = d.dot_history || [];
+  new Chart($("dotMigrationChart"), {
+    type: "line",
+    data: { labels: dh.map(p => p.meeting), datasets: [
+      { label: "End-2026 dot median", data: dh.map(p => p.end2026_median), borderColor: C.amber,
+        backgroundColor: "rgba(245,166,35,.10)", borderWidth: 2, pointRadius: 4, fill: true, stepped: false, tension: 0 },
+    ]},
+    options: base({ plugins: { legend: { display: false } }, scales: {
+      x: { grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("end-2026 median, %") } } }),
+  });
+  if (dh.length >= 2)
+    $("dotmig-note").textContent =
+      `The FOMC's own end-2026 median jumped ${dh[0].end2026_median}% → ${dh[dh.length-1].end2026_median}% ` +
+      `at the June-2026 SEP — a hawkish repricing of the Fed's path itself.`;
+
+  // incremental divergence tracking over time
+  const dt = d.divergence_track || [];
+  new Chart($("divTrackChart"), {
+    type: "bar",
+    data: { labels: dt.map(p => p.date), datasets: [
+      { label: "Market − dots (bps)", data: dt.map(p => p.divergence_bps),
+        backgroundColor: dt.map(p => p.divergence_bps >= 0 ? C.bad : C.accent) },
+    ]},
+    options: base({ plugins: { legend: { display: false } }, scales: {
+      x: { grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("end-2026 divergence, bps") } } }),
+  });
+  if (dt.length)
+    $("divtrack-note").textContent =
+      `Tracked snapshots: divergence moved ${sign(dt[0].divergence_bps)}bp → ${sign(dt[dt.length-1].divergence_bps)}bp ` +
+      `as the market swung from below to above the dots. Re-run the collector to append new dated readings.`;
   return d;
 }
 

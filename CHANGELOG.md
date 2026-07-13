@@ -2,6 +2,23 @@
 
 Named save points. Roll the whole repo back to any of these with `git checkout <tag>`.
 
+## v0.4.0 — 2026-07-13 — closed every gap vs the PM's brief
+Filled the remaining pieces where the build was thinner than the PM's exact wording.
+
+- **#7 Tradeweb — revenue added:** real quarterly total revenue, TW vs MKTX, 9 quarters
+  (Q1-24…Q1-26). TW is ~2.6× MKTX ($618M vs $233M) and growing 13-27% vs MKTX 0-12%.
+  The section now covers BOTH volume and revenue, as asked.
+- **#4 Market share — now multi-year:** extended MKTX estimated US HG/HY share to a full
+  18 months (Jan-2025…Jun-2026), showing the ~19.7% → 16.7% slide and recovery. Documented
+  that Tradeweb discloses ADV, not a comparable %-of-TRACE share, so the TW head-to-head is
+  the ADV/revenue comparison (no fabricated TW share line).
+- **#9 Dealer — leverage/utilization added:** dealer net USTs as % of total public debt
+  (FRBNY ÷ FRED GFDEBTN). Currently 1.10% vs 0.82% two years ago — dealers absorbing more.
+- **#10 Fed path — incremental divergence tracked:** added the end-2026 dot-plot migration
+  across SEPs (3.4% → 3.875% hawkish jump) and a dated market-vs-dots divergence log that
+  appends on each run.
+- Node render harness added to CI-style checks; passes on all real data.
+
 ## v0.3.0 — 2026-07-13 — no illustrative left; all metrics real
 Converted the last three placeholder metrics to real, sourced data. **Nothing on the page
 is fabricated anymore.**

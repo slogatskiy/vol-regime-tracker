@@ -1,0 +1,120 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": false,
+  "source": "MarketAxess monthly Trading Volume Statistics (Table 1)",
+  "source_url": "https://investor.marketaxess.com/",
+  "unit": "Total credit ADV, $ billions/day (excl. SD PT)",
+  "cagr_5y_pct": 9.8,
+  "avg_yoy_2026_pct": 9.2,
+  "note": "Real monthly ADV from MKTX releases. 2026 YTD YoY averages ~9.2% vs the 9.8% 5-year CAGR \u2014 bull signal is YoY sustained above the CAGR line. Apr-2026 dipped (-13% YoY) on a tough comp vs the Apr-2025 tariff-vol surge.",
+  "series": [
+    {
+      "month": "2025-01",
+      "adv_bn": 14.47,
+      "us_high_grade_bn": 6.91,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-02",
+      "adv_bn": 15.49,
+      "us_high_grade_bn": 7.06,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-03",
+      "adv_bn": 17.8,
+      "us_high_grade_bn": 8.7,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-04",
+      "adv_bn": 18.36,
+      "us_high_grade_bn": 8.6,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-05",
+      "adv_bn": 16.35,
+      "us_high_grade_bn": 7.65,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-06",
+      "adv_bn": 15.66,
+      "us_high_grade_bn": 7.17,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-07",
+      "adv_bn": 14.34,
+      "us_high_grade_bn": 6.39,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-08",
+      "adv_bn": 13.09,
+      "us_high_grade_bn": 5.93,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-09",
+      "adv_bn": 16.16,
+      "us_high_grade_bn": 7.36,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-10",
+      "adv_bn": 16.0,
+      "us_high_grade_bn": 7.04,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-11",
+      "adv_bn": 16.81,
+      "us_high_grade_bn": 7.59,
+      "yoy_pct": null
+    },
+    {
+      "month": "2025-12",
+      "adv_bn": 13.55,
+      "us_high_grade_bn": 6.04,
+      "yoy_pct": null
+    },
+    {
+      "month": "2026-01",
+      "adv_bn": 18.59,
+      "us_high_grade_bn": 8.11,
+      "yoy_pct": 28.5
+    },
+    {
+      "month": "2026-02",
+      "adv_bn": 17.26,
+      "us_high_grade_bn": 7.78,
+      "yoy_pct": 11.4
+    },
+    {
+      "month": "2026-03",
+      "adv_bn": 19.9,
+      "us_high_grade_bn": 9.2,
+      "yoy_pct": 11.8
+    },
+    {
+      "month": "2026-04",
+      "adv_bn": 15.89,
+      "us_high_grade_bn": 6.8,
+      "yoy_pct": -13.5
+    },
+    {
+      "month": "2026-05",
+      "adv_bn": 17.0,
+      "us_high_grade_bn": 7.73,
+      "yoy_pct": 4.0
+    },
+    {
+      "month": "2026-06",
+      "adv_bn": 17.67,
+      "us_high_grade_bn": 8.23,
+      "yoy_pct": 12.8
+    }
+  ]
+}

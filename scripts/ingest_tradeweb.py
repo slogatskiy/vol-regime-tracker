@@ -26,6 +26,20 @@ TW = {
 
 SRC = "https://www.tradeweb.com/newsroom/monthly-activity-reports/"
 
+# Metric 7b — quarterly TOTAL revenue ($ millions), TW vs MKTX. Source: company results.
+# quarter -> (tw_revenue_mm, mktx_revenue_mm)
+REVENUE = {
+    "2024Q1": (408.74, 210.32),
+    "2024Q2": (404.95, 197.66),
+    "2024Q3": (448.92, 206.72),
+    "2024Q4": (463.34, 202.40),
+    "2025Q1": (509.68, 208.58),
+    "2025Q2": (512.97, 219.46),
+    "2025Q3": (508.60, 208.82),
+    "2025Q4": (521.18, 209.41),
+    "2026Q1": (617.76, 233.38),
+}
+
 
 def mktx_us_credit(m):
     """MKTX US credit = high-grade + high-yield ADV (both excl. SD PT)."""
@@ -59,20 +73,42 @@ def main():
             if r["tw_yoy"] is not None and r["mktx_yoy"] is not None]
     avg_gap = round(sum(gaps) / len(gaps), 1) if gaps else None
 
+    # ---- revenue trends (TW vs MKTX), quarterly with YoY ----
+    quarters = sorted(REVENUE)
+    rev = []
+    for q in quarters:
+        tw_r, mk_r = REVENUE[q]
+        yr, qn = q[:4], q[4:]
+        prev = f"{int(yr) - 1}{qn}"
+        tw_yoy = mk_yoy = None
+        if prev in REVENUE:
+            tw_yoy = round((tw_r / REVENUE[prev][0] - 1) * 100, 1)
+            mk_yoy = round((mk_r / REVENUE[prev][1] - 1) * 100, 1)
+        rev.append({"q": q, "tw_rev_mm": tw_r, "mktx_rev_mm": mk_r,
+                    "tw_rev_yoy": tw_yoy, "mktx_rev_yoy": mk_yoy})
+    latest_rev = rev[-1]
+    rev_ratio = round(latest_rev["tw_rev_mm"] / latest_rev["mktx_rev_mm"], 2)
+
     save("tradeweb.json", {
         "last_updated": today(),
         "illustrative": False,
-        "source": "MarketAxess & Tradeweb monthly activity reports (US credit e-trading)",
+        "source": "MarketAxess & Tradeweb monthly activity reports + quarterly results",
         "source_url": SRC,
         "unit": "US credit ADV, $ billions/day (electronic)",
         "avg_growth_gap_pp": avg_gap,
+        "rev_ratio_latest": rev_ratio,
         "note": "MKTX = US high-grade + high-yield ADV; TW = fully-electronic US credit "
                 f"ADV. Tradeweb YoY growth has out-run MKTX by ~{avg_gap}pp on average "
                 "across 2026 — the vol benefit is accruing disproportionately to the "
-                "competitor, and TW led US credit e-trading outright in June-2026.",
+                "competitor, and TW led US credit e-trading outright in June-2026. On "
+                f"revenue, TW is now ~{rev_ratio}x MKTX ($" f"{latest_rev['tw_rev_mm']:.0f}M vs "
+                f"${latest_rev['mktx_rev_mm']:.0f}M in {latest_rev['q']}) and growing "
+                f"{latest_rev['tw_rev_yoy']}% vs {latest_rev['mktx_rev_yoy']}% YoY.",
         "series": series,
+        "revenue": rev,
     })
-    print(f"TW vs MKTX US credit: {len(series)} months, avg TW−MKTX growth gap {avg_gap}pp")
+    print(f"TW vs MKTX: {len(series)} ADV months (gap {avg_gap}pp), "
+          f"{len(rev)} revenue quarters (TW ${latest_rev['tw_rev_mm']:.0f}M = {rev_ratio}x MKTX)")
 
 
 if __name__ == "__main__":

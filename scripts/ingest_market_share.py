@@ -12,7 +12,14 @@ recovery." That shows up directly below (Feb-2026 trough 16.7% -> recovery towar
 from _common import save, today
 
 # month -> (us_high_grade_share_pct, us_high_yield_share_pct)  % of TRACE, excl SD PT
+# Full 18-month multi-year series from MKTX monthly releases (Table 1A/1B).
 SHARE = {
+    "2025-01": (17.7, 12.0),
+    "2025-02": (17.0, 11.1),
+    "2025-03": (19.2, 12.5),
+    "2025-04": (19.3, 13.5),
+    "2025-05": (19.3, 12.2),
+    "2025-06": (19.7, 12.4),
     "2025-07": (17.7, 11.5),
     "2025-08": (18.8, 12.7),
     "2025-09": (17.0, 11.5),
@@ -26,6 +33,11 @@ SHARE = {
     "2026-05": (17.8, 13.9),
     "2026-06": (17.9, 14.9),
 }
+
+# MKTX estimate: electronic trading is ~60% of ALL US high-grade trading. Tradeweb does
+# not disclose a comparable %-of-TRACE share (it reports ADV only), so the clean MKTX-vs-TW
+# head-to-head is the US-credit ADV/growth comparison in the Tradeweb section, not a share line.
+ELECTRONIC_PENETRATION_HG = 60.0
 
 # Full-year estimated US high-grade share (multi-year context).
 ANNUAL_HG = {"2024": 19.0, "2025": 18.4}
@@ -45,12 +57,16 @@ def main():
         "source_url": SRC,
         "unit": "% of US high-grade TRACE volume (est.)",
         "annual_hg": ANNUAL_HG,
-        "note": f"Real MKTX estimated US high-grade share. Multi-year trend: {ANNUAL_HG['2024']}% "
-                f"(FY24) → {ANNUAL_HG['2025']}% (FY25). 2026 dipped to a {trough['hg_share']}% "
-                f"trough in {trough['month']} on the heavy new-issue surge (secondary share falls "
-                f"when primary spikes) and is recovering ({latest['hg_share']}% latest). MKTX flags "
-                f"that TRACE duplicate reporting understated 2026 share by ~150-160bp in some months. "
-                f"Head-to-head vs Tradeweb is in the US-credit-e-trading section.",
+        "electronic_penetration_hg": ELECTRONIC_PENETRATION_HG,
+        "note": f"Real MKTX estimated US high-grade share, 18 months. Multi-year trend: "
+                f"{ANNUAL_HG['2024']}% (FY24) → {ANNUAL_HG['2025']}% (FY25); ran ~19-19.7% in "
+                f"mid-2025 then slipped to a {trough['hg_share']}% trough in {trough['month']} on the "
+                f"heavy new-issue surge (secondary share falls when primary spikes), now recovering "
+                f"({latest['hg_share']}% latest). MKTX flags TRACE duplicate reporting understated "
+                f"2026 share ~150-160bp in some months. Tradeweb reports ADV, not a comparable "
+                f"%-of-TRACE share — so the MKTX-vs-TW head-to-head is the US-credit ADV/growth "
+                f"comparison in the Tradeweb section (electronic is ~{ELECTRONIC_PENETRATION_HG:.0f}% "
+                f"of all US HG trading, a MKTX/TW duopoly).",
         "series": series,
     })
     print(f"market share: {len(series)} months, latest HG {latest['hg_share']}%, "

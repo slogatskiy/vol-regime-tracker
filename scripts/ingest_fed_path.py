@@ -29,6 +29,22 @@ PATH = [
 
 SRC = "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html"
 
+# How the FOMC's own END-2026 dot median has migrated across SEP meetings (real).
+# The hawkish jump at the June-2026 SEP is the regime signal.
+DOT_HISTORY = [
+    {"meeting": "Dec-2025", "end2026_median": 3.4},
+    {"meeting": "Mar-2026", "end2026_median": 3.4},
+    {"meeting": "Jun-2026", "end2026_median": 3.875},
+]
+
+# Forward-tracking log of the market-vs-dots END-2026 gap. Re-run over time to append a
+# dated snapshot; this is the "incremental divergence" series the PM asked to track.
+# Seeded with real readings; keep the latest dot median in sync with the newest SEP.
+DIVERGENCE_LOG = [
+    {"date": "2026-06-18", "market_end2026": 3.70, "dot_end2026": 3.875},  # day after the June SEP
+    {"date": "2026-07-13", "market_end2026": 3.95, "dot_end2026": 3.875},  # today
+]
+
 
 def main():
     series = []
@@ -38,6 +54,11 @@ def main():
                        "market_implied": mkt, "divergence_bps": div})
     divs = [r["divergence_bps"] for r in series if r["divergence_bps"] is not None]
     max_div = max(divs, key=abs) if divs else None
+
+    # incremental divergence tracking (market − dots, end-2026), in bps, over time
+    track = [{"date": r["date"], "market": r["market_end2026"], "dot": r["dot_end2026"],
+              "divergence_bps": round((r["market_end2026"] - r["dot_end2026"]) * 100)}
+             for r in DIVERGENCE_LOG]
     save("fed_funds_path.json", {
         "last_updated": today(),
         "illustrative": False,
@@ -47,6 +68,8 @@ def main():
         "unit": "Implied fed funds rate, %",
         "current_midpoint": CURRENT_MIDPOINT,
         "max_divergence_bps": max_div,
+        "dot_history": DOT_HISTORY,
+        "divergence_track": track,
         "note": f"As of {AS_OF}: the market prices HIGHER-for-longer than the dots — a hawkish "
                 f"divergence up to ~{max_div}bp in 2027, where fed funds futures hold near 4% "
                 f"while the SEP median eases to 3.6%. Markets are pricing independently of the "

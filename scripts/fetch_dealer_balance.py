@@ -9,7 +9,7 @@ and keep the latest bucket breakdown.
 
     python scripts/fetch_dealer_balance.py
 """
-from _common import get, save, today
+from _common import get, save, today, fred_csv
 
 # keyid -> short bucket label. Net (long-short) outright UST positions, ex-TIPS.
 BUCKETS = [
@@ -60,6 +60,20 @@ def main():
     cur = total[-1]["value"] if total else 0
     yr_ago = total[-52]["value"] if len(total) >= 52 else (total[0]["value"] if total else 0)
 
+    # --- leverage / capacity utilization: dealer inventory vs the total Treasury market ---
+    # If dealers don't scale positions with the exploding debt pile, relative capacity is
+    # shrinking — the mechanism that pushes price-making onto electronic platforms.
+    debt = fred_csv("GFDEBTN", start="2020-01-01")   # total public debt, $millions, quarterly
+    util = []
+    for p in total:
+        d = p["date"]
+        prior = [v for dt, v in debt if dt <= d]
+        if not prior:
+            continue
+        util.append({"date": d, "pct": round(p["value"] / prior[-1] * 100, 3)})
+    util_cur = util[-1]["pct"] if util else None
+    util_2y = util[-104]["pct"] if len(util) >= 104 else (util[0]["pct"] if util else None)
+
     out = {
         "last_updated": today(),
         "source": "FRBNY Primary Dealer Statistics (net outright UST positions, ex-TIPS)",
@@ -70,10 +84,17 @@ def main():
         "yoy_change": cur - yr_ago,
         "breakdown_latest": breakdown,
         "series": total,
+        "utilization": {
+            "unit": "dealer net UST positions as % of total public debt outstanding",
+            "source": "FRBNY positions / FRED GFDEBTN (total public debt)",
+            "current_pct": util_cur,
+            "two_year_ago_pct": util_2y,
+            "series": util,
+        },
     }
     save("dealer_balance.json", out)
     print(f"dealer net UST position: {cur:,} $mm as of {latest_date}  "
-          f"(YoY {cur - yr_ago:+,})")
+          f"(YoY {cur - yr_ago:+,}); utilization {util_cur}% vs {util_2y}% (2y ago)")
 
 
 if __name__ == "__main__":

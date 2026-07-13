@@ -17,22 +17,24 @@ turnover benefit accrues to whoever wins market structure (**MarketAxess / MKTX*
 
 ## The 10 tracked metrics
 
-| # | Section | Data | Status |
+Numbered as in the PM's brief.
+
+| PM # | Metric | Data | Status |
 |---|---------|------|--------|
 | 1 | **MOVE Index** — watch 90 / 100 | Yahoo `^MOVE` | 🟢 live |
-| 2 | **CPI & Payroll day vol** — 2y/10y 3-day window | FRED DGS2/DGS10 | 🟢 live |
-| 3 | **Dealer balance sheet** — net UST positions | NY Fed Primary Dealer API | 🟢 live |
-| 4 | **New-issue volume** — IG issuance | SIFMA (annual/qtly; monthly via xlsx) | 🟢 real |
-| 5 | **MKTX monthly volume** — ADV vs 9.8% CAGR | MKTX IR releases | 🟢 real |
-| 6 | **Variable FPM** — fee compression | MKTX IR (Table 1D) | 🟢 real |
-| 7 | **US high-grade share** — MKTX estimated | MKTX IR (Table 1B) | 🟢 real |
-| 8 | **Tradeweb vs MKTX** — US credit e-trading | TW & MKTX IR | 🟢 real |
-| 9 | **Fed funds path vs dots** — divergence | FF futures / CME | 🟡 illustrative |
-| 10 | **FOMC task forces** — framework/comms/balance-sheet | Fed press | 🟢 tracked (qualitative) |
+| 2 | **MKTX monthly volume** — ADV vs 9.8% CAGR | MKTX IR releases | 🟢 real |
+| 3 | **MKTX Variable FPM** — fee compression | MKTX IR (Table 1D) | 🟢 real |
+| 4 | **US high-grade share** — MKTX estimated, 18-mo | MKTX IR (Table 1B) | 🟢 real |
+| 5 | **CPI & Payroll day vol** — 2y/10y 3-day window | FRED DGS2/DGS10 | 🟢 live |
+| 6 | **FOMC task forces** — framework/comms/balance-sheet | Fed press | 🟢 tracked (qualitative) |
+| 7 | **Tradeweb vs MKTX** — US credit ADV **+ revenue** | TW & MKTX IR/results | 🟢 real |
+| 8 | **New-issue volume** — IG issuance | SIFMA (annual/qtly; monthly via xlsx) | 🟢 real |
+| 9 | **Dealer balance + leverage** — positions & utilization | FRBNY, FRED | 🟢 real |
+| 10 | **Fed funds path** — vs dots + divergence tracking | SEP, CME/futures | 🟢 real |
 
 🟢 **real** = live public API (MOVE, data-day vol, dealer) or transcribed from the source's
 official reports (MKTX/TW/SIFMA/SEP). **No illustrative/placeholder data remains.** The one
-coarser series is #4 (annual/quarterly IG issuance) — full monthly needs SIFMA's Excel dropped
+coarser series is #8 new issue (annual/quarterly IG) — full monthly needs SIFMA's Excel dropped
 into `data_raw/` (press monthly figures aren't basis-consistent, so they're deliberately not stitched).
 
 ## How it's built
