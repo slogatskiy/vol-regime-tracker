@@ -1,0 +1,71 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": false,
+  "as_of": "2026-07-13",
+  "source": "June-2026 FOMC SEP dot plot vs fed funds futures (CME FedWatch)",
+  "source_url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
+  "unit": "Implied fed funds rate, %",
+  "current_midpoint": 3.625,
+  "max_divergence_bps": 27,
+  "dot_history": [
+    {
+      "meeting": "Dec-2025",
+      "end2026_median": 3.4
+    },
+    {
+      "meeting": "Mar-2026",
+      "end2026_median": 3.4
+    },
+    {
+      "meeting": "Jun-2026",
+      "end2026_median": 3.875
+    }
+  ],
+  "divergence_track": [
+    {
+      "date": "2026-06-18",
+      "market": 3.7,
+      "dot": 3.875,
+      "divergence_bps": -17
+    },
+    {
+      "date": "2026-07-13",
+      "market": 3.95,
+      "dot": 3.875,
+      "divergence_bps": 8
+    }
+  ],
+  "note": "As of 2026-07-13: the market prices HIGHER-for-longer than the dots \u2014 a hawkish divergence up to ~27bp in 2027, where fed funds futures hold near 4% while the SEP median eases to 3.6%. Markets are pricing independently of the dots (the June SEP itself flipped hawkish, raising end-2026 to 3.875% from 3.4%). Snapshot \u2014 re-run to refresh against the latest futures and SEP.",
+  "series": [
+    {
+      "horizon": "Now",
+      "dot_median": 3.625,
+      "market_implied": 3.625,
+      "divergence_bps": 0
+    },
+    {
+      "horizon": "End-2026",
+      "dot_median": 3.875,
+      "market_implied": 3.95,
+      "divergence_bps": 8
+    },
+    {
+      "horizon": "End-2027",
+      "dot_median": 3.625,
+      "market_implied": 3.9,
+      "divergence_bps": 27
+    },
+    {
+      "horizon": "End-2028",
+      "dot_median": 3.375,
+      "market_implied": null,
+      "divergence_bps": null
+    },
+    {
+      "horizon": "Long-run",
+      "dot_median": 3.125,
+      "market_implied": null,
+      "divergence_bps": null
+    }
+  ]
+}

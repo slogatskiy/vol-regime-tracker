@@ -7,3 +7,4 @@ Dated copies of `docs/data/*.json` for browsing and rollback.
 - `2026-07-13_094240/` — 11 files — v0.3.0 all metrics real — share, fed path, new issue
 - `2026-07-13_101837/` — 11 files — v0.4.0 closed PM-brief gaps: revenue, multi-year share, leverage, divergence tracking
 - `2026-07-13_111327/` — 11 files — v0.5.0 real monthly SIFMA new issue
+- `2026-07-15_062725/` — 11 files — v0.6.0 per-widget explanations + 5yr chart spans

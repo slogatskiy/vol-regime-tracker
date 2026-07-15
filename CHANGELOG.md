@@ -2,6 +2,27 @@
 
 Named save points. Roll the whole repo back to any of these with `git checkout <tag>`.
 
+## v0.6.0 — 2026-07-15 — per-widget explanations + 5-year chart spans
+Georgy's two asks: a plain-English one-liner per widget, and 5-year coverage on the charts.
+
+- **One-liner on every widget:** a `.oneliner` "In one line:" callout under each section header
+  explaining what it shows in plain English.
+- **5-year spans** where the data is clean at that horizon:
+  - MOVE → 5y daily (Yahoo range=5y), captures the 2022 vol peak.
+  - MKTX volume → 5y annual ADV ($10.4B '21 → $15.7B '25) + recent monthly YoY vs CAGR.
+  - MKTX FPM → 5y annual ($181 '21 → $131 '26 YTD compression) + recent monthly.
+  - Tradeweb vs MKTX → 5y annual revenue (TW +91% vs MKTX +21%; TW now 2.6× MKTX).
+  - New issue → annual already spans 2015-2025; dealer already ~5y weekly.
+  - Data-day vol → extended to a ~5y BLS release calendar (Jan-2022→). **This flipped the
+    read honestly:** reactions peaked ~14bp in the 2022 hiking cycle and have COOLED to ~5bp,
+    so the data-centric shift is a forward watch, not yet visible in magnitude. Manifest
+    bottom-line and KPI updated to say so.
+- **Deliberately NOT 5y:** market share stays an 18-month consistent series — MKTX changed its
+  share basis (SD-PT split) in 2025, so a 5y line would mix methodologies (~21% old vs ~18% now)
+  and overstate the decline; noted on the page. Fed path is a forward projection, not a history.
+- New annual data added to ingest_mktx.py / ingest_tradeweb.py; data-day calendar extended.
+  Render harness passes.
+
 ## v0.5.0 — 2026-07-13 — #8 new issue now real MONTHLY (SIFMA workbook)
 Parsed SIFMA's official "US Corporate Bonds Statistics" Excel (Issuance tab, source Refinitiv)
 into real monthly IG/HY gross issuance — the last coarser-than-asked series is now monthly.

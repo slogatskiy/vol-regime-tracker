@@ -14,9 +14,9 @@ THRESH_REGIME = 100   # above -> significant vol-regime change
 
 
 def main():
-    # ~2y of daily closes
+    # ~5y of daily closes
     url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EMOVE"
-    js = get(url, {"range": "2y", "interval": "1d"}).json()
+    js = get(url, {"range": "5y", "interval": "1d"}).json()
     res = js["chart"]["result"][0]
     ts = res["timestamp"]
     closes = res["indicators"]["quote"][0]["close"]

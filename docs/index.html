@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fixed-Income Vol-Regime &amp; Market-Structure Tracker</title>
   <meta name="description" content="Tracking the FOMC-centric to data-centric volatility regime shift in rates, and who captures the turnover: MarketAxess (MKTX) vs Tradeweb (TW)." />
-  <link rel="stylesheet" href="styles.css?v=0.5.0" />
+  <link rel="stylesheet" href="styles.css?v=0.6.0" />
 </head>
 <body>
   <div class="topnav">
@@ -44,6 +44,7 @@
     <!-- 01 MOVE -->
     <section id="move">
       <div class="sec-head"><span class="sec-num">01</span><h2>MOVE Index — bond-market implied vol</h2><span class="badge real">live</span></div>
+      <div class="oneliner"><b>In one line:</b> the Treasury market's fear gauge — how much price swing bond options price in; above 90 = stress, above 100 = a regime change.</div>
       <p class="sec-sub">The ICE BofA MOVE index is the Treasury market's VIX. Watch for a <b>sustained break above 90</b> (the elevated-regime line); a move above <b>100</b> would signal a significant vol-regime change. Live from Yahoo Finance (^MOVE).</p>
       <div class="grid-2">
         <div class="card">
@@ -60,6 +61,7 @@
     <!-- 05 Data-day vol -->
     <section id="dataday">
       <div class="sec-head"><span class="sec-num">02</span><h2>CPI &amp; Payroll day volatility</h2><span class="badge real">live</span></div>
+      <div class="oneliner"><b>In one line:</b> how hard 2- and 10-year yields jump around CPI and jobs reports — a bigger reaction means the market trades the data, not just the Fed.</div>
       <p class="sec-sub">Treasury moves in a 3-day window around CPI and jobs releases. Rising reactions signal the shift from <b>FOMC-centric</b> to <b>data-centric</b> vol — the market reacting to data, not just the Fed. 2y/10y from FRED.</p>
       <div class="grid-2">
         <div class="card">
@@ -78,6 +80,7 @@
     <!-- 09 Dealer balance sheet -->
     <section id="dealer">
       <div class="sec-head"><span class="sec-num">03</span><h2>Primary-dealer balance-sheet capacity</h2><span class="badge real">live</span></div>
+      <div class="oneliner"><b>In one line:</b> how many Treasuries the big banks hold on their own books — thinner inventory means less capacity to make markets the old way, pushing flow onto platforms.</div>
       <p class="sec-sub">Net outright primary-dealer positions in U.S. Treasuries (ex-TIPS), weekly, from the NY Fed. Reduced dealer capacity to warehouse risk <b>amplifies</b> the migration to electronic all-to-all platforms.</p>
       <div class="grid-2">
         <div class="card">
@@ -106,6 +109,7 @@
     <!-- 08 New issue -->
     <section id="newissue">
       <div class="sec-head"><span class="sec-num">04</span><h2>New-issue volume</h2><span class="badge real">real</span></div>
+      <div class="oneliner"><b>In one line:</b> how many new corporate bonds get sold each month — a heavy calendar forces more secondary trading afterward, feeding platform volumes.</div>
       <p class="sec-sub">US corporate gross issuance (IG &amp; HY), <b>monthly</b>, from SIFMA. High new-issue activity drives secondary turnover — the Jan-2026 surge coincided with <b>+95% YoY high-grade turnover</b>. Watch for sustained elevated levels. Real SIFMA workbook (Issuance tab, source Refinitiv).</p>
       <div class="grid-2">
         <div class="card">
@@ -123,15 +127,16 @@
     <!-- 02 MKTX volume -->
     <section id="volume">
       <div class="sec-head"><span class="sec-num">05</span><h2>MKTX monthly volume &amp; ADV growth</h2><span class="badge real">real</span></div>
+      <div class="oneliner"><b>In one line:</b> how much credit MarketAxess trades per day, and whether it's growing faster than its ~10%/yr long-run trend.</div>
       <p class="sec-sub">MarketAxess total credit ADV and its YoY growth vs the <b>5-year CAGR of 9.8%</b>. Growth accelerating above the CAGR line is the bull signal. Real monthly data from MKTX Trading Volume Statistics.</p>
       <div class="grid-2">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Total credit ADV ($bn/day)</span><span class="badge real">MKTX IR</span></div>
+          <div class="chart-meta"><span class="chart-title">Total credit ADV — annual, 5-year ($bn/day)</span><span class="badge real">MKTX IR</span></div>
           <div class="chart-box"><canvas id="mktxAdvChart"></canvas></div>
           <div class="chart-note" id="volume-note"></div>
         </div>
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">ADV YoY vs 5y CAGR (9.8%)</span></div>
+          <div class="chart-meta"><span class="chart-title">Monthly ADV YoY vs 9.8% CAGR (recent)</span></div>
           <div class="chart-box"><canvas id="mktxYoyChart"></canvas></div>
         </div>
       </div>
@@ -140,10 +145,16 @@
     <!-- 03 FPM -->
     <section id="fpm">
       <div class="sec-head"><span class="sec-num">06</span><h2>Variable fees per million (FPM)</h2><span class="badge real">real</span></div>
+      <div class="oneliner"><b>In one line:</b> the dollars MarketAxess earns per million traded — a falling number means clients are shifting to cheaper trading protocols.</div>
       <p class="sec-sub">MKTX total-credit variable transaction FPM, monthly. <b>Compression</b> indicates mix shift toward lower-fee protocols (portfolio trading, dealer-RFQ, Open Trading). Real data from the monthly Trading Volume Statistics (Table 1D).</p>
-      <div class="grid-1">
+      <div class="grid-2">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Total-credit FPM — monthly ($/mm)</span><span class="badge real">MKTX IR</span></div>
+          <div class="chart-meta"><span class="chart-title">Total-credit FPM — annual, 5-year ($/mm)</span><span class="badge real">MKTX IR</span></div>
+          <div class="chart-box"><canvas id="fpmAnnualChart"></canvas></div>
+          <div class="chart-note" id="fpm-annual-note"></div>
+        </div>
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Total-credit FPM — monthly (recent)</span><span class="badge real">MKTX IR</span></div>
           <div class="chart-box"><canvas id="fpmChart"></canvas></div>
           <div class="chart-note" id="fpm-note"></div>
         </div>
@@ -153,6 +164,7 @@
     <!-- 04 Market share -->
     <section id="share">
       <div class="sec-head"><span class="sec-num">07</span><h2>MKTX US high-grade market share</h2><span class="badge real">real</span></div>
+      <div class="oneliner"><b>In one line:</b> MarketAxess's slice of all US high-grade bond trading — watch whether the early-2026 dip recovers.</div>
       <p class="sec-sub">MarketAxess estimated share of US high-grade (and high-yield) TRACE volume, monthly. Early-2026 share dipped on heavy new issuance — <b>watch for recovery</b>. Real from MKTX Table 1B; head-to-head vs Tradeweb is in the US-credit e-trading section above.</p>
       <div class="grid-1">
         <div class="card">
@@ -166,6 +178,7 @@
     <!-- 07 Tradeweb -->
     <section id="tradeweb">
       <div class="sec-head"><span class="sec-num">08</span><h2>Tradeweb vs MKTX — US credit e-trading</h2><span class="badge real">real</span></div>
+      <div class="oneliner"><b>In one line:</b> MarketAxess vs its main rival Tradeweb on volume and revenue — if Tradeweb keeps pulling ahead, it's winning the electronification prize.</div>
       <p class="sec-sub">Like-for-like US credit electronic ADV: MKTX (high-grade + high-yield) vs Tradeweb (fully-electronic US credit), monthly. If <b>TW consistently outpaces MKTX</b>, the vol benefit is accruing to the competitor. Real data from both firms' monthly activity reports.</p>
       <div class="grid-2">
         <div class="card">
@@ -180,7 +193,7 @@
       <div class="chart-note" id="tradeweb-note" style="margin-top:12px"></div>
       <div class="grid-2" style="margin-top:16px">
         <div class="card">
-          <div class="chart-meta"><span class="chart-title">Quarterly total revenue — TW vs MKTX ($M)</span><span class="badge real">results</span></div>
+          <div class="chart-meta"><span class="chart-title">Total revenue — annual, 5-year ($M)</span><span class="badge real">results</span></div>
           <div class="chart-box"><canvas id="revLevelChart"></canvas></div>
           <div class="chart-note" id="revenue-note"></div>
         </div>
@@ -195,6 +208,7 @@
     <!-- 10 Fed funds path -->
     <section id="fedpath">
       <div class="sec-head"><span class="sec-num">09</span><h2>Fed funds path vs the dot plot</h2><span class="badge real">real</span></div>
+      <div class="oneliner"><b>In one line:</b> where the market expects interest rates vs where the Fed's own dots project — a gap means traders are pricing independently of Fed guidance.</div>
       <p class="sec-sub">Market-implied fed funds path (from futures) vs the FOMC June-2026 SEP dot-plot median. <b>Divergence</b> means markets are pricing independently of guidance — a hallmark of the post-guidance era. Real snapshot from the SEP + CME FedWatch/futures.</p>
       <div class="grid-2">
         <div class="card">
@@ -224,6 +238,7 @@
     <!-- 06 FOMC task forces -->
     <section id="fomc">
       <div class="sec-head"><span class="sec-num">10</span><h2>FOMC task-force tracker</h2><span class="badge real">tracked</span></div>
+      <div class="oneliner"><b>In one line:</b> the Fed's internal reviews of how it communicates and runs its balance sheet — their year-end recommendations will reshape the rate-vol regime.</div>
       <p class="sec-sub">The Fed's framework, communications and balance-sheet reviews — recommendations expected by year-end 2026 — will shape the medium-term regime. Qualitative status, updated as announcements land.</p>
       <div class="status-grid" id="fomc-grid"></div>
       <div class="why"><div class="wt">What this shows &amp; why it matters</div><p>These reviews decide <b>how the Fed communicates</b> and <b>how big its footprint is</b> — the two inputs that determine whether vol stays data-centric. Direct feed into the dot-plot-divergence and dealer-capacity metrics above.</p></div>
@@ -241,6 +256,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=0.5.0"></script>
+  <script src="app.js?v=0.6.0"></script>
 </body>
 </html>

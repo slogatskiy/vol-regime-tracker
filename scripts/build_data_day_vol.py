@@ -14,7 +14,33 @@ from _common import fred_csv, save, today
 # BLS releases. CPI = Consumer Price Index, NFP = Employment Situation (jobs).
 # Dates are the official release DATE (data usually 8:30 ET). Extend as needed.
 RELEASES = [
+    # 2022
+    ("2022-01-07", "NFP"), ("2022-01-12", "CPI"), ("2022-02-04", "NFP"), ("2022-02-10", "CPI"),
+    ("2022-03-04", "NFP"), ("2022-03-10", "CPI"), ("2022-04-01", "NFP"), ("2022-04-12", "CPI"),
+    ("2022-05-06", "NFP"), ("2022-05-11", "CPI"), ("2022-06-03", "NFP"), ("2022-06-10", "CPI"),
+    ("2022-07-08", "NFP"), ("2022-07-13", "CPI"), ("2022-08-05", "NFP"), ("2022-08-10", "CPI"),
+    ("2022-09-02", "NFP"), ("2022-09-13", "CPI"), ("2022-10-07", "NFP"), ("2022-10-13", "CPI"),
+    ("2022-11-04", "NFP"), ("2022-11-10", "CPI"), ("2022-12-02", "NFP"), ("2022-12-13", "CPI"),
+    # 2023
+    ("2023-01-06", "NFP"), ("2023-01-12", "CPI"), ("2023-02-03", "NFP"), ("2023-02-14", "CPI"),
+    ("2023-03-10", "NFP"), ("2023-03-14", "CPI"), ("2023-04-07", "NFP"), ("2023-04-12", "CPI"),
+    ("2023-05-05", "NFP"), ("2023-05-10", "CPI"), ("2023-06-02", "NFP"), ("2023-06-13", "CPI"),
+    ("2023-07-07", "NFP"), ("2023-07-12", "CPI"), ("2023-08-04", "NFP"), ("2023-08-10", "CPI"),
+    ("2023-09-01", "NFP"), ("2023-09-13", "CPI"), ("2023-10-06", "NFP"), ("2023-10-12", "CPI"),
+    ("2023-11-03", "NFP"), ("2023-11-14", "CPI"), ("2023-12-08", "NFP"), ("2023-12-12", "CPI"),
+    # 2024
+    ("2024-01-05", "NFP"), ("2024-01-11", "CPI"), ("2024-02-02", "NFP"), ("2024-02-13", "CPI"),
+    ("2024-03-08", "NFP"), ("2024-03-12", "CPI"), ("2024-04-05", "NFP"), ("2024-04-10", "CPI"),
+    ("2024-05-03", "NFP"), ("2024-05-15", "CPI"), ("2024-06-07", "NFP"), ("2024-06-12", "CPI"),
+    ("2024-07-05", "NFP"), ("2024-07-11", "CPI"), ("2024-08-02", "NFP"), ("2024-08-14", "CPI"),
+    ("2024-09-06", "NFP"), ("2024-09-11", "CPI"), ("2024-10-04", "NFP"), ("2024-10-10", "CPI"),
+    ("2024-11-01", "NFP"), ("2024-11-13", "CPI"), ("2024-12-06", "NFP"), ("2024-12-11", "CPI"),
     # 2025
+    ("2025-01-10", "NFP"), ("2025-01-15", "CPI"), ("2025-02-07", "NFP"), ("2025-02-12", "CPI"),
+    ("2025-03-07", "NFP"), ("2025-03-12", "CPI"), ("2025-04-04", "NFP"), ("2025-04-10", "CPI"),
+    ("2025-05-02", "NFP"), ("2025-05-13", "CPI"), ("2025-06-06", "NFP"), ("2025-06-11", "CPI"),
+    ("2025-07-03", "NFP"), ("2025-07-15", "CPI"), ("2025-08-01", "NFP"), ("2025-08-12", "CPI"),
+    ("2025-09-05", "NFP"),
     ("2025-09-11", "CPI"), ("2025-10-03", "NFP"), ("2025-10-15", "CPI"),
     ("2025-11-07", "NFP"), ("2025-11-13", "CPI"), ("2025-12-05", "NFP"),
     ("2025-12-10", "CPI"),
@@ -44,8 +70,8 @@ def surrounding(dates, target):
 
 
 def main():
-    y2 = fred_csv("DGS2", start="2025-06-01")
-    y10 = fred_csv("DGS10", start="2025-06-01")
+    y2 = fred_csv("DGS2", start="2021-06-01")
+    y10 = fred_csv("DGS10", start="2021-06-01")
     m2, d2 = as_map(y2)
     m10, d10 = as_map(y10)
 
@@ -84,6 +110,14 @@ def main():
         }
         summary["accelerating_2y"] = summary["avg_abs_2y_recent"] > summary["avg_abs_2y_early"]
         summary["accelerating_10y"] = summary["avg_abs_10y_recent"] > summary["avg_abs_10y_early"]
+        # recent re-acceleration: last 12 releases vs the 12 before (captures the 2025-26 pickup
+        # that the full-5y half-split masks, since 2022's rate-hike vol was far larger).
+        if len(rows) >= 24:
+            last12 = rows[-12:]
+            prev12 = rows[-24:-12]
+            summary["recent12_abs_2y"] = avg(last12, "abs2y")
+            summary["prev12_abs_2y"] = avg(prev12, "abs2y")
+            summary["reaccelerating_2y"] = summary["recent12_abs_2y"] > summary["prev12_abs_2y"]
     else:
         summary = {}
 

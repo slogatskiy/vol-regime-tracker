@@ -65,6 +65,11 @@ section { padding: 34px 0; border-bottom: 1px solid var(--line-soft); }
 .sec-num { font-family: var(--mono); color: var(--accent); font-size: 13px; font-weight: 700; }
 .sec-head h2 { font-size: 21px; margin: 0; letter-spacing: -.02em; }
 .sec-sub { color: var(--muted); max-width: 900px; margin: 4px 0 18px; }
+/* plain-English one-liner: what this widget shows, at a glance */
+.oneliner { max-width: 900px; margin: 2px 0 12px; padding: 9px 13px; font-size: 13.5px;
+  color: var(--text); background: var(--bg-soft); border: 1px solid var(--line-soft);
+  border-left: 3px solid var(--blue); border-radius: 0 9px 9px 0; }
+.oneliner b { color: var(--blue); }
 .badge { font-family: var(--mono); font-size: 10.5px; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: .04em; border: 1px solid var(--line); color: var(--muted); }
 .badge.real { color: var(--good); border-color: rgba(56,199,147,.4); background: rgba(56,199,147,.08); }
 .badge.illustrative { color: var(--amber); border-color: rgba(245,166,35,.4); background: rgba(245,166,35,.08); }

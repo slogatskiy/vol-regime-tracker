@@ -26,6 +26,16 @@ TW = {
 
 SRC = "https://www.tradeweb.com/newsroom/monthly-activity-reports/"
 
+# 5-year ANNUAL total revenue ($ millions), TW vs MKTX. Source: company results.
+# year -> (tw_revenue_mm, mktx_revenue_mm)
+ANNUAL_REVENUE = {
+    "2021": (1076.0, 698.95),
+    "2022": (1189.0, 718.30),
+    "2023": (1338.0, 752.55),
+    "2024": (1726.0, 817.10),
+    "2025": (2052.0, 846.27),
+}
+
 # Metric 7b — quarterly TOTAL revenue ($ millions), TW vs MKTX. Source: company results.
 # quarter -> (tw_revenue_mm, mktx_revenue_mm)
 REVENUE = {
@@ -89,6 +99,13 @@ def main():
     latest_rev = rev[-1]
     rev_ratio = round(latest_rev["tw_rev_mm"] / latest_rev["mktx_rev_mm"], 2)
 
+    # 5-year annual revenue
+    annual_rev = [{"year": y, "tw_rev_mm": ANNUAL_REVENUE[y][0], "mktx_rev_mm": ANNUAL_REVENUE[y][1]}
+                  for y in sorted(ANNUAL_REVENUE)]
+    ar0, ar1 = annual_rev[0], annual_rev[-1]
+    tw_5y = round((ar1["tw_rev_mm"] / ar0["tw_rev_mm"] - 1) * 100)
+    mk_5y = round((ar1["mktx_rev_mm"] / ar0["mktx_rev_mm"] - 1) * 100)
+
     save("tradeweb.json", {
         "last_updated": today(),
         "illustrative": False,
@@ -106,6 +123,8 @@ def main():
                 f"{latest_rev['tw_rev_yoy']}% vs {latest_rev['mktx_rev_yoy']}% YoY.",
         "series": series,
         "revenue": rev,
+        "annual_revenue": annual_rev,
+        "rev_5y_growth": {"tw_pct": tw_5y, "mktx_pct": mk_5y},
     })
     print(f"TW vs MKTX: {len(series)} ADV months (gap {avg_gap}pp), "
           f"{len(rev)} revenue quarters (TW ${latest_rev['tw_rev_mm']:.0f}M = {rev_ratio}x MKTX)")

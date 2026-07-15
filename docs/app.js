@@ -92,12 +92,13 @@ function renderDataDay(d) {
       y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("|move| over 3-day window (bps)"), beginAtZero: true } } }),
   });
   const s = d.summary || {};
+  const peak = rows.reduce((a, r) => r.abs2y > a.abs2y ? r : a, rows[0]);
   $("dataday-note").textContent =
-    `Avg |Δ2y| recent ${s.avg_abs_2y_recent} vs earlier ${s.avg_abs_2y_early} bps — ` +
-    `${s.accelerating_2y ? "accelerating (data-centric)" : "not accelerating"}. ` +
-    `10y: ${s.avg_abs_10y_recent} vs ${s.avg_abs_10y_early} bps.`;
+    `Reactions peaked ~${peak.abs2y}bp around ${peak.date.slice(0, 7)} (the 2022 hiking cycle) and have since cooled to ` +
+    `~${s.recent12_abs_2y ?? s.avg_abs_2y_recent}bp (last 12 prints) — so the data-centric shift is a forward watch, ` +
+    `not yet visible in raw reaction size. 5y avg |Δ2y| ${s.avg_abs_2y_recent} (recent half) vs ${s.avg_abs_2y_early} (2022-23).`;
   const tb = $("dataday-table").querySelector("tbody");
-  tb.innerHTML = rows.slice().reverse().map(r => {
+  tb.innerHTML = rows.slice(-15).reverse().map(r => {
     const c2 = r.d2y_window_bps >= 0 ? "pos" : "neg";
     const c10 = r.d10y_window_bps >= 0 ? "pos" : "neg";
     return `<tr><td>${r.date}</td><td><span class="kind-tag kind-${r.kind}">${r.kind}</span></td>
@@ -195,16 +196,17 @@ function renderNewIssue(d) {
 
 /* ---------- 05 MKTX volume ---------- */
 function renderMktxVolume(d) {
-  const labels = d.series.map(p => monthLbl(p.month));
+  // 5-year annual ADV bars
+  const ann = d.annual_adv || [];
   new Chart($("mktxAdvChart"), {
-    type: "line",
-    data: { labels, datasets: [
-      { label: "Total credit ADV ($bn)", data: d.series.map(p => p.adv_bn), borderColor: C.accent,
-        backgroundColor: "rgba(79,140,255,.10)", borderWidth: 2, pointRadius: 0, fill: true, tension: .15 },
+    type: "bar",
+    data: { labels: ann.map(a => a.year + (a.partial ? " YTD" : "")), datasets: [
+      { label: "Total credit ADV ($bn)", data: ann.map(a => a.adv_bn),
+        backgroundColor: ann.map(a => a.partial ? "rgba(79,140,255,.45)" : C.accent) },
     ]},
     options: base({ plugins: { legend: { display: false } }, scales: {
-      x: { grid: { color: C.grid }, ticks: { color: C.text, maxTicksLimit: 8 } },
-      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("ADV, $ bn/day") } } }),
+      x: { grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("annual ADV, $ bn/day"), beginAtZero: true } } }),
   });
   const yoy = d.series.filter(p => p.yoy_pct != null);
   new Chart($("mktxYoyChart"), {
@@ -218,15 +220,35 @@ function renderMktxVolume(d) {
     options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text, maxTicksLimit: 8 } },
       y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("YoY %") } } }),
   });
-  const last = d.series[d.series.length - 1];
+  const a0 = ann[0], aLast = ann.find(a => a.year === "2025") || ann[ann.length - 1];
+  const grow = a0 ? Math.round((aLast.adv_bn / a0.adv_bn - 1) * 100) : null;
   $("volume-note").textContent =
-    `Latest ADV ~$${last.adv_bn}bn (${last.yoy_pct != null ? sign(last.yoy_pct) + "% YoY" : "—"}); ` +
-    `bull signal is YoY sustained above the ${d.cagr_5y_pct}% CAGR line.`;
+    `Annual ADV grew from $${a0.adv_bn}bn (${a0.year}) to $${aLast.adv_bn}bn (${aLast.year})` +
+    (grow != null ? `, +${grow}% over the span` : "") +
+    `; 2026 YTD ~$${(ann.find(a => a.partial) || aLast).adv_bn}bn. Bull signal is YoY sustained above the ${d.cagr_5y_pct}% CAGR line (right).`;
   return d;
 }
 
 /* ---------- 06 FPM ---------- */
 function renderFpm(d) {
+  // 5-year annual FPM
+  const ann = d.annual_fpm || [];
+  if (ann.length) {
+    new Chart($("fpmAnnualChart"), {
+      type: "line",
+      data: { labels: ann.map(a => a.year + (a.partial ? " YTD" : "")), datasets: [
+        { label: "Total-credit FPM", data: ann.map(a => a.credit_fpm), borderColor: C.accent,
+          backgroundColor: "rgba(79,140,255,.10)", borderWidth: 2, pointRadius: 4, fill: true, tension: .1 },
+      ]},
+      options: base({ plugins: { legend: { display: false } }, scales: {
+        x: { grid: { color: C.grid }, ticks: { color: C.text } },
+        y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("annual FPM, $/mm") } } }),
+    });
+    const f = ann[0], l = ann[ann.length - 1];
+    $("fpm-annual-note").textContent =
+      `Steady multi-year compression: $${f.credit_fpm} (${f.year}) → $${l.credit_fpm} (${l.year}${l.partial ? " YTD" : ""}), ` +
+      `${Math.round((l.credit_fpm / f.credit_fpm - 1) * 100)}% — driven by protocol/product mix shift.`;
+  }
   const labels = d.series.map(p => monthLbl(p.month));
   new Chart($("fpmChart"), {
     type: "line",
@@ -267,7 +289,7 @@ function renderShare(d) {
   $("share-note").textContent =
     `MKTX US high-grade share ${l.hg_share}% latest (FY24 ${d.annual_hg["2024"]}% → FY25 ${fy25}%). ` +
     `Dipped to a ${trough.hg_share}% trough in ${monthLbl(trough.month)} on the new-issue surge, now recovering. ` +
-    `MKTX flags TRACE duplicate reports understated 2026 share ~150-160bp in some months.`;
+    `Shown as a consistent 18-month window on purpose: MKTX changed its share basis in 2025 (split out single-dealer portfolio trades), so a 5-year line would mix methodologies (~21% old-basis vs ~18% now) and overstate the decline.`;
   return d;
 }
 
@@ -299,18 +321,18 @@ function renderTradeweb(d) {
     `and led US credit e-trading outright in June — the vol benefit is accruing disproportionately to the competitor. ` +
     `(MKTX = HG+HY ADV; TW = fully-electronic US credit ADV; Feb shown as a gap — not disclosed.)`;
 
-  // revenue trends (quarterly)
-  const rev = d.revenue || [];
-  const rl = rev.map(r => r.q);
+  // 5-year annual revenue (TW vs MKTX)
+  const arev = d.annual_revenue || [];
   new Chart($("revLevelChart"), {
     type: "bar",
-    data: { labels: rl, datasets: [
-      { label: "Tradeweb", data: rev.map(r => r.tw_rev_mm), backgroundColor: C.amber },
-      { label: "MKTX", data: rev.map(r => r.mktx_rev_mm), backgroundColor: C.accent },
+    data: { labels: arev.map(r => r.year), datasets: [
+      { label: "Tradeweb", data: arev.map(r => r.tw_rev_mm), backgroundColor: C.amber },
+      { label: "MKTX", data: arev.map(r => r.mktx_rev_mm), backgroundColor: C.accent },
     ]},
     options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
-      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("total revenue, $M/quarter"), beginAtZero: true } } }),
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("annual revenue, $M"), beginAtZero: true } } }),
   });
+  const rev = d.revenue || [];
   const ry = rev.filter(r => r.tw_rev_yoy != null);
   new Chart($("revYoyChart"), {
     type: "line",
@@ -321,9 +343,10 @@ function renderTradeweb(d) {
     options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
       y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("revenue YoY %") } } }),
   });
-  const lr = rev[rev.length - 1];
+  const g = d.rev_5y_growth || {};
+  const r0 = arev[0], r1 = arev[arev.length - 1];
   $("revenue-note").textContent =
-    `Latest quarter (${lr.q}): TW $${lr.tw_rev_mm.toFixed(0)}M (${sign(lr.tw_rev_yoy)}% YoY) vs MKTX $${lr.mktx_rev_mm.toFixed(0)}M (${sign(lr.mktx_rev_yoy)}% YoY) — TW is ~${d.rev_ratio_latest}× MKTX and growing far faster.`;
+    `Over 5 years TW revenue grew +${g.tw_pct}% ($${(r0.tw_rev_mm/1000).toFixed(2)}B→$${(r1.tw_rev_mm/1000).toFixed(2)}B) vs MKTX +${g.mktx_pct}% ($${r0.mktx_rev_mm.toFixed(0)}M→$${r1.mktx_rev_mm.toFixed(0)}M) — TW is now ~${d.rev_ratio_latest}× MKTX. The gap keeps widening.`;
   return d;
 }
 
@@ -425,9 +448,9 @@ async function main() {
     kpiCard("MOVE index", move.current,
       move.current >= 90 ? "above 90 watch line" : `below 90 · 90d avg ${move.avg_90d}`,
       { t: move.current >= 90 ? "elevated" : "calm", cls: move.current >= 90 ? "bad" : "good" }),
-    kpiCard("Data-day |Δ2y|", `${s.avg_abs_2y_recent}bp`,
-      `recent vs ${s.avg_abs_2y_early}bp earlier`,
-      { t: s.accelerating_2y ? "accelerating" : "steady", cls: s.accelerating_2y ? "bad" : "good" }),
+    kpiCard("Data-day |Δ2y|", `${s.recent12_abs_2y ?? s.avg_abs_2y_recent}bp`,
+      `last 12 prints · ~${s.avg_abs_2y_early}bp in '22-23`,
+      { t: "subdued", cls: "good" }),
     kpiCard("Dealer USTs", `$${bn(dealer.current)}bn`,
       `${dealer.yoy_change >= 0 ? "+" : "−"}$${Math.abs(bn(dealer.yoy_change))}bn YoY`, null),
     kpiCard("MKTX ADV YoY '26", `${sign(volume.avg_yoy_2026_pct)}%`,

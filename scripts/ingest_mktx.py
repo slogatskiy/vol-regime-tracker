@@ -38,6 +38,12 @@ MKTX = {
 
 SRC = "https://investor.marketaxess.com/"
 
+# 5-year ANNUAL history (for the multi-year view). Total credit ADV ($bn) and total-credit
+# variable FPM ($). 2023/2024 exact from MKTX full-year results; 2021/2022 from reported
+# annual/YoY figures (~); 2025 & 2026-YTD computed from the monthly rows above.
+ANNUAL_ADV = {"2021": 10.4, "2022": 11.8, "2023": 12.545, "2024": 14.173}   # +2025/26 computed
+ANNUAL_FPM = {"2021": 181.0, "2022": 165.0, "2023": 158.61, "2024": 150.26}  # +2025/26 computed
+
 
 def main():
     months = sorted(MKTX)
@@ -60,6 +66,21 @@ def main():
         })
     yoys = [r["yoy_pct"] for r in vol_series if r["yoy_pct"] is not None]
     avg_yoy = round(sum(yoys) / len(yoys), 1) if yoys else None
+
+    # build 5y annual ADV/FPM, computing the years covered by the monthly rows
+    def annual_from_monthly(idx):
+        out = {}
+        for m in months:
+            yr = m[:4]
+            out.setdefault(yr, []).append(MKTX[m][idx])
+        return {y: round(sum(v) / len(v), 2) for y, v in out.items()}
+    adv_by_year = annual_from_monthly(0)
+    fpm_by_year = annual_from_monthly(3)
+    annual_adv = [{"year": y, "adv_bn": v, "partial": y == "2026"}
+                  for y, v in sorted({**ANNUAL_ADV, **adv_by_year}.items())]
+    annual_fpm = [{"year": y, "credit_fpm": v, "partial": y == "2026"}
+                  for y, v in sorted({**ANNUAL_FPM, **fpm_by_year}.items())]
+
     save("mktx_volume.json", {
         "last_updated": today(),
         "illustrative": False,
@@ -68,6 +89,7 @@ def main():
         "unit": "Total credit ADV, $ billions/day (excl. SD PT)",
         "cagr_5y_pct": CAGR_5Y,
         "avg_yoy_2026_pct": avg_yoy,
+        "annual_adv": annual_adv,
         "note": f"Real monthly ADV from MKTX releases. 2026 YTD YoY averages "
                 f"~{avg_yoy}% vs the {CAGR_5Y}% 5-year CAGR — bull signal is YoY "
                 f"sustained above the CAGR line. Apr-2026 dipped (-13% YoY) on a tough "
@@ -85,6 +107,7 @@ def main():
         "source": "MarketAxess monthly Trading Volume Statistics (Table 1D)",
         "source_url": SRC,
         "unit": "Total-credit variable transaction fees per $ million",
+        "annual_fpm": annual_fpm,
         "note": f"Real monthly total-credit FPM. Compression from ${first} (Jan-2025) "
                 f"to ${last} (Jun-2026) — mix shift toward lower-fee protocols "
                 f"(portfolio trading, dealer-RFQ, Open Trading) and products. "
