@@ -89,8 +89,9 @@ Preview locally: `python -m http.server 8000 --directory docs` → http://localh
 
 A LaunchDaemon on the Mac mini runs `scripts/weekly_update.sh` once a week: it re-pulls the
 live feeds (MOVE, FRED yields, NY Fed dealers), rebuilds every `docs/data/*.json`, and
-`git push`es — GitHub Pages redeploys itself. Full setup (dedicated service user, deploy key
-for `git push`, LaunchDaemon install) is in **[docs/deploy-macmini.md](docs/deploy-macmini.md)**.
+`git push`es — GitHub Pages redeploys itself. It reuses the existing `vcdigest` service user;
+setup (clone, `git push` deploy key, LaunchDaemon install) is in
+**[docs/deploy-macmini.md](docs/deploy-macmini.md)**.
 
 ```bash
 NO_PUSH=1 bash scripts/weekly_update.sh   # smoke-test: refresh + local commit, no push

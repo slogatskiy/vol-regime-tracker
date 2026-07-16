@@ -2,21 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
   LaunchDaemon: weekly refresh of the Fixed-Income Vol-Regime tracker on the Mac mini.
-  System domain → runs headless (SSH only, no GUI login). Runs as a dedicated standard
-  user `volregime` (same convention as com.vcdigest.weekly / com.bitrix.digest).
+  Reuses the EXISTING `vcdigest` service user (already has SSH, Tailscale, uv) — no new
+  user needed. System domain → runs headless (SSH only, no GUI login). Distinct label and
+  schedule from com.vcdigest.weekly so the two jobs don't clash.
 
-  It runs scripts/weekly_update.sh: re-pull the live feeds (MOVE, FRED yields, NY Fed
-  dealers), rebuild every data/*.json, then `git commit && git push`. GitHub Pages then
-  redeploys automatically — no server to run.
+  Runs scripts/weekly_update.sh: re-pull the live feeds (MOVE, FRED yields, NY Fed dealers),
+  rebuild every data/*.json, then `git commit && git push`. GitHub Pages redeploys itself.
 
-  Time is LOCAL to the mac (Europe/Podgorica on Konstantin's mini). Here: Monday 08:00.
+  Time is LOCAL to the mac (Europe/Podgorica). Here: Monday 08:00 (an hour before the
+  vc-digest job at 09:00). PATH is set explicitly because the daemon's default PATH is
+  stripped and wouldn't find git/uv.
 
-  Git push needs non-interactive auth for user `volregime` — set up a repo deploy key or a
-  PAT credential first (see docs/deploy-macmini.md §B3). The default daemon PATH is stripped
-  and won't find git/uv, so we set PATH explicitly below.
+  Git push needs non-interactive auth for `vcdigest` — add its SSH key as a repo deploy key
+  (write access) first; see docs/deploy-macmini.md §2.
 
   Install (needs sudo; you have owner rights):
-    sudo cp /Users/volregime/projects/vol-regime-tracker/scripts/com.volregime.weekly.plist /Library/LaunchDaemons/
+    sudo cp /Users/vcdigest/projects/vol-regime-tracker/scripts/com.volregime.weekly.plist /Library/LaunchDaemons/
     sudo chown root:wheel /Library/LaunchDaemons/com.volregime.weekly.plist
     sudo chmod 644        /Library/LaunchDaemons/com.volregime.weekly.plist
     sudo launchctl bootstrap system /Library/LaunchDaemons/com.volregime.weekly.plist
@@ -29,29 +30,29 @@
   <string>com.volregime.weekly</string>
 
   <key>UserName</key>
-  <string>volregime</string>
+  <string>vcdigest</string>
   <key>GroupName</key>
   <string>staff</string>
 
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
-    <string>/Users/volregime/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <string>/Users/vcdigest/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
   </dict>
 
   <key>ProgramArguments</key>
   <array>
     <string>/bin/bash</string>
-    <string>/Users/volregime/projects/vol-regime-tracker/scripts/weekly_update.sh</string>
+    <string>/Users/vcdigest/projects/vol-regime-tracker/scripts/weekly_update.sh</string>
   </array>
 
   <key>WorkingDirectory</key>
-  <string>/Users/volregime/projects/vol-regime-tracker</string>
+  <string>/Users/vcdigest/projects/vol-regime-tracker</string>
 
   <key>StandardOutPath</key>
-  <string>/Users/volregime/projects/vol-regime-tracker/logs/weekly.out.log</string>
+  <string>/Users/vcdigest/projects/vol-regime-tracker/logs/weekly.out.log</string>
   <key>StandardErrorPath</key>
-  <string>/Users/volregime/projects/vol-regime-tracker/logs/weekly.err.log</string>
+  <string>/Users/vcdigest/projects/vol-regime-tracker/logs/weekly.err.log</string>
 
   <!-- Once a week: Monday 08:00 local mac time (Weekday 1 = Mon). -->
   <key>StartCalendarInterval</key>
