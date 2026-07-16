@@ -85,21 +85,22 @@ git add docs/data && git commit -m "data: refresh signals" && git push
 
 Preview locally: `python -m http.server 8000 --directory docs` → http://localhost:8000
 
-## Weekly auto-update (Mac mini)
+## Weekly auto-update (GitHub Actions — no server)
 
-A LaunchDaemon on the Mac mini runs `scripts/weekly_update.sh` once a week: it re-pulls the
-live feeds (MOVE, FRED yields, NY Fed dealers), rebuilds every `docs/data/*.json`, and
-`git push`es — GitHub Pages redeploys itself. It reuses the existing `vcdigest` service user;
-setup (clone, `git push` deploy key, LaunchDaemon install) is in
-**[docs/deploy-macmini.md](docs/deploy-macmini.md)**.
+A scheduled GitHub Actions workflow (`.github/workflows/weekly-update.yml`) runs every
+**Monday**: it re-pulls the live feeds (MOVE, FRED yields, NY Fed dealers), rebuilds every
+`docs/data/*.json`, and commits back to the repo — GitHub Pages redeploys itself. No Mac,
+no server, no secrets (all feeds are keyless public APIs; the built-in token does the push).
+Watch it or run it on demand from the repo's **Actions** tab → *Weekly data update* →
+*Run workflow*.
 
-```bash
-NO_PUSH=1 bash scripts/weekly_update.sh   # smoke-test: refresh + local commit, no push
-bash scripts/weekly_update.sh             # real: refresh + commit + push
-```
+Report-based series (MKTX/TW/SIFMA) still update monthly by hand (add the new release row to
+`ingest_*.py` / drop the SIFMA xlsx into `data_raw/`); the weekly job keeps the market-data
+widgets current in between and re-commits any manual edits.
 
-Report-based series (MKTX/TW/SIFMA) still update monthly by hand (add the new release row /
-drop the SIFMA xlsx); the weekly cron keeps the market-data widgets current in between.
+*Alternative (optional):* the same job can run on a Mac via `scripts/weekly_update.sh` +
+`scripts/com.volregime.weekly.plist` — see [docs/deploy-macmini.md](docs/deploy-macmini.md).
+The GitHub Actions path above is the default and needs no machine.
 
 ## Saving & rollback
 

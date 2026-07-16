@@ -1,4 +1,13 @@
-# Weekly auto-update on the Mac mini
+# Weekly auto-update on the Mac mini (optional — Actions is the default)
+
+> **The default weekly updater is GitHub Actions** (`.github/workflows/weekly-update.yml`) —
+> it needs no machine, no sudo, no password. This Mac-mini setup is only an alternative for
+> running the same job on a always-on Mac, and it requires admin (sudo) or Full-Disk-Access,
+> which a locked-down headless mac may not grant you. Prefer Actions unless you specifically
+> want it on the mini.
+
+---
+
 
 The dashboard is a static GitHub-Pages site fed by JSON in the repo. A weekly job on the
 Mac mini re-pulls the live feeds, rebuilds every `docs/data/*.json`, and `git push`es — Pages
