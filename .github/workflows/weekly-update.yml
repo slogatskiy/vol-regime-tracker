@@ -1,0 +1,55 @@
+name: Weekly data update
+
+# Refreshes the live feeds (MOVE, FRED yields, NY Fed dealers), rebuilds every
+# docs/data/*.json, and commits back to the repo — GitHub Pages then redeploys.
+# Runs on GitHub's own runners: no Mac, no server, no secrets. US-based runners,
+# which is ideal for these US market-data APIs.
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"      # Mondays 07:00 UTC (~09:00 Podgorica, ~03:00 ET)
+  workflow_dispatch: {}       # adds a manual "Run workflow" button
+
+permissions:
+  contents: write             # let the built-in token push the data commit
+
+concurrency:
+  group: weekly-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Refresh data (one failure never aborts the rest)
+        run: |
+          set +e
+          for s in fetch_move build_data_day_vol fetch_dealer_balance \
+                   ingest_mktx ingest_tradeweb ingest_market_share \
+                   ingest_fed_path ingest_new_issue seed_illustrative analyze_fpm_signal; do
+            echo "--- $s"
+            python "scripts/$s.py" || echo "WARN: $s failed — continuing"
+          done
+          true
+
+      - name: Commit & push if the data changed
+        run: |
+          if [ -n "$(git status --porcelain docs/data)" ]; then
+            git config user.name  "vol-regime bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add docs/data
+            git commit -m "data: weekly auto-update $(date -u +%F)"
+            git push
+            echo "pushed — Pages will redeploy."
+          else
+            echo "no data changes this run."
+          fi
