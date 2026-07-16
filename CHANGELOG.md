@@ -2,6 +2,19 @@
 
 Named save points. Roll the whole repo back to any of these with `git checkout <tag>`.
 
+## v0.8.0 — 2026-07-16 — weekly auto-update on the Mac mini
+Georgy wants it kept fresh. Added a weekly refresh job modeled on the vc-content-digest
+LaunchDaemon pattern (dedicated service user + system LaunchDaemon on the mini).
+
+- `scripts/weekly_update.sh` — re-pulls the live feeds (MOVE/FRED/NY Fed), rebuilds every
+  data/*.json idempotently, commits and pushes; Pages redeploys itself. Resilient (one
+  collector failing doesn't abort), `NO_PUSH=1` for dry runs.
+- `scripts/com.volregime.weekly.plist` — system LaunchDaemon, Monday 08:00 local.
+- `docs/deploy-macmini.md` — owner/dev setup: service user, SSH, `git push` deploy key, install.
+- requirements += openpyxl; logs/ git-ignored. Smoke-tested end-to-end (NO_PUSH).
+- Note: only the live market feeds change weekly; report-based series (MKTX/TW/SIFMA) still
+  update monthly by hand — the cron keeps them re-committed and the market data current.
+
 ## v0.7.0 — 2026-07-15 — FPM → results: earnings-miss signal (Georgy's ask)
 New "FPM → results" widget answering: does the FPM decline signal an MKTX revenue miss?
 

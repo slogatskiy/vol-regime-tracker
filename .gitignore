@@ -1,6 +1,9 @@
 # raw source drops (kept local; ingested into docs/data/*.json)
 data_raw/
 
+# launchd logs on the mini
+logs/
+
 # python
 __pycache__/
 *.pyc
