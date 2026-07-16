@@ -1,0 +1,88 @@
+{
+  "last_updated": "2026-07-15",
+  "illustrative": false,
+  "source": "MKTX monthly volume/FPM releases + reported results + Zacks consensus",
+  "source_url": "https://investor.marketaxess.com/",
+  "commissions_pct_of_rev": 87,
+  "quarters": [
+    {
+      "q": "2025Q1",
+      "credit_adv": 15.92,
+      "credit_fpm": 139.7,
+      "proxy_yoy": null,
+      "reported_rev_mm": 208.58,
+      "rev_yoy": -0.83,
+      "missed": false
+    },
+    {
+      "q": "2025Q2",
+      "credit_adv": 16.79,
+      "credit_fpm": 138.0,
+      "proxy_yoy": null,
+      "reported_rev_mm": 219.46,
+      "rev_yoy": 11.03,
+      "missed": false
+    },
+    {
+      "q": "2025Q3",
+      "credit_adv": 14.53,
+      "credit_fpm": 140.3,
+      "proxy_yoy": null,
+      "reported_rev_mm": 208.82,
+      "rev_yoy": 1.02,
+      "missed": true
+    },
+    {
+      "q": "2025Q4",
+      "credit_adv": 15.45,
+      "credit_fpm": 139.0,
+      "proxy_yoy": null,
+      "reported_rev_mm": 209.41,
+      "rev_yoy": 3.46,
+      "missed": true
+    },
+    {
+      "q": "2026Q1",
+      "credit_adv": 18.58,
+      "credit_fpm": 133.0,
+      "proxy_yoy": 11.2,
+      "reported_rev_mm": 233.38,
+      "rev_yoy": 11.89,
+      "missed": false
+    },
+    {
+      "q": "2026Q2",
+      "credit_adv": 16.85,
+      "credit_fpm": 129.0,
+      "proxy_yoy": -6.2,
+      "reported_rev_mm": null,
+      "rev_yoy": null,
+      "missed": false
+    }
+  ],
+  "validation": {
+    "q": "2026Q1",
+    "proxy_yoy": 11.2,
+    "actual_rev_yoy": 11.89
+  },
+  "prediction": {
+    "q": "2026Q2",
+    "proxy_yoy": -6.2,
+    "est_rev_mm": 212.0,
+    "est_rev_low": 208.8,
+    "est_rev_high": 215.2,
+    "est_rev_yoy": -3.4,
+    "consensus_rev_mm": 220.43,
+    "consensus_rev_yoy": 0.4,
+    "implied_vs_consensus_pct": -3.8,
+    "consensus_eps": 1.9,
+    "consensus_eps_yoy": -5.0,
+    "report_date": "2026-08-07",
+    "call": "revenue miss risk"
+  },
+  "recent_revenue_misses": [
+    "2025Q3",
+    "2025Q4"
+  ],
+  "note": "The credit-commission proxy (FPM\u00d7volume) tracked reported revenue in 2026Q1 (proxy +11.2% vs actual +11.89%). 2026Q2 volume+FPM are already public: the proxy swung to -6.2% YoY (flat volume, FPM \u22126.5%). That maps to ~$212M revenue (-3.4% YoY) vs the $220M Street number \u2014 a ~4% shortfall. With revenue already missed in 2025Q3, 2025Q4, a revenue miss (EPS possibly rescued by cost/buybacks) is the base case into the Aug-7 print. NOT investment advice."
+}

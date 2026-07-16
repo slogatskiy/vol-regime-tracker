@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fixed-Income Vol-Regime &amp; Market-Structure Tracker</title>
   <meta name="description" content="Tracking the FOMC-centric to data-centric volatility regime shift in rates, and who captures the turnover: MarketAxess (MKTX) vs Tradeweb (TW)." />
-  <link rel="stylesheet" href="styles.css?v=0.6.0" />
+  <link rel="stylesheet" href="styles.css?v=0.7.0" />
 </head>
 <body>
   <div class="topnav">
@@ -19,6 +19,7 @@
         <a href="#newissue">New Issue</a>
         <a href="#volume">MKTX Vol</a>
         <a href="#fpm">FPM</a>
+        <a href="#signal">Signal</a>
         <a href="#share">Share</a>
         <a href="#tradeweb">Tradeweb</a>
         <a href="#fedpath">Fed Path</a>
@@ -161,6 +162,24 @@
       </div>
     </section>
 
+    <!-- 06b FPM -> results: earnings-miss signal -->
+    <section id="signal">
+      <div class="sec-head"><span class="sec-num">06+</span><h2>FPM → results: earnings-miss signal</h2><span class="badge real">predictive</span></div>
+      <div class="oneliner"><b>In one line:</b> because commissions ≈ fees-per-million × volume — and MKTX publishes volume &amp; FPM ~5 weeks before earnings — a falling FPM that volume doesn't offset flags a revenue miss <em>before</em> the print.</div>
+      <p class="sec-sub">Commissions are ~87% of MKTX revenue, so a <b>credit-commission proxy = FPM × volume</b> should track reported revenue. It did in Q1-2026 (proxy vs actual, below). Q2-2026 volume &amp; FPM are <b>already public</b> — and the proxy has rolled over, pointing to a Q2 revenue miss vs the Street ahead of the <b>Aug-7</b> print.</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="chart-meta"><span class="chart-title">Commission proxy YoY vs reported revenue YoY (%)</span><span class="badge real">validation</span></div>
+          <div class="chart-box"><canvas id="signalChart"></canvas></div>
+          <div class="chart-note" id="signal-note"></div>
+        </div>
+        <div class="card"><div class="readout" id="signal-readout"></div>
+          <div class="why" style="margin-top:16px"><div class="wt">The answer to "is the FPM decline signalling a miss?"</div><p id="signal-answer"></p></div>
+        </div>
+      </div>
+      <div class="why"><div class="wt">Caveats</div><p>The proxy is credit-only (the bulk of commissions); rates and info-services revenue are steadier and cushion the total, so the total-revenue shortfall is milder than the −6% credit proxy. EPS may still squeak a beat on cost control/buybacks (as in the last two quarters) — the signal is about <b>revenue/commission quality</b>, not the headline EPS. One quarter, not a backtest. Not investment advice.</p></div>
+    </section>
+
     <!-- 04 Market share -->
     <section id="share">
       <div class="sec-head"><span class="sec-num">07</span><h2>MKTX US high-grade market share</h2><span class="badge real">real</span></div>
@@ -256,6 +275,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=0.6.0"></script>
+  <script src="app.js?v=0.7.0"></script>
 </body>
 </html>

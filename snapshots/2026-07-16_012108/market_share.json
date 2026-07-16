@@ -1,0 +1,105 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": false,
+  "source": "MarketAxess estimated market share of US high-grade/high-yield TRACE (Table 1B, excl SD PT)",
+  "source_url": "https://investor.marketaxess.com/",
+  "unit": "% of US high-grade TRACE volume (est.)",
+  "annual_hg": {
+    "2024": 19.0,
+    "2025": 18.4
+  },
+  "electronic_penetration_hg": 60.0,
+  "note": "Real MKTX estimated US high-grade share, 18 months. Multi-year trend: 19.0% (FY24) \u2192 18.4% (FY25); ran ~19-19.7% in mid-2025 then slipped to a 16.7% trough in 2026-02 on the heavy new-issue surge (secondary share falls when primary spikes), now recovering (17.9% latest). MKTX flags TRACE duplicate reporting understated 2026 share ~150-160bp in some months. Tradeweb reports ADV, not a comparable %-of-TRACE share \u2014 so the MKTX-vs-TW head-to-head is the US-credit ADV/growth comparison in the Tradeweb section (electronic is ~60% of all US HG trading, a MKTX/TW duopoly).",
+  "series": [
+    {
+      "month": "2025-01",
+      "hg_share": 17.7,
+      "hy_share": 12.0
+    },
+    {
+      "month": "2025-02",
+      "hg_share": 17.0,
+      "hy_share": 11.1
+    },
+    {
+      "month": "2025-03",
+      "hg_share": 19.2,
+      "hy_share": 12.5
+    },
+    {
+      "month": "2025-04",
+      "hg_share": 19.3,
+      "hy_share": 13.5
+    },
+    {
+      "month": "2025-05",
+      "hg_share": 19.3,
+      "hy_share": 12.2
+    },
+    {
+      "month": "2025-06",
+      "hg_share": 19.7,
+      "hy_share": 12.4
+    },
+    {
+      "month": "2025-07",
+      "hg_share": 17.7,
+      "hy_share": 11.5
+    },
+    {
+      "month": "2025-08",
+      "hg_share": 18.8,
+      "hy_share": 12.7
+    },
+    {
+      "month": "2025-09",
+      "hg_share": 17.0,
+      "hy_share": 11.5
+    },
+    {
+      "month": "2025-10",
+      "hg_share": 18.1,
+      "hy_share": 13.1
+    },
+    {
+      "month": "2025-11",
+      "hg_share": 18.5,
+      "hy_share": 13.2
+    },
+    {
+      "month": "2025-12",
+      "hg_share": 18.9,
+      "hy_share": 13.5
+    },
+    {
+      "month": "2026-01",
+      "hg_share": 17.6,
+      "hy_share": 13.2
+    },
+    {
+      "month": "2026-02",
+      "hg_share": 16.7,
+      "hy_share": 12.5
+    },
+    {
+      "month": "2026-03",
+      "hg_share": 18.7,
+      "hy_share": 15.4
+    },
+    {
+      "month": "2026-04",
+      "hg_share": 16.8,
+      "hy_share": 13.6
+    },
+    {
+      "month": "2026-05",
+      "hg_share": 17.8,
+      "hy_share": 13.9
+    },
+    {
+      "month": "2026-06",
+      "hg_share": 17.9,
+      "hy_share": 14.9
+    }
+  ]
+}

@@ -1,0 +1,1119 @@
+{
+  "last_updated": "2026-07-15",
+  "source": "FRED DGS2 / DGS10 (daily constant-maturity Treasury yields)",
+  "source_url": "https://fred.stlouisfed.org/series/DGS2",
+  "note": "Move = change in yield (bps) across a 3-day window (pre -> post) bracketing each release; day = release-day move vs prior close.",
+  "summary": {
+    "avg_abs_2y_recent": 7.8,
+    "avg_abs_2y_early": 14.2,
+    "avg_abs_10y_recent": 7.2,
+    "avg_abs_10y_early": 10.4,
+    "accelerating_2y": false,
+    "accelerating_10y": false,
+    "recent12_abs_2y": 5.2,
+    "prev12_abs_2y": 7.2,
+    "reaccelerating_2y": false
+  },
+  "rows": [
+    {
+      "date": "2022-01-07",
+      "kind": "NFP",
+      "d2y_window_bps": 4,
+      "d10y_window_bps": 5,
+      "d2y_day_bps": -1,
+      "d10y_day_bps": 3,
+      "abs2y": 4,
+      "abs10y": 5
+    },
+    {
+      "date": "2022-01-12",
+      "kind": "CPI",
+      "d2y_window_bps": 1,
+      "d10y_window_bps": -5,
+      "d2y_day_bps": 2,
+      "d10y_day_bps": -1,
+      "abs2y": 1,
+      "abs10y": 5
+    },
+    {
+      "date": "2022-02-04",
+      "kind": "NFP",
+      "d2y_window_bps": 11,
+      "d10y_window_bps": 10,
+      "d2y_day_bps": 12,
+      "d10y_day_bps": 11,
+      "abs2y": 11,
+      "abs10y": 10
+    },
+    {
+      "date": "2022-02-10",
+      "kind": "CPI",
+      "d2y_window_bps": 14,
+      "d10y_window_bps": -2,
+      "d2y_day_bps": 25,
+      "d10y_day_bps": 9,
+      "abs2y": 14,
+      "abs10y": 2
+    },
+    {
+      "date": "2022-03-04",
+      "kind": "NFP",
+      "d2y_window_bps": 2,
+      "d10y_window_bps": -8,
+      "d2y_day_bps": -3,
+      "d10y_day_bps": -12,
+      "abs2y": 2,
+      "abs10y": 8
+    },
+    {
+      "date": "2022-03-10",
+      "kind": "CPI",
+      "d2y_window_bps": 7,
+      "d10y_window_bps": 6,
+      "d2y_day_bps": 4,
+      "d10y_day_bps": 4,
+      "abs2y": 7,
+      "abs10y": 6
+    },
+    {
+      "date": "2022-04-01",
+      "kind": "NFP",
+      "d2y_window_bps": 15,
+      "d10y_window_bps": 10,
+      "d2y_day_bps": 16,
+      "d10y_day_bps": 7,
+      "abs2y": 15,
+      "abs10y": 10
+    },
+    {
+      "date": "2022-04-12",
+      "kind": "CPI",
+      "d2y_window_bps": -13,
+      "d10y_window_bps": -9,
+      "d2y_day_bps": -11,
+      "d10y_day_bps": -7,
+      "abs2y": 13,
+      "abs10y": 9
+    },
+    {
+      "date": "2022-05-06",
+      "kind": "NFP",
+      "d2y_window_bps": -10,
+      "d10y_window_bps": 0,
+      "d2y_day_bps": 1,
+      "d10y_day_bps": 7,
+      "abs2y": 10,
+      "abs10y": 0
+    },
+    {
+      "date": "2022-05-11",
+      "kind": "CPI",
+      "d2y_window_bps": -6,
+      "d10y_window_bps": -15,
+      "d2y_day_bps": 4,
+      "d10y_day_bps": -8,
+      "abs2y": 6,
+      "abs10y": 15
+    },
+    {
+      "date": "2022-06-03",
+      "kind": "NFP",
+      "d2y_window_bps": 8,
+      "d10y_window_bps": 12,
+      "d2y_day_bps": 1,
+      "d10y_day_bps": 4,
+      "abs2y": 8,
+      "abs10y": 12
+    },
+    {
+      "date": "2022-06-10",
+      "kind": "CPI",
+      "d2y_window_bps": 57,
+      "d10y_window_bps": 39,
+      "d2y_day_bps": 23,
+      "d10y_day_bps": 11,
+      "abs2y": 57,
+      "abs10y": 39
+    },
+    {
+      "date": "2022-07-08",
+      "kind": "NFP",
+      "d2y_window_bps": 4,
+      "d10y_window_bps": -2,
+      "d2y_day_bps": 9,
+      "d10y_day_bps": 8,
+      "abs2y": 4,
+      "abs10y": 2
+    },
+    {
+      "date": "2022-07-13",
+      "kind": "CPI",
+      "d2y_window_bps": 12,
+      "d10y_window_bps": 0,
+      "d2y_day_bps": 10,
+      "d10y_day_bps": -5,
+      "abs2y": 12,
+      "abs10y": 0
+    },
+    {
+      "date": "2022-08-05",
+      "kind": "NFP",
+      "d2y_window_bps": 18,
+      "d10y_window_bps": 9,
+      "d2y_day_bps": 21,
+      "d10y_day_bps": 15,
+      "abs2y": 18,
+      "abs10y": 9
+    },
+    {
+      "date": "2022-08-10",
+      "kind": "CPI",
+      "d2y_window_bps": -5,
+      "d10y_window_bps": 7,
+      "d2y_day_bps": -5,
+      "d10y_day_bps": -2,
+      "abs2y": 5,
+      "abs10y": 7
+    },
+    {
+      "date": "2022-09-02",
+      "kind": "NFP",
+      "d2y_window_bps": -1,
+      "d10y_window_bps": 7,
+      "d2y_day_bps": -11,
+      "d10y_day_bps": -6,
+      "abs2y": 1,
+      "abs10y": 7
+    },
+    {
+      "date": "2022-09-13",
+      "kind": "CPI",
+      "d2y_window_bps": 20,
+      "d10y_window_bps": 4,
+      "d2y_day_bps": 17,
+      "d10y_day_bps": 5,
+      "abs2y": 20,
+      "abs10y": 4
+    },
+    {
+      "date": "2022-10-07",
+      "kind": "NFP",
+      "d2y_window_bps": 7,
+      "d10y_window_bps": 10,
+      "d2y_day_bps": 7,
+      "d10y_day_bps": 6,
+      "abs2y": 7,
+      "abs10y": 10
+    },
+    {
+      "date": "2022-10-13",
+      "kind": "CPI",
+      "d2y_window_bps": 20,
+      "d10y_window_bps": 9,
+      "d2y_day_bps": 19,
+      "d10y_day_bps": 6,
+      "abs2y": 20,
+      "abs10y": 9
+    },
+    {
+      "date": "2022-11-04",
+      "kind": "NFP",
+      "d2y_window_bps": 1,
+      "d10y_window_bps": 8,
+      "d2y_day_bps": -5,
+      "d10y_day_bps": 3,
+      "abs2y": 1,
+      "abs10y": 8
+    },
+    {
+      "date": "2022-11-10",
+      "kind": "CPI",
+      "d2y_window_bps": -21,
+      "d10y_window_bps": -24,
+      "d2y_day_bps": -27,
+      "d10y_day_bps": -30,
+      "abs2y": 21,
+      "abs10y": 24
+    },
+    {
+      "date": "2022-12-02",
+      "kind": "NFP",
+      "d2y_window_bps": 16,
+      "d10y_window_bps": 7,
+      "d2y_day_bps": 3,
+      "d10y_day_bps": -2,
+      "abs2y": 16,
+      "abs10y": 7
+    },
+    {
+      "date": "2022-12-13",
+      "kind": "CPI",
+      "d2y_window_bps": -16,
+      "d10y_window_bps": -12,
+      "d2y_day_bps": -17,
+      "d10y_day_bps": -10,
+      "abs2y": 16,
+      "abs10y": 12
+    },
+    {
+      "date": "2023-01-06",
+      "kind": "NFP",
+      "d2y_window_bps": -26,
+      "d10y_window_bps": -18,
+      "d2y_day_bps": -21,
+      "d10y_day_bps": -16,
+      "abs2y": 26,
+      "abs10y": 18
+    },
+    {
+      "date": "2023-01-12",
+      "kind": "CPI",
+      "d2y_window_bps": 2,
+      "d10y_window_bps": -5,
+      "d2y_day_bps": -8,
+      "d10y_day_bps": -11,
+      "abs2y": 2,
+      "abs10y": 5
+    },
+    {
+      "date": "2023-02-03",
+      "kind": "NFP",
+      "d2y_window_bps": 35,
+      "d10y_window_bps": 23,
+      "d2y_day_bps": 21,
+      "d10y_day_bps": 13,
+      "abs2y": 35,
+      "abs10y": 23
+    },
+    {
+      "date": "2023-02-14",
+      "kind": "CPI",
+      "d2y_window_bps": 10,
+      "d10y_window_bps": 9,
+      "d2y_day_bps": 8,
+      "d10y_day_bps": 5,
+      "abs2y": 10,
+      "abs10y": 9
+    },
+    {
+      "date": "2023-03-10",
+      "kind": "NFP",
+      "d2y_window_bps": -87,
+      "d10y_window_bps": -38,
+      "d2y_day_bps": -30,
+      "d10y_day_bps": -23,
+      "abs2y": 87,
+      "abs10y": 38
+    },
+    {
+      "date": "2023-03-14",
+      "kind": "CPI",
+      "d2y_window_bps": -10,
+      "d10y_window_bps": -4,
+      "d2y_day_bps": 17,
+      "d10y_day_bps": 9,
+      "abs2y": 10,
+      "abs10y": 4
+    },
+    {
+      "date": "2023-04-07",
+      "kind": "NFP",
+      "d2y_window_bps": 18,
+      "d10y_window_bps": 11,
+      "d2y_day_bps": 15,
+      "d10y_day_bps": 9,
+      "abs2y": 18,
+      "abs10y": 11
+    },
+    {
+      "date": "2023-04-12",
+      "kind": "CPI",
+      "d2y_window_bps": -7,
+      "d10y_window_bps": 2,
+      "d2y_day_bps": -8,
+      "d10y_day_bps": -2,
+      "abs2y": 7,
+      "abs10y": 2
+    },
+    {
+      "date": "2023-05-05",
+      "kind": "NFP",
+      "d2y_window_bps": 25,
+      "d10y_window_bps": 15,
+      "d2y_day_bps": 17,
+      "d10y_day_bps": 7,
+      "abs2y": 25,
+      "abs10y": 15
+    },
+    {
+      "date": "2023-05-10",
+      "kind": "CPI",
+      "d2y_window_bps": -12,
+      "d10y_window_bps": -14,
+      "d2y_day_bps": -11,
+      "d10y_day_bps": -10,
+      "abs2y": 12,
+      "abs10y": 14
+    },
+    {
+      "date": "2023-06-02",
+      "kind": "NFP",
+      "d2y_window_bps": 13,
+      "d10y_window_bps": 8,
+      "d2y_day_bps": 17,
+      "d10y_day_bps": 8,
+      "abs2y": 13,
+      "abs10y": 8
+    },
+    {
+      "date": "2023-06-13",
+      "kind": "CPI",
+      "d2y_window_bps": 19,
+      "d10y_window_bps": 10,
+      "d2y_day_bps": 12,
+      "d10y_day_bps": 11,
+      "abs2y": 19,
+      "abs10y": 10
+    },
+    {
+      "date": "2023-07-07",
+      "kind": "NFP",
+      "d2y_window_bps": -14,
+      "d10y_window_bps": -4,
+      "d2y_day_bps": -5,
+      "d10y_day_bps": 1,
+      "abs2y": 14,
+      "abs10y": 4
+    },
+    {
+      "date": "2023-07-12",
+      "kind": "CPI",
+      "d2y_window_bps": -29,
+      "d10y_window_bps": -23,
+      "d2y_day_bps": -16,
+      "d10y_day_bps": -13,
+      "abs2y": 29,
+      "abs10y": 23
+    },
+    {
+      "date": "2023-08-04",
+      "kind": "NFP",
+      "d2y_window_bps": -14,
+      "d10y_window_bps": -11,
+      "d2y_day_bps": -12,
+      "d10y_day_bps": -15,
+      "abs2y": 14,
+      "abs10y": 11
+    },
+    {
+      "date": "2023-08-10",
+      "kind": "CPI",
+      "d2y_window_bps": 10,
+      "d10y_window_bps": 16,
+      "d2y_day_bps": 3,
+      "d10y_day_bps": 9,
+      "abs2y": 10,
+      "abs10y": 16
+    },
+    {
+      "date": "2023-09-01",
+      "kind": "NFP",
+      "d2y_window_bps": 9,
+      "d10y_window_bps": 18,
+      "d2y_day_bps": 2,
+      "d10y_day_bps": 9,
+      "abs2y": 9,
+      "abs10y": 18
+    },
+    {
+      "date": "2023-09-13",
+      "kind": "CPI",
+      "d2y_window_bps": 2,
+      "d10y_window_bps": 2,
+      "d2y_day_bps": -2,
+      "d10y_day_bps": -2,
+      "abs2y": 2,
+      "abs10y": 2
+    },
+    {
+      "date": "2023-10-06",
+      "kind": "NFP",
+      "d2y_window_bps": -7,
+      "d10y_window_bps": -6,
+      "d2y_day_bps": 5,
+      "d10y_day_bps": 6,
+      "abs2y": 7,
+      "abs10y": 6
+    },
+    {
+      "date": "2023-10-12",
+      "kind": "CPI",
+      "d2y_window_bps": 5,
+      "d10y_window_bps": 5,
+      "d2y_day_bps": 7,
+      "d10y_day_bps": 12,
+      "abs2y": 5,
+      "abs10y": 5
+    },
+    {
+      "date": "2023-11-03",
+      "kind": "NFP",
+      "d2y_window_bps": -5,
+      "d10y_window_bps": 0,
+      "d2y_day_bps": -15,
+      "d10y_day_bps": -10,
+      "abs2y": 5,
+      "abs10y": 0
+    },
+    {
+      "date": "2023-11-14",
+      "kind": "CPI",
+      "d2y_window_bps": -12,
+      "d10y_window_bps": -10,
+      "d2y_day_bps": -22,
+      "d10y_day_bps": -19,
+      "abs2y": 12,
+      "abs10y": 10
+    },
+    {
+      "date": "2023-12-08",
+      "kind": "NFP",
+      "d2y_window_bps": 13,
+      "d10y_window_bps": 9,
+      "d2y_day_bps": 13,
+      "d10y_day_bps": 9,
+      "abs2y": 13,
+      "abs10y": 9
+    },
+    {
+      "date": "2023-12-12",
+      "kind": "CPI",
+      "d2y_window_bps": -25,
+      "d10y_window_bps": -19,
+      "d2y_day_bps": 2,
+      "d10y_day_bps": -3,
+      "abs2y": 25,
+      "abs10y": 19
+    },
+    {
+      "date": "2024-01-05",
+      "kind": "NFP",
+      "d2y_window_bps": -2,
+      "d10y_window_bps": 2,
+      "d2y_day_bps": 2,
+      "d10y_day_bps": 6,
+      "abs2y": 2,
+      "abs10y": 2
+    },
+    {
+      "date": "2024-01-11",
+      "kind": "CPI",
+      "d2y_window_bps": -23,
+      "d10y_window_bps": -8,
+      "d2y_day_bps": -11,
+      "d10y_day_bps": -6,
+      "abs2y": 23,
+      "abs10y": 8
+    },
+    {
+      "date": "2024-02-02",
+      "kind": "NFP",
+      "d2y_window_bps": 26,
+      "d10y_window_bps": 30,
+      "d2y_day_bps": 16,
+      "d10y_day_bps": 16,
+      "abs2y": 26,
+      "abs10y": 30
+    },
+    {
+      "date": "2024-02-13",
+      "kind": "CPI",
+      "d2y_window_bps": 10,
+      "d10y_window_bps": 10,
+      "d2y_day_bps": 18,
+      "d10y_day_bps": 14,
+      "abs2y": 10,
+      "abs10y": 10
+    },
+    {
+      "date": "2024-03-08",
+      "kind": "NFP",
+      "d2y_window_bps": 1,
+      "d10y_window_bps": 1,
+      "d2y_day_bps": -2,
+      "d10y_day_bps": 0,
+      "abs2y": 1,
+      "abs10y": 1
+    },
+    {
+      "date": "2024-03-12",
+      "kind": "CPI",
+      "d2y_window_bps": 10,
+      "d10y_window_bps": 9,
+      "d2y_day_bps": 7,
+      "d10y_day_bps": 6,
+      "abs2y": 10,
+      "abs10y": 9
+    },
+    {
+      "date": "2024-04-05",
+      "kind": "NFP",
+      "d2y_window_bps": 13,
+      "d10y_window_bps": 11,
+      "d2y_day_bps": 8,
+      "d10y_day_bps": 8,
+      "abs2y": 13,
+      "abs10y": 11
+    },
+    {
+      "date": "2024-04-10",
+      "kind": "CPI",
+      "d2y_window_bps": 19,
+      "d10y_window_bps": 20,
+      "d2y_day_bps": 23,
+      "d10y_day_bps": 19,
+      "abs2y": 19,
+      "abs10y": 20
+    },
+    {
+      "date": "2024-05-03",
+      "kind": "NFP",
+      "d2y_window_bps": -5,
+      "d10y_window_bps": -9,
+      "d2y_day_bps": -6,
+      "d10y_day_bps": -8,
+      "abs2y": 5,
+      "abs10y": 9
+    },
+    {
+      "date": "2024-05-15",
+      "kind": "CPI",
+      "d2y_window_bps": -3,
+      "d10y_window_bps": -7,
+      "d2y_day_bps": -8,
+      "d10y_day_bps": -9,
+      "abs2y": 3,
+      "abs10y": 7
+    },
+    {
+      "date": "2024-06-07",
+      "kind": "NFP",
+      "d2y_window_bps": 15,
+      "d10y_window_bps": 19,
+      "d2y_day_bps": 15,
+      "d10y_day_bps": 15,
+      "abs2y": 15,
+      "abs10y": 19
+    },
+    {
+      "date": "2024-06-12",
+      "kind": "CPI",
+      "d2y_window_bps": -13,
+      "d10y_window_bps": -15,
+      "d2y_day_bps": -6,
+      "d10y_day_bps": -8,
+      "abs2y": 13,
+      "abs10y": 15
+    },
+    {
+      "date": "2024-07-05",
+      "kind": "NFP",
+      "d2y_window_bps": -9,
+      "d10y_window_bps": -8,
+      "d2y_day_bps": -11,
+      "d10y_day_bps": -8,
+      "abs2y": 9,
+      "abs10y": 8
+    },
+    {
+      "date": "2024-07-11",
+      "kind": "CPI",
+      "d2y_window_bps": -17,
+      "d10y_window_bps": -10,
+      "d2y_day_bps": -12,
+      "d10y_day_bps": -8,
+      "abs2y": 17,
+      "abs10y": 10
+    },
+    {
+      "date": "2024-08-02",
+      "kind": "NFP",
+      "d2y_window_bps": -27,
+      "d10y_window_bps": -21,
+      "d2y_day_bps": -28,
+      "d10y_day_bps": -19,
+      "abs2y": 27,
+      "abs10y": 21
+    },
+    {
+      "date": "2024-08-14",
+      "kind": "CPI",
+      "d2y_window_bps": 15,
+      "d10y_window_bps": 7,
+      "d2y_day_bps": 1,
+      "d10y_day_bps": -2,
+      "abs2y": 15,
+      "abs10y": 7
+    },
+    {
+      "date": "2024-09-06",
+      "kind": "NFP",
+      "d2y_window_bps": -7,
+      "d10y_window_bps": -3,
+      "d2y_day_bps": -9,
+      "d10y_day_bps": -1,
+      "abs2y": 7,
+      "abs10y": 3
+    },
+    {
+      "date": "2024-09-11",
+      "kind": "CPI",
+      "d2y_window_bps": 5,
+      "d10y_window_bps": 3,
+      "d2y_day_bps": 3,
+      "d10y_day_bps": 0,
+      "abs2y": 5,
+      "abs10y": 3
+    },
+    {
+      "date": "2024-10-04",
+      "kind": "NFP",
+      "d2y_window_bps": 29,
+      "d10y_window_bps": 18,
+      "d2y_day_bps": 23,
+      "d10y_day_bps": 13,
+      "abs2y": 29,
+      "abs10y": 18
+    },
+    {
+      "date": "2024-10-10",
+      "kind": "CPI",
+      "d2y_window_bps": -4,
+      "d10y_window_bps": 2,
+      "d2y_day_bps": -1,
+      "d10y_day_bps": 3,
+      "abs2y": 4,
+      "abs10y": 2
+    },
+    {
+      "date": "2024-11-01",
+      "kind": "NFP",
+      "d2y_window_bps": 1,
+      "d10y_window_bps": 3,
+      "d2y_day_bps": 5,
+      "d10y_day_bps": 9,
+      "abs2y": 1,
+      "abs10y": 3
+    },
+    {
+      "date": "2024-11-13",
+      "kind": "CPI",
+      "d2y_window_bps": 0,
+      "d10y_window_bps": 0,
+      "d2y_day_bps": -7,
+      "d10y_day_bps": 1,
+      "abs2y": 0,
+      "abs10y": 0
+    },
+    {
+      "date": "2024-12-06",
+      "kind": "NFP",
+      "d2y_window_bps": -2,
+      "d10y_window_bps": 3,
+      "d2y_day_bps": -5,
+      "d10y_day_bps": -2,
+      "abs2y": 2,
+      "abs10y": 3
+    },
+    {
+      "date": "2024-12-11",
+      "kind": "CPI",
+      "d2y_window_bps": 3,
+      "d10y_window_bps": 10,
+      "d2y_day_bps": 0,
+      "d10y_day_bps": 4,
+      "abs2y": 3,
+      "abs10y": 10
+    },
+    {
+      "date": "2025-01-10",
+      "kind": "NFP",
+      "d2y_window_bps": 13,
+      "d10y_window_bps": 11,
+      "d2y_day_bps": 13,
+      "d10y_day_bps": 9,
+      "abs2y": 13,
+      "abs10y": 11
+    },
+    {
+      "date": "2025-01-15",
+      "kind": "CPI",
+      "d2y_window_bps": -14,
+      "d10y_window_bps": -17,
+      "d2y_day_bps": -10,
+      "d10y_day_bps": -12,
+      "abs2y": 14,
+      "abs10y": 17
+    },
+    {
+      "date": "2025-02-07",
+      "kind": "NFP",
+      "d2y_window_bps": 7,
+      "d10y_window_bps": 6,
+      "d2y_day_bps": 8,
+      "d10y_day_bps": 4,
+      "abs2y": 7,
+      "abs10y": 6
+    },
+    {
+      "date": "2025-02-12",
+      "kind": "CPI",
+      "d2y_window_bps": 2,
+      "d10y_window_bps": -2,
+      "d2y_day_bps": 7,
+      "d10y_day_bps": 8,
+      "abs2y": 2,
+      "abs10y": 2
+    },
+    {
+      "date": "2025-03-07",
+      "kind": "NFP",
+      "d2y_window_bps": -7,
+      "d10y_window_bps": -7,
+      "d2y_day_bps": 3,
+      "d10y_day_bps": 3,
+      "abs2y": 7,
+      "abs10y": 7
+    },
+    {
+      "date": "2025-03-12",
+      "kind": "CPI",
+      "d2y_window_bps": 0,
+      "d10y_window_bps": -1,
+      "d2y_day_bps": 7,
+      "d10y_day_bps": 4,
+      "abs2y": 0,
+      "abs10y": 1
+    },
+    {
+      "date": "2025-04-04",
+      "kind": "NFP",
+      "d2y_window_bps": 2,
+      "d10y_window_bps": 9,
+      "d2y_day_bps": -3,
+      "d10y_day_bps": -5,
+      "abs2y": 2,
+      "abs10y": 9
+    },
+    {
+      "date": "2025-04-10",
+      "kind": "CPI",
+      "d2y_window_bps": 5,
+      "d10y_window_bps": 14,
+      "d2y_day_bps": -7,
+      "d10y_day_bps": 6,
+      "abs2y": 5,
+      "abs10y": 14
+    },
+    {
+      "date": "2025-05-02",
+      "kind": "NFP",
+      "d2y_window_bps": 13,
+      "d10y_window_bps": 11,
+      "d2y_day_bps": 13,
+      "d10y_day_bps": 8,
+      "abs2y": 13,
+      "abs10y": 11
+    },
+    {
+      "date": "2025-05-13",
+      "kind": "CPI",
+      "d2y_window_bps": 7,
+      "d10y_window_bps": 8,
+      "d2y_day_bps": 4,
+      "d10y_day_bps": 4,
+      "abs2y": 7,
+      "abs10y": 8
+    },
+    {
+      "date": "2025-06-06",
+      "kind": "NFP",
+      "d2y_window_bps": 9,
+      "d10y_window_bps": 9,
+      "d2y_day_bps": 12,
+      "d10y_day_bps": 11,
+      "abs2y": 9,
+      "abs10y": 9
+    },
+    {
+      "date": "2025-06-11",
+      "kind": "CPI",
+      "d2y_window_bps": -11,
+      "d10y_window_bps": -11,
+      "d2y_day_bps": -7,
+      "d10y_day_bps": -6,
+      "abs2y": 11,
+      "abs10y": 11
+    },
+    {
+      "date": "2025-07-03",
+      "kind": "NFP",
+      "d2y_window_bps": 12,
+      "d10y_window_bps": 10,
+      "d2y_day_bps": 10,
+      "d10y_day_bps": 5,
+      "abs2y": 12,
+      "abs10y": 10
+    },
+    {
+      "date": "2025-07-15",
+      "kind": "CPI",
+      "d2y_window_bps": -2,
+      "d10y_window_bps": 3,
+      "d2y_day_bps": 5,
+      "d10y_day_bps": 7,
+      "abs2y": 2,
+      "abs10y": 3
+    },
+    {
+      "date": "2025-08-01",
+      "kind": "NFP",
+      "d2y_window_bps": -25,
+      "d10y_window_bps": -15,
+      "d2y_day_bps": -25,
+      "d10y_day_bps": -14,
+      "abs2y": 25,
+      "abs10y": 15
+    },
+    {
+      "date": "2025-08-12",
+      "kind": "CPI",
+      "d2y_window_bps": -9,
+      "d10y_window_bps": -3,
+      "d2y_day_bps": -4,
+      "d10y_day_bps": 2,
+      "abs2y": 9,
+      "abs10y": 3
+    },
+    {
+      "date": "2025-09-05",
+      "kind": "NFP",
+      "d2y_window_bps": -10,
+      "d10y_window_bps": -12,
+      "d2y_day_bps": -8,
+      "d10y_day_bps": -7,
+      "abs2y": 10,
+      "abs10y": 12
+    },
+    {
+      "date": "2025-09-11",
+      "kind": "CPI",
+      "d2y_window_bps": 2,
+      "d10y_window_bps": 2,
+      "d2y_day_bps": -2,
+      "d10y_day_bps": -3,
+      "abs2y": 2,
+      "abs10y": 2
+    },
+    {
+      "date": "2025-10-03",
+      "kind": "NFP",
+      "d2y_window_bps": 5,
+      "d10y_window_bps": 8,
+      "d2y_day_bps": 3,
+      "d10y_day_bps": 3,
+      "abs2y": 5,
+      "abs10y": 8
+    },
+    {
+      "date": "2025-10-15",
+      "kind": "CPI",
+      "d2y_window_bps": -7,
+      "d10y_window_bps": -4,
+      "d2y_day_bps": 2,
+      "d10y_day_bps": 2,
+      "abs2y": 7,
+      "abs10y": 4
+    },
+    {
+      "date": "2025-11-07",
+      "kind": "NFP",
+      "d2y_window_bps": 1,
+      "d10y_window_bps": 2,
+      "d2y_day_bps": -2,
+      "d10y_day_bps": 0,
+      "abs2y": 1,
+      "abs10y": 2
+    },
+    {
+      "date": "2025-11-13",
+      "kind": "CPI",
+      "d2y_window_bps": 6,
+      "d10y_window_bps": 6,
+      "d2y_day_bps": 2,
+      "d10y_day_bps": 3,
+      "abs2y": 6,
+      "abs10y": 6
+    },
+    {
+      "date": "2025-12-05",
+      "kind": "NFP",
+      "d2y_window_bps": 5,
+      "d10y_window_bps": 6,
+      "d2y_day_bps": 4,
+      "d10y_day_bps": 3,
+      "abs2y": 5,
+      "abs10y": 6
+    },
+    {
+      "date": "2025-12-10",
+      "kind": "CPI",
+      "d2y_window_bps": -9,
+      "d10y_window_bps": -4,
+      "d2y_day_bps": -7,
+      "d10y_day_bps": -5,
+      "abs2y": 9,
+      "abs10y": 4
+    },
+    {
+      "date": "2026-01-09",
+      "kind": "NFP",
+      "d2y_window_bps": 5,
+      "d10y_window_bps": 0,
+      "d2y_day_bps": 5,
+      "d10y_day_bps": -1,
+      "abs2y": 5,
+      "abs10y": 0
+    },
+    {
+      "date": "2026-01-13",
+      "kind": "CPI",
+      "d2y_window_bps": -3,
+      "d10y_window_bps": -4,
+      "d2y_day_bps": -1,
+      "d10y_day_bps": -1,
+      "abs2y": 3,
+      "abs10y": 4
+    },
+    {
+      "date": "2026-02-06",
+      "kind": "NFP",
+      "d2y_window_bps": 1,
+      "d10y_window_bps": 1,
+      "d2y_day_bps": 3,
+      "d10y_day_bps": 1,
+      "abs2y": 1,
+      "abs10y": 1
+    },
+    {
+      "date": "2026-02-11",
+      "kind": "CPI",
+      "d2y_window_bps": 2,
+      "d10y_window_bps": -7,
+      "d2y_day_bps": 7,
+      "d10y_day_bps": 2,
+      "abs2y": 2,
+      "abs10y": 7
+    },
+    {
+      "date": "2026-03-06",
+      "kind": "NFP",
+      "d2y_window_bps": -1,
+      "d10y_window_bps": -1,
+      "d2y_day_bps": -1,
+      "d10y_day_bps": 2,
+      "abs2y": 1,
+      "abs10y": 1
+    },
+    {
+      "date": "2026-03-11",
+      "kind": "CPI",
+      "d2y_window_bps": 19,
+      "d10y_window_bps": 12,
+      "d2y_day_bps": 7,
+      "d10y_day_bps": 6,
+      "abs2y": 19,
+      "abs10y": 12
+    },
+    {
+      "date": "2026-04-03",
+      "kind": "NFP",
+      "d2y_window_bps": 5,
+      "d10y_window_bps": 3,
+      "d2y_day_bps": 5,
+      "d10y_day_bps": 4,
+      "abs2y": 5,
+      "abs10y": 3
+    },
+    {
+      "date": "2026-04-10",
+      "kind": "CPI",
+      "d2y_window_bps": 0,
+      "d10y_window_bps": 1,
+      "d2y_day_bps": 3,
+      "d10y_day_bps": 2,
+      "abs2y": 0,
+      "abs10y": 1
+    },
+    {
+      "date": "2026-05-08",
+      "kind": "NFP",
+      "d2y_window_bps": 3,
+      "d10y_window_bps": 1,
+      "d2y_day_bps": -2,
+      "d10y_day_bps": -3,
+      "abs2y": 3,
+      "abs10y": 1
+    },
+    {
+      "date": "2026-05-13",
+      "kind": "CPI",
+      "d2y_window_bps": 0,
+      "d10y_window_bps": 1,
+      "d2y_day_bps": -2,
+      "d10y_day_bps": 0,
+      "abs2y": 0,
+      "abs10y": 1
+    },
+    {
+      "date": "2026-06-05",
+      "kind": "NFP",
+      "d2y_window_bps": 10,
+      "d10y_window_bps": 9,
+      "d2y_day_bps": 12,
+      "d10y_day_bps": 8,
+      "abs2y": 10,
+      "abs10y": 9
+    },
+    {
+      "date": "2026-06-10",
+      "kind": "CPI",
+      "d2y_window_bps": -8,
+      "d10y_window_bps": -8,
+      "d2y_day_bps": 0,
+      "d10y_day_bps": 2,
+      "abs2y": 8,
+      "abs10y": 8
+    },
+    {
+      "date": "2026-07-02",
+      "kind": "NFP",
+      "d2y_window_bps": -4,
+      "d10y_window_bps": 0,
+      "d2y_day_bps": -3,
+      "d10y_day_bps": 1,
+      "abs2y": 4,
+      "abs10y": 0
+    },
+    {
+      "date": "2026-07-10",
+      "kind": "CPI",
+      "d2y_window_bps": 10,
+      "d10y_window_bps": 8,
+      "d2y_day_bps": 5,
+      "d10y_day_bps": 2,
+      "abs2y": 10,
+      "abs10y": 8
+    }
+  ]
+}

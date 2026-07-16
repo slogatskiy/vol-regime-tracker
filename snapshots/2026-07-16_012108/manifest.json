@@ -1,0 +1,14 @@
+{
+  "project": "Fixed-Income Vol-Regime & Market-Structure Tracker",
+  "tickers": "NASDAQ: MKTX · NASDAQ: TW",
+  "generated": "2026-07-13",
+  "signals": [
+    "MOVE", "MKTX Volume", "Variable FPM", "HG Market Share",
+    "Data-Day Vol", "FOMC Task Forces", "Tradeweb", "New Issue",
+    "Dealer Balance Sheet", "Fed Funds Path"
+  ],
+  "thesis": "The rates market is shifting from an FOMC-centric to a data-centric volatility regime. Higher, data-driven volatility should raise fixed-income trading turnover — but the benefit accrues to whoever wins market structure. This tracker monitors (a) the vol regime itself (MOVE, data-day Treasury reactions, dealer capacity, the Fed's own communication/balance-sheet reviews) and (b) who captures the turnover (MarketAxess vs Tradeweb: volumes, fees per million, high-grade share, new-issue-driven secondary activity).",
+  "bottom_line": "MOVE sits ~75, below the 90 watch line; and on 5 years of data the Treasury reaction to CPI/payroll prints has actually COOLED from its 2022 hiking-cycle peak (~14bp to ~5bp), so the data-centric regime shift is still a forward watch, not yet visible in raw reaction size. Where the real story is playing out is capture: over 5 years Tradeweb revenue grew +91% ($1.08B→$2.05B) vs MarketAxess +21% ($699M→$846M), MKTX total-credit fees-per-million compressed from ~$181 (2021) to ~$131 (2026 YTD), and MKTX's high-grade share slipped on the new-issue surge. The turnover is real — and it is accruing disproportionately to the competitor.",
+  "disclaimer": "Internal research. Not investment advice.",
+  "last_updated": "2026-07-13"
+}

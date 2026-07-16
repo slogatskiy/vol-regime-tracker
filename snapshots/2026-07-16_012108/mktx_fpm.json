@@ -1,0 +1,114 @@
+{
+  "last_updated": "2026-07-15",
+  "illustrative": false,
+  "source": "MarketAxess monthly Trading Volume Statistics (Table 1D)",
+  "source_url": "https://investor.marketaxess.com/",
+  "unit": "Total-credit variable transaction fees per $ million",
+  "annual_fpm": [
+    {
+      "year": "2021",
+      "credit_fpm": 181.0,
+      "partial": false
+    },
+    {
+      "year": "2022",
+      "credit_fpm": 165.0,
+      "partial": false
+    },
+    {
+      "year": "2023",
+      "credit_fpm": 158.61,
+      "partial": false
+    },
+    {
+      "year": "2024",
+      "credit_fpm": 150.26,
+      "partial": false
+    },
+    {
+      "year": "2025",
+      "credit_fpm": 139.25,
+      "partial": false
+    },
+    {
+      "year": "2026",
+      "credit_fpm": 131.0,
+      "partial": true
+    }
+  ],
+  "note": "Real monthly total-credit FPM. Compression from $141 (Jan-2025) to $125 (Jun-2026) \u2014 mix shift toward lower-fee protocols (portfolio trading, dealer-RFQ, Open Trading) and products. Total-rates FPM has moved the other way (rising), a real offset.",
+  "series": [
+    {
+      "month": "2025-01",
+      "credit_fpm": 141
+    },
+    {
+      "month": "2025-02",
+      "credit_fpm": 143
+    },
+    {
+      "month": "2025-03",
+      "credit_fpm": 135
+    },
+    {
+      "month": "2025-04",
+      "credit_fpm": 138
+    },
+    {
+      "month": "2025-05",
+      "credit_fpm": 138
+    },
+    {
+      "month": "2025-06",
+      "credit_fpm": 138
+    },
+    {
+      "month": "2025-07",
+      "credit_fpm": 140
+    },
+    {
+      "month": "2025-08",
+      "credit_fpm": 141
+    },
+    {
+      "month": "2025-09",
+      "credit_fpm": 140
+    },
+    {
+      "month": "2025-10",
+      "credit_fpm": 140
+    },
+    {
+      "month": "2025-11",
+      "credit_fpm": 139
+    },
+    {
+      "month": "2025-12",
+      "credit_fpm": 138
+    },
+    {
+      "month": "2026-01",
+      "credit_fpm": 132
+    },
+    {
+      "month": "2026-02",
+      "credit_fpm": 136
+    },
+    {
+      "month": "2026-03",
+      "credit_fpm": 131
+    },
+    {
+      "month": "2026-04",
+      "credit_fpm": 134
+    },
+    {
+      "month": "2026-05",
+      "credit_fpm": 128
+    },
+    {
+      "month": "2026-06",
+      "credit_fpm": 125
+    }
+  ]
+}

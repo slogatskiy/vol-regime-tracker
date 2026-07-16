@@ -1,0 +1,236 @@
+{
+  "last_updated": "2026-07-13",
+  "illustrative": false,
+  "granularity": "monthly",
+  "source": "SIFMA US Corporate Bond Issuance (Issuance tab, source Refinitiv)",
+  "source_url": "https://www.sifma.org/research/statistics/us-corporate-bonds-statistics/",
+  "unit": "Gross issuance, $ billions",
+  "record_months": [
+    {
+      "month": "2025-09",
+      "note": "record month; post-Sep rate-cut IG surge"
+    },
+    {
+      "month": "2026-01",
+      "note": "record January; +12% YoY, 6th month ever >$200bn IG"
+    }
+  ],
+  "annual": [
+    {
+      "year": "2015",
+      "ig_bn": 1242.8,
+      "hy_bn": 258.3,
+      "total_bn": 1501.0
+    },
+    {
+      "year": "2016",
+      "ig_bn": 1289.0,
+      "hy_bn": 236.5,
+      "total_bn": 1525.5
+    },
+    {
+      "year": "2017",
+      "ig_bn": 1374.3,
+      "hy_bn": 283.3,
+      "total_bn": 1657.6
+    },
+    {
+      "year": "2018",
+      "ig_bn": 1167.9,
+      "hy_bn": 172.3,
+      "total_bn": 1340.2
+    },
+    {
+      "year": "2019",
+      "ig_bn": 1142.5,
+      "hy_bn": 278.2,
+      "total_bn": 1420.7
+    },
+    {
+      "year": "2020",
+      "ig_bn": 1849.1,
+      "hy_bn": 424.1,
+      "total_bn": 2273.1
+    },
+    {
+      "year": "2021",
+      "ig_bn": 1473.8,
+      "hy_bn": 488.4,
+      "total_bn": 1962.2
+    },
+    {
+      "year": "2022",
+      "ig_bn": 1251.4,
+      "hy_bn": 111.9,
+      "total_bn": 1363.3
+    },
+    {
+      "year": "2023",
+      "ig_bn": 1268.3,
+      "hy_bn": 183.6,
+      "total_bn": 1451.9
+    },
+    {
+      "year": "2024",
+      "ig_bn": 1573.3,
+      "hy_bn": 302.3,
+      "total_bn": 1875.6
+    },
+    {
+      "year": "2025",
+      "ig_bn": 1731.5,
+      "hy_bn": 353.4,
+      "total_bn": 2084.9
+    }
+  ],
+  "quarterly": [
+    {
+      "q": "2024Q2",
+      "ig_bn": 359.9,
+      "hy_bn": 81.5,
+      "total_bn": 441.4
+    },
+    {
+      "q": "2024Q3",
+      "ig_bn": 428.5,
+      "hy_bn": 79.0,
+      "total_bn": 507.5
+    },
+    {
+      "q": "2024Q4",
+      "ig_bn": 247.0,
+      "hy_bn": 52.1,
+      "total_bn": 299.0
+    },
+    {
+      "q": "2025Q1",
+      "ig_bn": 569.8,
+      "hy_bn": 79.4,
+      "total_bn": 649.2
+    },
+    {
+      "q": "2025Q2",
+      "ig_bn": 401.5,
+      "hy_bn": 77.3,
+      "total_bn": 478.9
+    },
+    {
+      "q": "2025Q3",
+      "ig_bn": 410.1,
+      "hy_bn": 124.7,
+      "total_bn": 534.8
+    },
+    {
+      "q": "2025Q4",
+      "ig_bn": 350.1,
+      "hy_bn": 71.9,
+      "total_bn": 422.0
+    },
+    {
+      "q": "2026Q1",
+      "ig_bn": 665.4,
+      "hy_bn": 87.3,
+      "total_bn": 752.7
+    },
+    {
+      "q": "2026Q2",
+      "ig_bn": 558.5,
+      "hy_bn": 105.2,
+      "total_bn": 663.7
+    }
+  ],
+  "monthly": [
+    {
+      "month": "2025-06",
+      "ig_bn": 116.3,
+      "hy_bn": 37.1,
+      "total_bn": 153.4,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2025-07",
+      "ig_bn": 95.8,
+      "hy_bn": 34.9,
+      "total_bn": 130.7,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2025-08",
+      "ig_bn": 103.6,
+      "hy_bn": 25.4,
+      "total_bn": 129.0,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2025-09",
+      "ig_bn": 210.7,
+      "hy_bn": 64.3,
+      "total_bn": 275.0,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2025-10",
+      "ig_bn": 167.6,
+      "hy_bn": 19.2,
+      "total_bn": 186.9,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2025-11",
+      "ig_bn": 147.0,
+      "hy_bn": 29.2,
+      "total_bn": 176.2,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2025-12",
+      "ig_bn": 35.4,
+      "hy_bn": 23.5,
+      "total_bn": 58.9,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2026-01",
+      "ig_bn": 230.6,
+      "hy_bn": 32.1,
+      "total_bn": 262.7,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2026-02",
+      "ig_bn": 192.6,
+      "hy_bn": 30.5,
+      "total_bn": 223.2,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2026-03",
+      "ig_bn": 242.2,
+      "hy_bn": 24.6,
+      "total_bn": 266.8,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2026-04",
+      "ig_bn": 199.0,
+      "hy_bn": 38.0,
+      "total_bn": 237.0,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2026-05",
+      "ig_bn": 160.6,
+      "hy_bn": 33.2,
+      "total_bn": 193.7,
+      "ig_yoy_pct": null
+    },
+    {
+      "month": "2026-06",
+      "ig_bn": 199.0,
+      "hy_bn": 34.0,
+      "total_bn": 233.0,
+      "ig_yoy_pct": 71
+    }
+  ],
+  "note": "Real SIFMA monthly IG/HY gross issuance. IG boom: ~$1.27T (2023) \u2192 $1.57T (2024) \u2192 $1.73T (2025), a record year. Jan-2026 IG $231bn and Sep-2025 IG $211bn are the standout prints behind the secondary-turnover surge; Dec-2025 shows the usual year-end lull. High new-issue activity drives secondary turnover."
+}

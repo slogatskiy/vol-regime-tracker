@@ -2,6 +2,18 @@
 
 Named save points. Roll the whole repo back to any of these with `git checkout <tag>`.
 
+## v0.7.0 — 2026-07-15 — FPM → results: earnings-miss signal (Georgy's ask)
+New "FPM → results" widget answering: does the FPM decline signal an MKTX revenue miss?
+
+- Mechanism: commissions ≈ FPM × volume (~87% of MKTX revenue); MKTX publishes volume+FPM
+  ~5 weeks before earnings, so the FPM×volume proxy is a genuine leading indicator.
+- Validation: 2026Q1 proxy +11.2% ≈ actual revenue +11.9%.
+- Signal: 2026Q2 volume+FPM already public → proxy −6.2% YoY (flat volume, FPM −6.5%) →
+  est. revenue ~$212M vs $220.4M Street consensus = ~−3.8% shortfall. With revenue already
+  missed in Q3-25 and Q4-25, a revenue miss into the Aug-7 print is the base case (EPS may
+  still squeak via cost/buybacks). New KPI tile + `analyze_fpm_signal.py` + section.
+- Not investment advice; caveats (credit-only proxy, one quarter) noted on the widget.
+
 ## v0.6.0 — 2026-07-15 — per-widget explanations + 5-year chart spans
 Georgy's two asks: a plain-English one-liner per widget, and 5-year coverage on the charts.
 

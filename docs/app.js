@@ -267,6 +267,39 @@ function renderFpm(d) {
   return d;
 }
 
+/* ---------- 06+ FPM -> results: earnings-miss signal ---------- */
+function renderSignal(d) {
+  const p = d.prediction, v = d.validation;
+  // show recent quarters: reported revenue YoY (Q2 = estimate) + proxy YoY overlay
+  const qs = ["2025Q2", "2025Q3", "2025Q4", "2026Q1", "2026Q2"];
+  const byq = Object.fromEntries(d.quarters.map(r => [r.q, r]));
+  const revBars = qs.map(q => q === "2026Q2" ? p.est_rev_yoy : (byq[q] ? byq[q].rev_yoy : null));
+  const proxyLine = qs.map(q => byq[q] ? byq[q].proxy_yoy : null);
+  new Chart($("signalChart"), {
+    data: { labels: qs, datasets: [
+      { type: "bar", label: "Reported revenue YoY", data: revBars,
+        backgroundColor: qs.map(q => q === "2026Q2" ? "rgba(255,107,107,.55)" : C.accent),
+        order: 2 },
+      { type: "line", label: "Commission proxy YoY (FPM×vol)", data: proxyLine,
+        borderColor: C.amber, borderWidth: 2, pointRadius: 4, spanGaps: true, order: 1 },
+    ]},
+    options: base({ scales: { x: { grid: { color: C.grid }, ticks: { color: C.text } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, title: axT("YoY %") } } }),
+  });
+  $("signal-note").textContent =
+    `Validation: ${v.q} proxy ${sign(v.proxy_yoy)}% ≈ actual revenue ${sign(v.actual_rev_yoy)}%. ` +
+    `${p.q} bar is the estimate (revenue not yet reported).`;
+  const missCls = p.implied_vs_consensus_pct < -1 ? "bad" : "good";
+  $("signal-readout").innerHTML =
+    `<div class="r"><div class="rl">Q2-26 proxy YoY</div><div class="rv down">${sign(p.proxy_yoy)}%</div><div class="rs">FPM×volume, already public</div></div>
+     <div class="r"><div class="rl">Est. revenue</div><div class="rv">$${p.est_rev_mm}M</div><div class="rs">${sign(p.est_rev_yoy)}% YoY · $${p.est_rev_low}–${p.est_rev_high}M</div></div>
+     <div class="r"><div class="rl">Consensus</div><div class="rv">$${p.consensus_rev_mm}M</div><div class="rs">${sign(p.consensus_rev_yoy)}% YoY · EPS $${p.consensus_eps}</div></div>
+     <div class="r"><div class="rl">vs consensus</div><div class="rv ${p.implied_vs_consensus_pct < 0 ? 'down' : 'up'}">${sign(p.implied_vs_consensus_pct)}%</div><div class="rs">reports ${p.report_date}</div></div>`;
+  $("signal-answer").innerHTML =
+    `<b>Yes — it points to a revenue miss.</b> ${d.note}`;
+  return d;
+}
+
 /* ---------- 07 Market share (real MKTX estimated share) ---------- */
 function renderShare(d) {
   const labels = d.series.map(p => monthLbl(p.month));
@@ -428,10 +461,10 @@ function renderFomc(d) {
 /* ---------- boot ---------- */
 async function main() {
   const [
-    manifest, move, dataday, dealer, newissue, volume, fpm, share, tradeweb, fedpath, fomc,
+    manifest, move, dataday, dealer, newissue, volume, fpm, share, tradeweb, fedpath, fomc, signal,
   ] = await Promise.all([
     "manifest", "move", "data_day_vol", "dealer_balance", "new_issue", "mktx_volume",
-    "mktx_fpm", "market_share", "tradeweb", "fed_funds_path", "fomc_taskforce",
+    "mktx_fpm", "market_share", "tradeweb", "fed_funds_path", "fomc_taskforce", "mktx_earnings_signal",
   ].map(n => loadJSON(`data/${n}.json`)));
 
   $("tickers").textContent = manifest.tickers;
@@ -459,6 +492,9 @@ async function main() {
     kpiCard("TW vs MKTX", `+${tradeweb.avg_growth_gap_pp}pp`,
       "TW out-growing MKTX · US credit",
       { t: "TW leads", cls: "bad" }),
+    kpiCard("MKTX Q2-26 signal", `${sign(signal.prediction.implied_vs_consensus_pct)}%`,
+      `est $${signal.prediction.est_rev_mm}M vs cons $${signal.prediction.consensus_rev_mm}M`,
+      { t: "miss risk", cls: "bad" }),
   ].join("");
 
   renderMove(move);
@@ -467,6 +503,7 @@ async function main() {
   renderNewIssue(newissue);
   renderMktxVolume(volume);
   renderFpm(fpm);
+  renderSignal(signal);
   renderShare(share);
   renderTradeweb(tradeweb);
   renderFedPath(fedpath);
