@@ -1,33 +1,17 @@
 {
-  "last_updated": "2026-10-05",
+  "last_updated": "2026-10-12",
   "source": "ICE BofA MOVE Index via Yahoo Finance (^MOVE)",
   "source_url": "https://finance.yahoo.com/quote/%5EMOVE",
-  "current": 113.41,
+  "current": 98.47,
   "week52_high": 115.02,
   "week52_low": 55.77,
-  "avg_90d": 76.8,
+  "avg_90d": 78.1,
   "thresholds": {
     "watch": 90,
     "regime": 100
   },
-  "days_above_watch_90d": 9,
+  "days_above_watch_90d": 13,
   "series": [
-    {
-      "date": "2021-10-05",
-      "value": 62.83
-    },
-    {
-      "date": "2021-10-06",
-      "value": 60.65
-    },
-    {
-      "date": "2021-10-07",
-      "value": 60.91
-    },
-    {
-      "date": "2021-10-08",
-      "value": 59.65
-    },
     {
       "date": "2021-10-12",
       "value": 62.95
@@ -4994,7 +4978,23 @@
     },
     {
       "date": "2026-10-05",
-      "value": 113.41
+      "value": 113.6
+    },
+    {
+      "date": "2026-10-06",
+      "value": 105.2
+    },
+    {
+      "date": "2026-10-07",
+      "value": 102.56
+    },
+    {
+      "date": "2026-10-08",
+      "value": 100.7
+    },
+    {
+      "date": "2026-10-09",
+      "value": 98.47
     }
   ]
 }
